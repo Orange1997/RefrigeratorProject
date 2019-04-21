@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">冰&#160;箱&#160;贴</string>
+    <string name="info_second">s</string>
+    <string name="title_back">返&#160;&#160;回</string>
+    <string name="title_forget_psd">忘记密码</string>
+
+    <string name="hint_user_name">请输入你的手机号</string>
+    <string name="hint_psd">请输入你的密码</string>
+    <string name="hint_register_phone">请输入手机号</string>
+    <string name="hint_register_psd">请设置密码（6-20位，数字与字母组合）</string>
+    <string name="hint_reset_psd">请重新设置密码（6-20位，数字与字母组合）</string>
+    <string name="hint_confirm_psd">确认密码</string>
+    <string name="hint_register_code">请输入验证码</string>
+    <string name="label_get_code">获取验证码</string>
+    <string name="label_login">登&#160;&#160;录</string>
+    <string name="label_register">注&#160;&#160;册</string>
+    <string name="label_forgot_psd">忘记密码</string>
+    <string name="label_to_register"><u>手机号注册</u></string>
+    <string name="label_other_login_way">第三方账号登录</string>
+    <string name="label_welcome">欢迎开启你的冰箱</string>
+    <string name="label_confirm">确&#160;&#160;认</string>
+
+    <string name="toast_phone_wrong">手机号格式错误</string>
+    <string name="toast_no_psd">请输入密码</string>
+
+    <string name="personal_info">个人资料</string>
+</resources>

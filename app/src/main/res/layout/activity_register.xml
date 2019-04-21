@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingRight="@dimen/margin_big"
+    android:paddingLeft="@dimen/margin_big">
+
+    <TextView
+        android:id="@+id/tv_back_to_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="6dp"
+        android:paddingBottom="6dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_16"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:text="@string/title_back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_36"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:text="@string/label_welcome"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/big_height"
+        android:layout_marginTop="@dimen/margin_56">
+
+        <EditText
+            android:id="@+id/et_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="120dp"
+            android:background="@null"
+            android:singleLine="true"
+            android:inputType="phone"
+            android:hint="@string/hint_register_phone"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/tv_color_primary"
+            android:textSize="@dimen/hint_size_common" />
+
+        <Button
+            android:id="@+id/btn_get_code"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:text="@string/label_get_code"
+            android:textSize="@dimen/text_12"
+            android:background="@drawable/shape_small_corner_with_green"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/diver"
+        android:background="@color/tv_color_primary"/>
+
+    <EditText
+        android:id="@+id/et_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/big_height"
+        android:layout_marginTop="@dimen/margin_big"
+        android:textColor="@color/colorAccent"
+        android:background="@null"
+        android:inputType="number"
+        android:singleLine="true"
+        android:hint="@string/hint_register_code"
+        android:textColorHint="@color/tv_color_primary"
+        android:textSize="@dimen/hint_size_common" />
+
+    <View
+        style="@style/diver"
+        android:background="@color/tv_color_primary"/>
+
+    <EditText
+        android:id="@+id/et_psd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/big_height"
+        android:layout_marginTop="@dimen/margin_big"
+        android:background="@null"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:hint="@string/hint_register_psd"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/tv_color_primary"
+        android:textSize="@dimen/hint_size_common" />
+
+    <View
+        style="@style/diver"
+        android:background="@color/tv_color_primary"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_huge"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:text="@string/label_register"
+        android:textSize="@dimen/hint_size_common"
+        android:background="@drawable/shape_big_corner_with_green" />
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/tab_height"
+    android:elevation="@dimen/elevation_height"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <RadioGroup
+        android:id="@+id/rg_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_height"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_refrigerator"
+            style="@style/tab_menu"
+            android:checked="true"
+            android:drawableTop="@drawable/selecor_tab_ic_ice"
+            android:padding="@dimen/margin_common" />
+
+        <RadioButton
+            android:id="@+id/rb_list"
+            style="@style/tab_menu"
+            android:drawableTop="@drawable/selecor_tab_ic_list"
+            android:padding="@dimen/margin_common"/>
+
+        <RadioButton
+            android:id="@+id/rb_information"
+            style="@style/tab_menu"
+            android:drawableTop="@drawable/selecor_tab_ic_infor"
+            android:padding="@dimen/margin_common"/>
+
+        <RadioButton
+            android:id="@+id/rb_personal_center"
+            style="@style/tab_menu"
+            android:drawableTop="@drawable/selecor_tab_ic_person"
+            android:padding="@dimen/margin_common"/>
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="冷藏室"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_menu"
+        app:titleTextColor="@color/tv_color_primary_title"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_refrigerator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/tab_height"
+        android:layout_marginBottom="@dimen/margin_big"
+        android:background="@drawable/shape_big_corner_with_white">
+
+    </android.support.v7.widget.RecyclerView>
+
+   
+
+
+
+</RelativeLayout>

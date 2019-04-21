@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/colorAccent</color>
+
+    <color name="colorPrimaryDark">@color/transparent</color>
+
+    <color name="colorAccent">#28a28d</color>
+
+    <!--主要文字颜色-->
+    <color name="tv_color_primary">#d9dfe4</color>
+
+    <!--辅助文字颜色-->
+    <color name="tv_color_secondary">#dfe3e6</color>
+
+    <!--标题文字颜色-->
+    <color name="tv_color_primary_title">#303030</color>
+
+    <color name="tv_color_accent">#5b9ed7</color>
+
+
+    <color name="tv_color_primary_hint">#999999</color>
+
+    <!--Tabbar未选中颜色-->
+
+
+    <color name="tv_color_un_click">#CCCCCC</color>
+
+    <!--背景色-->
+
+
+    <color name="background">#F9F9F9</color>
+
+    <color name="state_color_no_available">#a2acb5</color>
+
+
+    <color name="tv_color_contract_tab">#555555</color>
+
+    <!--白色-->
+
+
+    <color name="white">#ffffff</color>
+
+    <!--透明色-->
+
+
+    <color name="transparent">#00ffffff</color>
+
+    <!--分割线或者边框灰-->
+
+
+    <color name="gray_divider">#E5E5E5</color>
+
+    <color name="gray_divider_1">#F9F9F9</color>
+
+    <color name="gray_divider_2">#F9F9F9</color>
+
+    <color name="white_50">#80ffffff</color>
+
+    <!--特殊-->
+
+
+    <color name="tv_white">#ffffff</color>
+
+    <color name="tv_credit_card">#ffffff</color>
+
+    <color name="tv_add_credit_card">#F5605D</color>
+
+    <color name="tv_color_title">#555555</color>
+
+    <color name="tv_color_info">#959595</color>
+
+    <color name="gray_tv_hint">#B9B9B9</color>
+
+    <color name="gray_tv_search_hint">#B9B9B9</color>
+
+    <color name="tv_light_gray">#CCFFFFFF</color>
+
+    <color name="gray_table_head_bg">#E5E5E5</color>
+
+    <color name="green_price_down">#21BDA3</color>
+
+    <color name="bg_white">#ffffff</color>
+
+    <color name="bg_1">#ffffff</color>
+
+    <color name="bg_2">#F9F9F9</color>
+
+    <color name="bg_3">#FFFFFF</color>
+
+    <color name="bg_4">#F3F3F3</color>
+
+    <color name="bg_transparent">#ffffff</color>
+
+    <color name="bg_to_pay">#F75F59</color>
+
+    <color name="bg_withdraw">#F78563</color>
+
+    <color name="bg_main_tab">#ffffff</color>
+
+    <color name="problem_divider">#F9F9F9</color>
+
+    <color name="tv_color_more">#959595</color>
+
+    <color name="tv_color_transaction_tel">#555555</color>
+
+    <color name="tv_color_contract">#959595</color>
+
+    <color name="tv_color_pay_status">#ffffff</color>
+
+    <!--底部文字颜色-->
+
+
+    <color name="tv_color_bottom_select">#F5605D</color>
+
+    <color name="tv_color_bottom_unselect">#33000000</color>
+
+    <color name="tv_profit_up">#F45652</color>
+
+    <color name="tv_profit_down">#21BDA3</color>
+
+    <color name="selevt_dot_unclick">#E5E5E5</color>
+
+    <color name="selevt_dot_click">#F78563 </color>
+
+    <color name="gray_btn_bg">#c2c3cb</color>
+</resources>
