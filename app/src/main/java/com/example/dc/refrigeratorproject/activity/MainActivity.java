@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.MyFragmentPagerAdapter;
+import com.example.dc.refrigeratorproject.view.NoScrollViewPager;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,RadioGroup.OnCheckedChangeListener{
 
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public static final int PAGE_THREE = 2;
     public static final int PAGE_FOUR = 3;
 
-    private ViewPager viewpager;
+    private NoScrollViewPager viewpager;
     private RadioButton rbRefrigerator;
     private RadioButton rbInformation;
     private RadioButton rbPersonalCenter;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private void initView() {
         MyFragmentPagerAdapter mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         RadioGroup rgTabBar = (RadioGroup) findViewById(R.id.rg_tab_bar);
-        viewpager = (ViewPager) findViewById(R.id.vp_main);
+        viewpager = (NoScrollViewPager) findViewById(R.id.vp_main);
         rbRefrigerator = (RadioButton) findViewById(R.id.rb_refrigerator);
         rbInformation = (RadioButton) findViewById(R.id.rb_information);
         rbPersonalCenter = (RadioButton) findViewById(R.id.rb_personal_center);
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         viewpager.setAdapter(mAdapter);
         viewpager.setCurrentItem(0);
+        viewpager.setOffscreenPageLimit(4);
         viewpager.addOnPageChangeListener(this);
         rgTabBar.setOnCheckedChangeListener (this);
     }
