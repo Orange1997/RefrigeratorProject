@@ -32,7 +32,7 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RefrigeratorAdapte
 
     private FoodVpAdapter foodVpAdapter;
 
-    private List<GridView> gridList = new ArrayList<>();
+    private List<GridView> gridList = new ArrayList<> ();
 
 
     public RefrigeratorAdapter(Context context) {
@@ -40,7 +40,7 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RefrigeratorAdapte
         this.context = context;
 
         ITEM_GRID_COLUMNS =
-                ScreenUtils.getScreenWidth(context) / context.getResources().getDimensionPixelOffset(R.dimen.item_food_grid_width);
+                ScreenUtils.getScreenWidth (context) / context.getResources ().getDimensionPixelOffset (R.dimen.item_food_grid_width);
 
     }
 
@@ -50,29 +50,29 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RefrigeratorAdapte
 
 
     private void initVpViews(int position) {
-        if (gridList.size() > 0) {
-            gridList.clear();
+        if (gridList.size () > 0) {
+            gridList.clear ();
         }
 
-        int gridSize = data.get(position).getFoodBeanList().size();
+        int gridSize = data.get (position).getFoodBeanList ().size ();
         int pageSize = gridSize % ITEM_GRID_COLUMNS == 0
                 ? gridSize / ITEM_GRID_COLUMNS
                 : gridSize / ITEM_GRID_COLUMNS + 1;
 
         for (int i = 0; i < pageSize; i++) {
-            GridView gridView = (GridView) View.inflate(context, R.layout.item_grid, null);
-            List<FoodBean> list = new ArrayList<>();
+            GridView gridView = (GridView) View.inflate (context, R.layout.item_grid, null);
+            List<FoodBean> list = new ArrayList<> ();
             for (int j = 0; j < ITEM_GRID_COLUMNS; j++) {
                 if (j + ITEM_GRID_COLUMNS * i < gridSize) {
-                    list.add(data.get(position).getFoodBeanList().get(j + ITEM_GRID_COLUMNS * i));
+                    list.add (data.get (position).getFoodBeanList ().get (j + ITEM_GRID_COLUMNS * i));
                 }
             }
-            FoodGvAdapter foodGvAdapter = new FoodGvAdapter(list);
-            gridView.setNumColumns(ITEM_GRID_COLUMNS);
-            gridView.setAdapter(foodGvAdapter);
-            gridList.add(gridView);
+            FoodGvAdapter foodGvAdapter = new FoodGvAdapter (list);
+            gridView.setNumColumns (ITEM_GRID_COLUMNS);
+            gridView.setAdapter (foodGvAdapter);
+            gridList.add (gridView);
         }
-        foodVpAdapter.add(gridList);
+        foodVpAdapter.add (gridList);
     }
 
 
@@ -80,9 +80,9 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RefrigeratorAdapte
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.item_refrigerator, parent, false);
+        View view = LayoutInflater.from (context).inflate (R.layout.item_refrigerator, parent, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder (view);
 
     }
 
@@ -90,8 +90,8 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RefrigeratorAdapte
     @Override
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.tvKind.setText(data.get(position).getKind());
-        initVpViews(position);
+        holder.tvKind.setText (data.get (position).getKind ());
+        initVpViews (position);
 //        foodAdapter.updateList (data.get (position).getFoodBeanList ());
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //
@@ -111,9 +111,11 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RefrigeratorAdapte
     @Override
 
     public int getItemCount() {
-
-        return data.size();
-
+        if (data != null && data.size () > 0) {
+            return data.size ();
+        } else {
+            return 0;
+        }
     }
 
 
@@ -127,11 +129,11 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RefrigeratorAdapte
 
         public ViewHolder(View itemView) {
 
-            super(itemView);
-            tvKind = itemView.findViewById(R.id.tv_kind);
-            vpFood = itemView.findViewById(R.id.vp_food);
-            foodVpAdapter = new FoodVpAdapter();
-            vpFood.setAdapter(foodVpAdapter);
+            super (itemView);
+            tvKind = itemView.findViewById (R.id.tv_kind);
+            vpFood = itemView.findViewById (R.id.vp_food);
+            foodVpAdapter = new FoodVpAdapter ();
+            vpFood.setAdapter (foodVpAdapter);
         }
 
     }
