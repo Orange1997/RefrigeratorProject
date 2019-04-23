@@ -123,4 +123,9 @@
     <color name="selevt_dot_click">#F78563 </color>
 
     <color name="gray_btn_bg">#c2c3cb</color>
+
+
+
+    <color name="green_alpha">#3228a28d</color>
+    <color name="color_diver">#64e1e1e1</color>
 </resources>

@@ -13,7 +13,7 @@
         android:paddingRight="6dp"
         android:paddingBottom="6dp"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_16"
+        android:textSize="@dimen/text_18"
         android:layout_marginTop="@dimen/margin_bigger"
         android:text="@string/title_back"/>
 
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_36"
+        android:textSize="@dimen/text_32"
         android:layout_marginTop="@dimen/margin_bigger"
         android:text="@string/title_forget_psd"/>
 
@@ -41,7 +41,7 @@
             android:hint="@string/hint_register_phone"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/tv_color_primary"
-            android:textSize="@dimen/hint_size_common" />
+            android:textSize="@dimen/text_16" />
 
         <Button
             android:id="@+id/btn_get_code"
@@ -49,7 +49,7 @@
             android:layout_height="28dp"
             android:layout_centerVertical="true"
             android:text="@string/label_get_code"
-            android:textSize="@dimen/text_12"
+            android:textSize="@dimen/text_14"
             android:background="@drawable/shape_small_corner_with_green"
             android:layout_alignParentEnd="true"/>
 
@@ -57,7 +57,7 @@
 
     <View
         style="@style/diver"
-        android:background="@color/tv_color_primary"/>
+        android:background="@color/color_diver"/>
 
     <EditText
         android:id="@+id/et_code"
@@ -70,11 +70,11 @@
         android:singleLine="true"
         android:hint="@string/hint_register_code"
         android:textColorHint="@color/tv_color_primary"
-        android:textSize="@dimen/hint_size_common" />
+        android:textSize="@dimen/text_16" />
 
     <View
         style="@style/diver"
-        android:background="@color/tv_color_primary"/>
+        android:background="@color/color_diver"/>
 
     <EditText
         android:id="@+id/et_psd"
@@ -87,11 +87,11 @@
         android:hint="@string/hint_reset_psd"
         android:textColor="@color/colorAccent"
         android:textColorHint="@color/tv_color_primary"
-        android:textSize="@dimen/hint_size_common" />
+        android:textSize="@dimen/text_16" />
 
     <View
         style="@style/diver"
-        android:background="@color/tv_color_primary"/>
+        android:background="@color/color_diver"/>
 
     <EditText
         android:id="@+id/et_confirm_psd"
@@ -104,11 +104,11 @@
         android:hint="@string/hint_confirm_psd"
         android:textColor="@color/colorAccent"
         android:textColorHint="@color/tv_color_primary"
-        android:textSize="@dimen/hint_size_common" />
+        android:textSize="@dimen/text_16" />
 
     <View
         style="@style/diver"
-        android:background="@color/tv_color_primary"/>
+        android:background="@color/color_diver"/>
 
     <Button
         android:id="@+id/btn_register"
@@ -116,7 +116,7 @@
         android:layout_height="@dimen/margin_huge"
         android:layout_marginTop="@dimen/margin_huge"
         android:text="@string/label_confirm"
-        android:textSize="@dimen/hint_size_common"
+        android:textSize="@dimen/text_18"
         android:background="@drawable/shape_big_corner_with_green" />
 
 </LinearLayout>

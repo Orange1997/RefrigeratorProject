@@ -45,12 +45,24 @@ public class RefrigeratorFragment extends Fragment {
         return view;
     }
 
+    private OnDrawerOpenListener mOnDrawerOpenListener;
+    public interface OnDrawerOpenListener{
+        void onDrawerOpen();
+    }
+
+    public void setOnDrawerOpenListener(OnDrawerOpenListener onDrawerOpenListener){
+        mOnDrawerOpenListener = onDrawerOpenListener;
+    }
+
     private void initTitleBar(View view) {
         toolbar = view.findViewById (R.id.titlebar);
         toolbar.setNavigationOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View pView) {
                 // TODO: 添加抽屉
+                if (mOnDrawerOpenListener!=null){
+                    mOnDrawerOpenListener.onDrawerOpen ();
+                }
             }
         });
     }
