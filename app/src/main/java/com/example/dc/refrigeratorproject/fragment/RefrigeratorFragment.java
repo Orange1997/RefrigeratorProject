@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.AddFoodActivity;
+import com.example.dc.refrigeratorproject.activity.CreatRefrigeratorActivity;
+import com.example.dc.refrigeratorproject.activity.JoinActivity;
 import com.example.dc.refrigeratorproject.adapter.RefrigeratorAdapter;
 import com.example.dc.refrigeratorproject.model.FoodBean;
 import com.example.dc.refrigeratorproject.model.RefrigeratorBean;
@@ -96,7 +98,7 @@ public class RefrigeratorFragment extends Fragment {
     }
 
     private void initData() {
-//        //todo:显示冰箱空页面
+        //todo:显示冰箱空页面
 //        if (本地不存在冰箱list){
 //            emptyRefrigeratorView.setVisibility (View.VISIBLE);
 //            rvRefrigerator.setVisibility (View.GONE);
@@ -109,6 +111,8 @@ public class RefrigeratorFragment extends Fragment {
 //                public void onClick(View v) {
 //                    //todo:跳转到创建页
 //                    ToastUtil.showShort (getContext (), "跳转到创建页");
+//                    Intent intent = new Intent(getActivity(), CreatRefrigeratorActivity.class);
+//                    startActivity(intent);
 //                }
 //            });
 //            tvJoin.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +120,8 @@ public class RefrigeratorFragment extends Fragment {
 //                public void onClick(View v) {
 //                    //todo:跳转到加入页
 //                    ToastUtil.showShort (getContext (), "跳转到创建页");
+//                    Intent intent = new Intent(getActivity(), JoinActivity.class);
+//                    startActivity(intent);
 //                }
 //            });
 //        }else {
