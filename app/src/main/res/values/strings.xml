@@ -27,6 +27,10 @@
 
     <string name="create_refrigerator">创建</string>
     <string name="join_refrigerator">加入</string>
+    <string name="input_invite_code">输入邀请码</string>
+    <string name="confirm">验证</string>
+    <string name="invite_tip">*你可以从家人处获得邀请码哦</string>
+    <string name="hint_input_invite_code">输入邀请码加入冰箱</string>
     <string name="hint_create_refrigerator">您还未添加过冰箱，请选择创建或加入冰箱吧</string>
     <string name="hint_invite">邀请家人一起来管理冰箱吧~</string>
     <string name="hint_to_invite">去邀请</string>
