@@ -63,8 +63,6 @@
 
     <color name="tv_credit_card">#ffffff</color>
 
-    <color name="tv_add_credit_card">#F5605D</color>
-
     <color name="tv_color_title">#555555</color>
 
     <color name="tv_color_info">#959595</color>
@@ -79,21 +77,13 @@
 
     <color name="green_price_down">#21BDA3</color>
 
-    <color name="bg_white">#ffffff</color>
-
     <color name="bg_1">#ffffff</color>
 
     <color name="bg_2">#F9F9F9</color>
 
-    <color name="bg_3">#FFFFFF</color>
-
     <color name="bg_4">#F3F3F3</color>
 
     <color name="bg_transparent">#ffffff</color>
-
-    <color name="bg_to_pay">#F75F59</color>
-
-    <color name="bg_withdraw">#F78563</color>
 
     <color name="bg_main_tab">#ffffff</color>
 
@@ -108,22 +98,6 @@
     <color name="tv_color_pay_status">#ffffff</color>
 
     <!--底部文字颜色-->
-
-
-    <color name="tv_color_bottom_select">#F5605D</color>
-
-    <color name="tv_color_bottom_unselect">#33000000</color>
-
-    <color name="tv_profit_up">#F45652</color>
-
-    <color name="tv_profit_down">#21BDA3</color>
-
-    <color name="selevt_dot_unclick">#E5E5E5</color>
-
-    <color name="selevt_dot_click">#F78563 </color>
-
-    <color name="gray_btn_bg">#c2c3cb</color>
-
 
 
     <color name="green_alpha">#3228a28d</color>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_close"
+        app:title="@string/add_food"
+        app:titleTextColor="@color/tv_color_primary_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="@dimen/margin_bigger"
+                android:background="@color/tv_color_primary"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_bigger"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18"
+                android:text="基本信息"
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="@dimen/text_18"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_food_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="食物名称"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16"/>
+
+                <EditText
+                    android:id="@+id/et_food_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_1"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="如：水果沙拉"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    />
+
+            </RelativeLayout>
+
+            <View
+               style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_food_amount"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="数量"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16"/>
+
+                <EditText
+                    android:id="@+id/et_food_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_2"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="如：1"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_food_unit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="单位"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16"/>
+
+                <EditText
+                    android:id="@+id/et_food_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_3"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="如：盘、袋、克"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_expired_date"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="过期时间"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16"/>
+
+                <EditText
+                    android:id="@+id/et_expired_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_4"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="选择时间"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_18"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18"
+                android:text="提醒设置"
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="@dimen/text_18"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_remind_time"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="时间"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16"/>
+
+                <EditText
+                    android:id="@+id/et_remind_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_5"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="选择时间"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_remind_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="重复"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16"/>
+
+                <EditText
+                    android:id="@+id/et_remind_repeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_6"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="一次"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_remind_extra"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="备注"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16"/>
+
+                <EditText
+                    android:id="@+id/et_remind_extra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_7"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:hint="xxxxx"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">冰&#160;箱&#160;贴</string>
+    <string name="app_name">冰箱贴</string>
     <string name="info_second">s</string>
     <string name="title_back">返&#160;&#160;回</string>
     <string name="title_forget_psd">忘记密码</string>
@@ -25,10 +25,13 @@
 
     <string name="personal_info">个人资料</string>
 
-    <string name="create_refrigerator">创建冰箱</string>
-    <string name="hint_create_refrigerator">快来开启你的冰箱吧</string>
+    <string name="create_refrigerator">创建</string>
+    <string name="join_refrigerator">加入</string>
+    <string name="hint_create_refrigerator">您还未添加过冰箱，请选择创建或加入冰箱吧</string>
     <string name="hint_invite">邀请家人一起来管理冰箱吧~</string>
     <string name="hint_to_invite">去邀请</string>
 
     <string name="empty_food_guide">这里空荡荡的，点击 + 丰富你的冰箱吧</string>
+
+    <string name="add_food">添加食物</string>
 </resources>
