@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dc.refrigeratorproject.R;
+import com.example.dc.refrigeratorproject.config.Config;
 
 /**
  * Created by DC on 2019/3/5.
@@ -115,7 +116,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId ()){
             case R.id.btn_login:
                 intent = new Intent (LoginActivity.this, MainActivity.class);
+                Config.setUserAccount (LoginActivity.this,1234);
                 startActivity (intent);
+
+
 
 //                if (TextUtils.isEmpty (etUser.getText ())) {
 //                    ToastUtil.showShort (getApplicationContext (), R.string.hint_register_phone);

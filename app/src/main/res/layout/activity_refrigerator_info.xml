@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="冰箱信息"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_18" />
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titlebar"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_bigger"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18"
+                android:text="基本信息"
+                android:textColor="@color/tv_color_primary_hint"
+                android:textSize="@dimen/text_14" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_ref_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="冰箱名称"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16" />
+
+                <TextView
+                    android:id="@+id/et_re_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_ref_name"
+                    android:background="@null"
+                    android:drawableRight="@drawable/ic_to_right"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    tools:text="哈哈哈哈" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"
+                android:background="@color/color_diver" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:inputType="text"
+                    android:text="位置"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16" />
+
+                <TextView
+                    android:id="@+id/et_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_address"
+                    android:background="@null"
+                    android:drawableRight="@drawable/ic_to_right"
+                    android:ellipsize="end"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    tools:text="哈哈哈哈哈哈哈哈哈哈哈哈哈" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"
+                android:background="@color/color_diver" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_ref_creator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="创建者"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16" />
+
+                <TextView
+                    android:id="@+id/et_re_creator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="4dp"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_ref_creator"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:gravity="end|center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16"
+                    tools:text="哈哈哈哈" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_common"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/margin_18"
+                    android:paddingRight="@dimen/margin_18"
+                    android:text="其余共享用户"
+                    android:textColor="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/tv_to_invite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_18"
+                    android:background="@drawable/shape_small_corner_with_green_border"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="3dp"
+                    android:text="邀请好友"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_12" />
+
+            </RelativeLayout>
+
+
+            <com.example.dc.refrigeratorproject.view.SlideRecyclerView
+                android:id="@+id/rv_refrigerator_sharer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingBottom="48dp"
+                tools:listitem="@layout/item_refrigerator_group_people">
+
+            </com.example.dc.refrigeratorproject.view.SlideRecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_common"
+        android:layout_marginLeft="@dimen/margin_18"
+        android:layout_marginRight="@dimen/margin_18"
+        android:background="@drawable/shape_round_corner_with_green"
+        android:text="删除/退出"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_16" />
+</RelativeLayout>

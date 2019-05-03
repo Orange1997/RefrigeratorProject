@@ -15,12 +15,9 @@ import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.AddFoodActivity;
-import com.example.dc.refrigeratorproject.activity.CreatRefrigeratorActivity;
-import com.example.dc.refrigeratorproject.activity.JoinActivity;
 import com.example.dc.refrigeratorproject.adapter.RefrigeratorAdapter;
 import com.example.dc.refrigeratorproject.model.FoodBean;
 import com.example.dc.refrigeratorproject.model.RefrigeratorBean;
-import com.example.dc.refrigeratorproject.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;

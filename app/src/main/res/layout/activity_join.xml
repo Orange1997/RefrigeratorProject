@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:background="@color/white"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:navigationIcon="@drawable/ic_close">
+        app:navigationIcon="@drawable/ic_navigation_back">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/input_invite_code"
             android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="@string/input_invite_code"
             android:textColor="@color/tv_color_primary_title"
-            android:textSize="@dimen/text_18"
-            android:gravity="center_vertical"/>
+            android:textSize="@dimen/text_18" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -26,42 +28,42 @@
         android:id="@+id/et_input"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_height"
+        android:layout_marginEnd="@dimen/margin_18"
+        android:layout_marginStart="@dimen/margin_18"
+        android:layout_marginTop="@dimen/margin_big"
+        android:background="@null"
         android:hint="@string/hint_input_invite_code"
         android:paddingTop="@dimen/margin_common"
-        android:layout_marginTop="@dimen/margin_big"
         android:textColor="@color/tv_color_primary_title"
         android:textColorHint="@color/tv_color_primary_hint"
-        android:layout_marginStart="@dimen/margin_18"
-        android:layout_marginEnd="@dimen/margin_18"
-        android:background="@null"
-        android:textSize="@dimen/text_16"/>
+        android:textSize="@dimen/text_16" />
 
     <View
         style="@style/diver"
-        android:layout_marginStart="@dimen/margin_18"
         android:layout_marginEnd="@dimen/margin_18"
-        android:background="@color/color_diver"/>
+        android:layout_marginStart="@dimen/margin_18"
+        android:background="@color/color_diver" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/big_height"
-        android:layout_marginRight="@dimen/margin_18"
         android:layout_marginLeft="@dimen/margin_18"
-        android:layout_marginTop="@dimen/margin_big"
+        android:layout_marginRight="@dimen/margin_18"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:background="@drawable/shape_round_corner_with_green"
         android:text="@string/confirm"
-        android:textSize="@dimen/text_16"
         android:textColor="@color/white"
-        android:background="@drawable/shape_round_corner_with_green"/>
+        android:textSize="@dimen/text_16" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginRight="@dimen/margin_18"
         android:layout_marginLeft="@dimen/margin_18"
+        android:layout_marginRight="@dimen/margin_18"
         android:layout_marginTop="@dimen/margin_small"
+        android:gravity="center_horizontal"
         android:text="@string/invite_tip"
-        android:textSize="@dimen/text_12"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_13" />
 
 </LinearLayout>

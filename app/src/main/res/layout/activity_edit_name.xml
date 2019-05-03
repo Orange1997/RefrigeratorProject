@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/color_diver">
+
+    <include
+        layout="@layout/view_title_bar"/>
+
+    <View
+        android:layout_marginTop="@dimen/margin_common"
+        style="@style/diver"
+        android:background="#e9e9e9"/>
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:inputType="text"
+        android:textSize="@dimen/text_16"
+        android:hint="请输入名字"
+        android:textColor="@color/tv_color_primary_title"
+        android:textColorHint="@color/tv_color_primary_hint"
+        android:paddingLeft="@dimen/margin_18"
+        android:paddingRight="@dimen/margin_18"
+        android:background="@color/white"/>
+
+    <View
+        style="@style/diver"
+        android:background="#e9e9e9"/>
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="请不要超过20个字符，支持中英文、数字"
+        android:layout_marginLeft="@dimen/margin_18"
+        android:layout_marginRight="@dimen/margin_18"
+        android:textSize="@dimen/text_14"
+        android:textColor="@color/tv_color_primary_hint"/>
+</LinearLayout>

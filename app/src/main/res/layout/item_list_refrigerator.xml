@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_ref"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/margin_18"
+    android:paddingRight="@dimen/margin_18">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/margin_common"
+        android:layout_marginBottom="@dimen/margin_common"
+        android:layout_toRightOf="@+id/iv_head"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:layout_marginRight="@dimen/margin_tiny"
+                android:text="司而北的冰箱"
+                android:ellipsize="end"
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/tv_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_small_corner_with_green_border"
+                android:maxLines="1"
+                android:text="当前冰箱"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="@dimen/margin_tiny"
+                android:paddingLeft="@dimen/margin_tiny"
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_address"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="司而北"-->
+            <!--android:maxLines="2"-->
+            <!--android:ellipsize="end"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:textColor="@color/tv_color_primary_hint"-->
+            <!--android:textSize="@dimen/text_13" />-->
+    </LinearLayout>
+
+    <View
+        android:id="@+id/diver"
+        style="@style/diver"
+        android:background="@color/color_diver" />
+</LinearLayout>

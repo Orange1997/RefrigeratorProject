@@ -53,6 +53,21 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"/>
 
+        <activity
+            android:name=".activity.RefrigeratorInfoActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".activity.RefrigeratorListActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".activity.EditNameActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+
     </application>
 
 </manifest>

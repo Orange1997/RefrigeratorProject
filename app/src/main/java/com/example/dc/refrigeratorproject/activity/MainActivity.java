@@ -1,19 +1,21 @@
 package com.example.dc.refrigeratorproject.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.MyFragmentPagerAdapter;
 import com.example.dc.refrigeratorproject.fragment.RefrigeratorFragment;
 import com.example.dc.refrigeratorproject.view.NoScrollViewPager;
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener ,View.OnClickListener{
 
     public static final int PAGE_ONE = 0;
     public static final int PAGE_TWO = 1;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private RadioButton rbPersonalCenter;
     private RadioButton rbList;
     private DrawerLayout mDlMain;
+    private TextView tvMenuMyRef;
 
     private MyFragmentPagerAdapter mAdapter;
 
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         rbPersonalCenter = (RadioButton) findViewById (R.id.rb_personal_center);
         rbList = (RadioButton) findViewById (R.id.rb_list);
         mDlMain = (DrawerLayout) findViewById (R.id.dl_main);
+        tvMenuMyRef = findViewById (R.id.tv_menu_my_ref);
 
         mAdapter = new MyFragmentPagerAdapter (getSupportFragmentManager ());
 
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         viewpager.setCurrentItem (0);
         viewpager.addOnPageChangeListener (this);
         rgTabBar.setOnCheckedChangeListener (this);
+
+        tvMenuMyRef.setOnClickListener (this);
 
         openDrawerListener ();
 
@@ -106,6 +112,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 break;
         }
     }
+
+    @Override
+    public void onClick(View v){
+        switch (v.getId ()){
+            case R.id.tv_menu_my_ref:
+                Intent intent = new Intent (MainActivity.this,RefrigeratorListActivity.class);
+                startActivity (intent);
+                break;
+        }
+    }
+
 
     private void openDrawerListener() {
         if (viewpager.getCurrentItem () == 0) {

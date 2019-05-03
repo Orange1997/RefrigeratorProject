@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:clickable="true"
+        android:paddingLeft="@dimen/margin_18"
+        android:paddingRight="@dimen/margin_18">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_head"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            fresco:placeholderImage="@drawable/default_head"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:roundAsCircle="true" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_common"
+            android:layout_toRightOf="@+id/iv_head"
+            android:text="司而北"
+            android:gravity="start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_tiny"
+            android:layout_toRightOf="@+id/tv_name"
+            android:text="(15869117281)"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/iv_is_creator"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_14" />
+
+        <ImageView
+            android:id="@+id/iv_is_creator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_creator" />
+
+        <View
+            android:id="@+id/diver"
+            style="@style/diver"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_diver" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="删除"
+        android:textColor="#FFFFFFFF"
+        android:textSize="@dimen/text_14" />
+</LinearLayout>

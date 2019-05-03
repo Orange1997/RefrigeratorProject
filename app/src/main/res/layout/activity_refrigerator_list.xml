@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/color_diver">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:navigationIcon="@drawable/ic_close"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/my_refrigerator"
+            android:layout_gravity="center"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_18"
+            android:gravity="center_vertical"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/ll_ref_top"
+                android:paddingTop="@dimen/margin_common"
+                android:paddingBottom="@dimen/margin_common"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_add"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:drawablePadding="8dp"
+                    android:text="添加冰箱"
+                    android:textSize="@dimen/text_14"
+                    android:drawableTop="@drawable/ic_ice"
+                    android:textColor="@color/tv_color_primary_title"/>
+
+                <TextView
+                    android:id="@+id/tv_join"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:drawablePadding="8dp"
+                    android:text="输入邀请码"
+                    android:textSize="@dimen/text_14"
+                    android:drawableTop="@drawable/ic_ice"
+                    android:textColor="@color/tv_color_primary_title"/>
+
+            </LinearLayout>
+
+            <View
+                style="@style/diver"
+                android:background="@color/color_diver"
+                android:layout_height="10dp"/>
+
+            <com.example.dc.refrigeratorproject.view.NoScrollRecyclerView
+                android:id="@+id/rv_refrigerator_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                tools:listitem="@layout/item_list_refrigerator">
+            </com.example.dc.refrigeratorproject.view.NoScrollRecyclerView>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

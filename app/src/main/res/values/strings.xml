@@ -37,5 +37,10 @@
 
     <string name="empty_food_guide">这里空荡荡的，点击 + 丰富你的冰箱吧</string>
 
+    <string name="my_refrigerator">冰箱管理</string>
+
     <string name="add_food">添加食物</string>
+
+    <string name="info_no_empty">输入内容不能为空</string>
+    <string name="info_no_more_than_twenty">请不要超过20个字符</string>
 </resources>
