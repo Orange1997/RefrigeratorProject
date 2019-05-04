@@ -10,8 +10,7 @@ import java.util.List;
 public class RefrigeratorModel implements Serializable{
     public String name;
     public String address;
-    public long creatorAccount;
-    public String creatorName;
+    public UserModel creator;
     public List<RefrigeratorSharerModel> sharerModelList;
     public boolean isCurrentRefrigerator;
 
@@ -31,14 +30,6 @@ public class RefrigeratorModel implements Serializable{
         this.address = address;
     }
 
-    public long getCreatorAccount() {
-        return creatorAccount;
-    }
-
-    public void setCreatorAccount(long creatorAccount) {
-        this.creatorAccount = creatorAccount;
-    }
-
     public List<RefrigeratorSharerModel> getSharerModelList() {
         return sharerModelList;
     }
@@ -55,11 +46,11 @@ public class RefrigeratorModel implements Serializable{
         isCurrentRefrigerator = currentRefrigerator;
     }
 
-    public String getCreatorName() {
-        return creatorName;
+    public UserModel getCreator() {
+        return creator;
     }
 
-    public void setCreatorName(String creatorName) {
-        this.creatorName = creatorName;
+    public void setCreator(UserModel creator) {
+        this.creator = creator;
     }
 }

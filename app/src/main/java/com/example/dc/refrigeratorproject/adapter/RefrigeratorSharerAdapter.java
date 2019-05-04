@@ -45,11 +45,14 @@ public class RefrigeratorSharerAdapter extends RecyclerView.Adapter<Refrigerator
 
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final RefrigeratorSharerModel model = data.get (position);
-        if (model.getSharerHeadUrl () != null) {
-            holder.ivHead.setImageURI (Uri.parse (model.getSharerHeadUrl ()));
+        if (model.getSharer ()!=null){
+            if (model.getSharer ().getHead () != null) {
+                holder.ivHead.setImageURI (Uri.parse (model.getSharer ().getHead ()));
+            }
+            holder.tvAccount.setText (model.getSharer ().getAccount () != 0 ? "(" + String.valueOf (model.getSharer ().getAccount ()) + ")" : "");
+            holder.tvName.setText (model.getSharer ().getName () != null ? model.getSharer ().getName () : "");
         }
-        holder.tvAccount.setText (model.getSharerAccount () != 0 ? "(" + String.valueOf (model.getSharerAccount ()) + ")" : "");
-        holder.tvName.setText (model.getSharerName () != null ? model.getSharerName () : "");
+
         if (model.isCreator ()) {
             holder.ivCreator.setVisibility (View.VISIBLE);
         } else {

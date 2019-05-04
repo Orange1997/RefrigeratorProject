@@ -36,6 +36,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/AppTheme"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
@@ -67,6 +68,20 @@
             android:name=".activity.EditNameActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".activity.AddressSelectorActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".activity.InviteActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity
+            android:name=".activity.DialogRefListActivity"
+            android:theme="@style/MyDialogStyleBottom" />
 
     </application>
 

@@ -12,7 +12,7 @@
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:navigationIcon="@drawable/ic_close"
+        app:navigationIcon="@drawable/ic_arrow_back"
         android:background="@color/white">
 
         <TextView
@@ -49,10 +49,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:drawablePadding="8dp"
-                    android:text="添加冰箱"
+                    android:drawablePadding="4dp"
+                    android:text="创建冰箱"
                     android:textSize="@dimen/text_14"
-                    android:drawableTop="@drawable/ic_ice"
+                    android:drawableTop="@drawable/ic_add_ref"
                     android:textColor="@color/tv_color_primary_title"/>
 
                 <TextView
@@ -61,10 +61,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="4dp"
                     android:text="输入邀请码"
                     android:textSize="@dimen/text_14"
-                    android:drawableTop="@drawable/ic_ice"
+                    android:drawableTop="@drawable/ic_invite_code"
                     android:textColor="@color/tv_color_primary_title"/>
 
             </LinearLayout>

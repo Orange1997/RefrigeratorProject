@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".activity.AddFoodActivity">
+    <item
+        android:id="@+id/show_ref_list"
+        android:icon="@drawable/ic_done_black_24dp"
+        android:title="切换冰箱"
+        app:showAsAction="never"/>
+
+</menu>

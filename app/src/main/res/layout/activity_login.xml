@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
     android:gravity="center_horizontal"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <View

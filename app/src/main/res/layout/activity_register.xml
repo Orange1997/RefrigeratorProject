@@ -3,14 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingRight="@dimen/margin_big"
-    android:paddingLeft="@dimen/margin_big">
+    android:fitsSystemWindows="true">
 
     <TextView
         android:id="@+id/tv_back_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="6dp"
+        android:paddingRight="32dp"
+        android:paddingLeft="@dimen/margin_big"
         android:paddingBottom="6dp"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_18"
@@ -22,12 +22,16 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_32"
+        android:paddingRight="@dimen/margin_big"
+        android:paddingLeft="@dimen/margin_big"
         android:layout_marginTop="@dimen/margin_bigger"
         android:text="@string/label_welcome"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/big_height"
+        android:paddingRight="@dimen/margin_big"
+        android:paddingLeft="@dimen/margin_big"
         android:layout_marginTop="@dimen/margin_56">
 
         <EditText
@@ -50,6 +54,7 @@
             android:layout_centerVertical="true"
             android:text="@string/label_get_code"
             android:textSize="@dimen/text_14"
+            android:textColor="@color/white"
             android:background="@drawable/shape_small_corner_with_green"
             android:layout_alignParentEnd="true"/>
 
@@ -61,6 +66,8 @@
 
     <EditText
         android:id="@+id/et_code"
+        android:paddingRight="@dimen/margin_big"
+        android:paddingLeft="@dimen/margin_big"
         android:layout_width="match_parent"
         android:layout_height="@dimen/big_height"
         android:layout_marginTop="@dimen/margin_big"
@@ -82,6 +89,8 @@
         android:layout_height="@dimen/big_height"
         android:layout_marginTop="@dimen/margin_big"
         android:background="@null"
+        android:paddingRight="@dimen/margin_big"
+        android:paddingLeft="@dimen/margin_big"
         android:singleLine="true"
         android:maxLength="20"
         android:hint="@string/hint_register_psd"
@@ -98,6 +107,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_huge"
         android:layout_marginTop="@dimen/margin_huge"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/margin_big"
+        android:layout_marginRight="@dimen/margin_big"
         android:text="@string/label_register"
         android:textSize="@dimen/text_18"
         android:background="@drawable/shape_big_corner_with_green" />

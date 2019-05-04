@@ -11,7 +11,7 @@
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:navigationIcon="@drawable/ic_navigation_back">
+        app:navigationIcon="@drawable/ic_arrow_back">
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,6 +34,9 @@
         android:background="@null"
         android:hint="@string/hint_input_invite_code"
         android:paddingTop="@dimen/margin_common"
+        android:inputType="number"
+        android:singleLine="true"
+        android:maxLines="1"
         android:textColor="@color/tv_color_primary_title"
         android:textColorHint="@color/tv_color_primary_hint"
         android:textSize="@dimen/text_16" />
@@ -45,6 +48,7 @@
         android:background="@color/color_diver" />
 
     <Button
+        android:id="@+id/btn_confirm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/big_height"
         android:layout_marginLeft="@dimen/margin_18"

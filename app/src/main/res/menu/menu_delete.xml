@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.RefrigeratorInfoActivity">
     <item
-        android:id="@+id/edit_refrigerator"
-        android:icon="@drawable/ic_edit"
-        android:title="edit_refrigetator"
-        app:showAsAction="always"/>
+        android:id="@+id/delete_refrigerator"
+        android:title="删除冰箱"
+        app:showAsAction="never"/>
 
 </menu>

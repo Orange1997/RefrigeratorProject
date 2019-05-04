@@ -16,6 +16,7 @@ import com.example.dc.refrigeratorproject.view.NoScrollRecyclerView;
 
 import java.util.List;
 
+import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_IS_TO_CREATE;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_MODEL;
 
 /**
@@ -74,6 +75,9 @@ public class RefrigeratorListActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //TODO:跳转到添加冰箱页
+                Intent intent = new Intent (RefrigeratorListActivity.this, RefrigeratorInfoActivity.class);
+                intent.putExtra (KEY_REFRIGERATOR_IS_TO_CREATE,true);
+                startActivity (intent);
             }
         });
 

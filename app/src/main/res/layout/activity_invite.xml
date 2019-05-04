@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="发送邀请"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_18" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="6dp"
+        android:textSize="@dimen/text_16"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:textColor="@color/tv_color_primary_title"
+        android:layout_marginLeft="@dimen/margin_bigger"
+        android:layout_marginRight="@dimen/margin_bigger"
+        android:text="@string/info_invite"/>
+
+    <Button
+        android:id="@+id/tv_invite_by_we"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:layout_marginLeft="@dimen/margin_bigger"
+        android:layout_marginRight="@dimen/margin_bigger"
+        android:text="微信邀请"
+        android:background="@drawable/shape_round_corner_with_light_green"
+        android:textSize="@dimen/text_14"/>
+
+    <Button
+        android:id="@+id/tv_invite_by_qq"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="@dimen/margin_big"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/margin_bigger"
+        android:layout_marginRight="@dimen/margin_bigger"
+        android:text="QQ邀请"
+        android:background="@drawable/shape_round_corner_with_light_blue"
+        android:textSize="@dimen/text_14"/>
+
+    <Button
+        android:id="@+id/tv_invite_by_msg"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="@dimen/margin_big"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/margin_bigger"
+        android:layout_marginRight="@dimen/margin_bigger"
+        android:text="短信邀请"
+        android:background="@drawable/shape_round_corner_with_light_gray"
+        android:textSize="@dimen/text_14"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="6dp"
+        android:textSize="@dimen/text_14"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:textColor="@color/tv_color_primary_hint"
+        android:layout_marginLeft="@dimen/margin_bigger"
+        android:layout_marginRight="@dimen/margin_bigger"
+        android:text="@string/info_invite_tip"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:lineSpacingExtra="6dp"
+        android:textSize="@dimen/text_18"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:textColor="@color/tv_color_primary_title"
+        android:layout_marginLeft="@dimen/margin_huge"
+        android:layout_marginRight="@dimen/margin_huge"
+        android:text="11111111"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/margin_big"/>
+
+</LinearLayout>

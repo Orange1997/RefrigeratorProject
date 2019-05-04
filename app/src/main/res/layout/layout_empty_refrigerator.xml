@@ -16,13 +16,13 @@
         android:id="@+id/tv_guide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_big"
+        android:layout_marginLeft="@dimen/margin_bigger"
         android:layout_marginTop="@dimen/margin_common"
-        android:layout_marginRight="@dimen/margin_big"
+        android:layout_marginRight="@dimen/margin_bigger"
         android:gravity="center_horizontal"
         android:text="@string/hint_create_refrigerator"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_18"/>
+        android:textColor="@color/tv_color_primary_title"
+        android:textSize="@dimen/text_16"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

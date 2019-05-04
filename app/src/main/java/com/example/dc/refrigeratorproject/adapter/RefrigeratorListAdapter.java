@@ -1,17 +1,22 @@
 package com.example.dc.refrigeratorproject.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
+import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
 import com.example.dc.refrigeratorproject.util.ScreenUtils;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -44,13 +49,25 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
 
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final RefrigeratorModel model = data.get (position);
-        if (model.getName () != null && TextUtils.isEmpty (model.getName ())) {
+        if (model.getName () != null && !TextUtils.isEmpty (model.getName ())) {
+            Log.e ("333333",model.getName ());
             holder.tvName.setText (model.getName ());
         }
 
-//        if (model.getAddress () != null && TextUtils.isEmpty (model.getAddress ())) {
-//            holder.tvAddress.setText (model.getAddress ());
-//        }
+        if (model.getAddress () != null && !TextUtils.isEmpty (model.getAddress ())) {
+            holder.tvAddress.setText (model.getAddress ());
+        }
+
+        if (model.getCreator () != null) {
+            if (model.getCreator ().getHead () != null) {
+                holder.ivHead.setImageURI (Uri.parse (model.getCreator ().getHead ()));
+            }
+            if (model.getCreator ().getAccount () != 0 && model.getCreator ().getAccount () == Config.getUserAccount (context)) {
+                holder.ivOwner.setVisibility (View.VISIBLE);
+            } else {
+                holder.ivOwner.setVisibility (View.GONE);
+            }
+        }
 
         if (model.isCurrentRefrigerator) {
             holder.tvCurrent.setVisibility (View.VISIBLE);
@@ -76,7 +93,7 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
         int h = View.MeasureSpec.makeMeasureSpec (0, View.MeasureSpec.UNSPECIFIED);
         holder.tvCurrent.measure (w, h);
         int ScreenWidth = ScreenUtils.getScreenWidth (context);
-        int maxWidth = holder.tvCurrent.getMeasuredWidth () + 2 * context.getResources ().getDimensionPixelOffset (R.dimen.margin_18) + context.getResources ().getDimensionPixelOffset (R.dimen.margin_tiny);
+        int maxWidth = holder.tvCurrent.getMeasuredWidth () + 3 * context.getResources ().getDimensionPixelOffset (R.dimen.margin_18) + context.getResources ().getDimensionPixelOffset (R.dimen.margin_tiny) + context.getResources ().getDimensionPixelOffset (R.dimen.margin_huge);
         holder.tvName.setMaxWidth (ScreenWidth - maxWidth);
 
     }
@@ -101,8 +118,10 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvName;
-//        private TextView tvAddress;
+        private TextView tvAddress;
         private TextView tvCurrent;
+        private ImageView ivOwner;
+        private SimpleDraweeView ivHead;
         private View diver;
         private View rlRef;
 
@@ -112,10 +131,12 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
             super (itemView);
 
             tvName = itemView.findViewById (R.id.tv_name);
-//            tvAddress = itemView.findViewById (R.id.tv_address);
+            tvAddress = itemView.findViewById (R.id.tv_address);
             diver = itemView.findViewById (R.id.diver);
             tvCurrent = itemView.findViewById (R.id.tv_current);
             rlRef = itemView.findViewById (R.id.rl_ref);
+            ivOwner = itemView.findViewById (R.id.iv_owner);
+            ivHead = itemView.findViewById (R.id.iv_head);
         }
 
     }

@@ -8,34 +8,8 @@ import java.io.Serializable;
  */
 
 public class RefrigeratorSharerModel implements Serializable{
-    public long sharerAccount;
-    public String sharerName;
-    public String sharerHeadUrl;
+    public UserModel sharer;
     public boolean isCreator;
-
-    public long getSharerAccount() {
-        return sharerAccount;
-    }
-
-    public void setSharerAccount(long sharerAccount) {
-        this.sharerAccount = sharerAccount;
-    }
-
-    public String getSharerName() {
-        return sharerName;
-    }
-
-    public void setSharerName(String sharerName) {
-        this.sharerName = sharerName;
-    }
-
-    public String getSharerHeadUrl() {
-        return sharerHeadUrl;
-    }
-
-    public void setSharerHeadUrl(String sharerHead) {
-        this.sharerHeadUrl = sharerHead;
-    }
 
     public boolean isCreator() {
         return isCreator;
@@ -43,5 +17,13 @@ public class RefrigeratorSharerModel implements Serializable{
 
     public void setCreator(boolean creator) {
         isCreator = creator;
+    }
+
+    public UserModel getSharer() {
+        return sharer;
+    }
+
+    public void setSharer(UserModel sharer) {
+        this.sharer = sharer;
     }
 }

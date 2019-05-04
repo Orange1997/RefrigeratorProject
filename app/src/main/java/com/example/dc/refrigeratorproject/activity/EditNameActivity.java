@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 
+import static com.example.dc.refrigeratorproject.activity.RefrigeratorInfoActivity.RESULT_CODE_EDIT_NAME;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_NAME;
 
 /**
@@ -20,7 +21,6 @@ public class EditNameActivity extends BaseActivity implements View.OnClickListen
     private TextView tvCancel, tvSave, tvTitle;
     private EditText etName;
     private String name;
-    public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class EditNameActivity extends BaseActivity implements View.OnClickListen
                         ToastUtil.showShort (EditNameActivity.this, "更新成功");
                         Intent intent = new Intent ();
                         intent.putExtra (KEY_REFRIGERATOR_NAME, etName.getText ().toString ());
-                        setResult (RESULT_OK, intent);
+                        setResult (RESULT_CODE_EDIT_NAME, intent);
                         finish ();
                     }
                 }
