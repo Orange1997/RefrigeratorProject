@@ -1,7 +1,6 @@
 package com.example.dc.refrigeratorproject.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,7 @@ import com.example.dc.refrigeratorproject.R;
  * email : 企业邮箱
  * note : 添加食物界面
  */
-public class AddFoodActivity extends AppCompatActivity {
+public class AddFoodActivity extends BaseActivity {
     private Toolbar mToolbar;
 
     @Override

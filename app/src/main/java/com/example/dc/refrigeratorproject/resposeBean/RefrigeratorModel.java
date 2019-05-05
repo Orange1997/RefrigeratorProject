@@ -8,11 +8,12 @@ import java.util.List;
  */
 
 public class RefrigeratorModel implements Serializable{
-    public String name;
-    public String address;
-    public UserModel creator;
-    public List<RefrigeratorSharerModel> sharerModelList;
-    public boolean isCurrentRefrigerator;
+    public String name; //冰箱名称
+    public String address; //冰箱所在地区
+    public UserModel creator; //创建者信息
+    public List<RefrigeratorSharerModel> sharerModelList; //冰箱共享用户列表
+    public boolean isCurrentRefrigerator; //是否是当前冰箱
+    public boolean isCreatorBySelf; //该冰箱是否为当前账户创建的
 
     public String getName() {
         return name;

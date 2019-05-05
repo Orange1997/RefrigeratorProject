@@ -8,10 +8,10 @@ import java.util.List;
  */
 
 public class UserModel implements Serializable{
-    private long account;
-    private String name;
-    private String head;
-    private List<RefrigeratorModel> refrigeratorModelList;
+    private long account; //用户账户
+    private String name;  //用户昵称
+    private String head;  //用户头像
+    private List<RefrigeratorModel> refrigeratorModelList;  //用户拥有的冰箱列表
 
     public long getAccount() {
         return account;

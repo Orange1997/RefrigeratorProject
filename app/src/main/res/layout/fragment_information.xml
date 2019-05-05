@@ -4,9 +4,16 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="第二"/>
+    <include
+        layout="@layout/view_title_community"/>
+
+    <View
+        style="@style/diver"
+        android:background="@color/color_diver"/>
+
+    <com.example.dc.refrigeratorproject.view.NoScrollViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

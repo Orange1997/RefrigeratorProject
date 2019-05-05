@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="56dp"
+    android:background="@color/white">
+
+    <RadioGroup
+        android:id="@+id/rg_tab_bar"
+        android:layout_width="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_found"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="发现"
+            android:textSize="@dimen/text_16"
+            android:gravity="center"
+            android:padding="12dp"
+            android:drawableBottom="@drawable/selector_community_tab"
+            android:button="@null"
+            android:background="@null"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rb_community"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="社区"
+            android:textSize="@dimen/text_16"
+            android:gravity="center"
+            android:padding="12dp"
+            android:drawableBottom="@drawable/selector_community_tab"
+            android:button="@null"
+            android:background="@null"
+            android:checked="false" />
+
+
+    </RadioGroup>
+
+
+
+</RelativeLayout>
