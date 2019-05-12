@@ -166,12 +166,12 @@ public class RefrigeratorFragment extends Fragment {
 //            updateList ();
 //        }
 
-        emptyRefrigeratorView.setVisibility (View.GONE);
-        toolbar.setVisibility (View.VISIBLE);
-        floatingActionButton.show ();
-        tvAdd.setVisibility (View.GONE);
-        tvJoin.setVisibility (View.GONE);
-        updateList ();
+            emptyRefrigeratorView.setVisibility (View.GONE);
+            toolbar.setVisibility (View.VISIBLE);
+            floatingActionButton.show ();
+            tvAdd.setVisibility (View.GONE);
+            tvJoin.setVisibility(View.GONE);
+            updateList ();
 
     }
 
@@ -183,7 +183,7 @@ public class RefrigeratorFragment extends Fragment {
         }
 
         for (int i = 0; i < 4; i++) {
-//            list.add (new RefrigeratorBean ("果蔬", foodBeanList));
+            list.add (new RefrigeratorBean ("果蔬", foodBeanList));
         }
 
         if (list != null && list.size () > 0) {

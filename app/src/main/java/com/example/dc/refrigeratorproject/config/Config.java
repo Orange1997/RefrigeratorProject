@@ -19,6 +19,8 @@ public class Config {
     public static final String KEY_REFRIGERATOR_ADDRESS_CITY = "key_refrigerator_address_city";
     public static final String KEY_REFRIGERATOR_ADDRESS_AREA = "key_refrigerator_address_area";
     public static final String KEY_REFRIGERATOR_IS_TO_CREATE = "key_refrigerator_is_to_create";
+    public static final String KEY_FOUND_TYPE = "key_found_type";
+    public static final String KEY_FOUND_URL = "key_found_url";
 
     public static void setUserAccount(Context context, long account) {
         SharedPreferences sp = context.getSharedPreferences (KEY_SP, MODE_PRIVATE);

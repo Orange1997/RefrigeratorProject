@@ -1,5 +1,8 @@
 package com.example.dc.refrigeratorproject;
 
+import com.example.dc.refrigeratorproject.model.ArticleOrRecipesModel;
+import com.example.dc.refrigeratorproject.model.ListModel;
+import com.example.dc.refrigeratorproject.model.ShopModel;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorSharerModel;
 import com.example.dc.refrigeratorproject.resposeBean.UserModel;
@@ -16,6 +19,7 @@ public class Mock {
 
     }
 
+    //冰箱列表
     public static List<RefrigeratorModel> getRefrigeratorList() {
         List<RefrigeratorModel> models = new ArrayList<> ();
         RefrigeratorModel model = getRefrigeratorModel1 ();
@@ -97,5 +101,62 @@ public class Mock {
 
         model.setSharerModelList (list);
         return model;
+    }
+
+    //清单列表
+    public static List<ListModel> getListModelList(){
+        List<ListModel> listModelList = new ArrayList<> ();
+        for (int i = 0;i<10;i++){
+            ListModel listModel = new ListModel ();
+            listModel.setTime (20150507L);
+            listModel.setTitle ("周日采购清单");
+            listModelList.add (listModel);
+        }
+        return listModelList;
+    }
+
+    //文章列表
+    public static List<ArticleOrRecipesModel> getArticleModels(){
+        List<ArticleOrRecipesModel> list = new ArrayList<> ();
+        for (int i=0;i<10;i++){
+            ArticleOrRecipesModel articleOrRecipesModel = new ArticleOrRecipesModel ();
+            articleOrRecipesModel.setTitle ("今天吃什么？我来推荐一下吧我来推荐一下吧");
+            articleOrRecipesModel.setDes ("今天吃什么？我来推荐一下吧我来推荐一下吧我来推荐一下吧我来推荐一下吧我来推荐一下吧");
+            articleOrRecipesModel.setImg ("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557658509392&di=034b39f0d51e993c1423fea8b30aceea&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201502%2F02%2F20150202095127_UknhG.jpeg");
+            articleOrRecipesModel.setUrl ("https://www.cnblogs.com/jeffen/p/6958235.html");
+            articleOrRecipesModel.setAuthor ("哈哈哈哈");
+            articleOrRecipesModel.setTime ("2019-05-07");
+            list.add (articleOrRecipesModel);
+        }
+
+        return list;
+    }
+
+    //食谱列表
+    public static List<ArticleOrRecipesModel> getRecipesModels(){
+        List<ArticleOrRecipesModel> recipesModels = new ArrayList<> ();
+        for (int i=0;i<5;i++){
+            ArticleOrRecipesModel recipesModel = new ArticleOrRecipesModel ();
+            recipesModel.setImg ("https://dpic.tiankong.com/38/fv/QJ6942396456.jpg?x-oss-process=style/670ws");
+            recipesModel.setTitle ("麻婆豆腐");
+            recipesModel.setLikes (120);
+            recipesModel.setUrl ("https://baijiahao.baidu.com/s?id=1617085088335127139&wfr=spider&for=pc");
+            recipesModels.add (recipesModel);
+        }
+        return recipesModels;
+    }
+
+    public static List<ShopModel> getShopModelList(){
+        List<ShopModel> shopModels = new ArrayList<> ();
+        for (int i= 0;i<10;i++){
+            ShopModel shopModel = new ShopModel ();
+            shopModel.setImg ("https://dpic.tiankong.com/38/fv/QJ6942396456.jpg?x-oss-process=style/670ws");
+            shopModel.setName ("联华超市（留下店）");
+            shopModel.setLikes (200);
+            shopModel.setDiscount (5.0f);
+            shopModel.setLocation ("西湖区留下街道浙江科技学院111");
+            shopModels.add (shopModel);
+        }
+        return shopModels;
     }
 }

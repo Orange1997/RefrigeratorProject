@@ -84,7 +84,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:text="0"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/tv_color_primary_title"
                         android:textSize="@dimen/text_14" />
 
                     <TextView
@@ -95,7 +95,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:text="关注"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/tv_color_primary_title"
                         android:textSize="@dimen/text_14" />
                 </LinearLayout>
 
@@ -113,7 +113,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:text="0"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/tv_color_primary_title"
                         android:textSize="@dimen/text_14" />
 
                     <TextView
@@ -124,7 +124,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:text="粉丝"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/tv_color_primary_title"
                         android:textSize="@dimen/text_14" />
                 </LinearLayout>
 
@@ -142,7 +142,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:text="0"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/tv_color_primary_title"
                         android:textSize="@dimen/text_14" />
 
                     <TextView
@@ -153,7 +153,7 @@
                         android:includeFontPadding="false"
                         android:singleLine="true"
                         android:text="收藏"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/tv_color_primary_title"
                         android:textSize="@dimen/text_14" />
                 </LinearLayout>
 
@@ -176,8 +176,8 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="冷藏室"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_16" />
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -190,8 +190,8 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="冷冻室"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_16" />
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="14sp" />
 
             <View
                 style="@style/diver"
@@ -213,8 +213,8 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="冰箱管理"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_16" />
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="14sp" />
 
             <View
                 style="@style/diver"
@@ -235,8 +235,8 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="今日清单"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_16" />
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="14sp" />
 
             <View
                 style="@style/diver"
@@ -258,8 +258,8 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="消息中心"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_16" />
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -272,8 +272,8 @@
                 android:includeFontPadding="false"
                 android:singleLine="true"
                 android:text="设置"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_16" />
+                android:textColor="@color/tv_color_primary_title"
+                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
 

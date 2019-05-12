@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_14"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/margin_common"
+        android:textColor="@color/tv_color_primary_title"
+        android:text="精选食谱"/>
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/margin_common"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="更多食谱"
+        android:textColor="@color/tv_color_primary_hint"
+        android:textSize="@dimen/text_12" />
+
+</RelativeLayout>

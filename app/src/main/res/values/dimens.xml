@@ -15,6 +15,7 @@
     <dimen name="margin_more_tiny">6dp</dimen>
     <dimen name="margin_tiny">8dp</dimen>
     <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
     <dimen name="margin_common">16dp</dimen>
     <dimen name="margin_18">18dp</dimen>
     <dimen name="margin_big">24dp</dimen>
@@ -35,7 +36,7 @@
     <dimen name="tab_height">56dp</dimen>
     <dimen name="elevation_height">3dp</dimen>
 
-    <dimen name="food_height">96dp</dimen>
-    <dimen name="food_width">64dp</dimen>
+    <dimen name="food_height">112dp</dimen>
+    <dimen name="food_width">80dp</dimen>
     <dimen name="item_food_grid_width">100dp</dimen>
 </resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/margin_18"
+    android:paddingLeft="@dimen/margin_common"
+    android:paddingRight="@dimen/margin_common"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_article"
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:scaleType="centerCrop"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/bg_login"
+            tools:background="@color/tv_color_primary_title"
+            fresco:roundedCornerRadius="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_title_article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textSize="@dimen/text_16"
+            android:maxLines="1"
+            android:textColor="@color/tv_color_primary_title"
+            android:text="今天吃什么？我来推荐一下吧我来推荐一下吧"/>
+
+        <TextView
+            android:id="@+id/tv_des_article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="@dimen/text_13"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="#939393"
+            android:text="今天吃什么？我来推荐一下吧我来推荐一下吧我来推荐一下吧我来推荐一下吧我来推荐一下吧"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -56,13 +56,13 @@ public class InformationFragment extends Fragment implements ViewPager.OnPageCha
         switch (checkedId) {
             case R.id.rb_found:
                 viewpager.setCurrentItem (PAGE_ONE);
-                rbFound.setTextSize (17);
-                rbCommunity.setTextSize (16);
+                rbFound.setTextSize (16);
+                rbCommunity.setTextSize (15);
                 break;
             case R.id.rb_community:
                 viewpager.setCurrentItem (PAGE_TWO);
-                rbCommunity.setTextSize (17);
-                rbFound.setTextSize (16);
+                rbCommunity.setTextSize (16);
+                rbFound.setTextSize (15);
                 break;
         }
     }

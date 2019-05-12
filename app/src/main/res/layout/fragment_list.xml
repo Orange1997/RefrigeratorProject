@@ -2,11 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="@color/color_diver">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="@color/white"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:textSize="16sp"
+        android:textColor="@color/tv_color_primary_title"
+        android:gravity="center"
+        android:text="购物清单"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="第二"/>
+        android:paddingTop="14dp"
+        android:clipToPadding="false">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
