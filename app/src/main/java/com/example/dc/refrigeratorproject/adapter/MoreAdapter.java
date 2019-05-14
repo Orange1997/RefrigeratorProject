@@ -59,6 +59,17 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     }
                 }
             });
+
+            ((ListViewHolder) holder).rlItem.setOnLongClickListener (new View.OnLongClickListener () {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (mOnLongItemClickListener != null) {
+                        mOnLongItemClickListener.onLongItemClick (articleOrRecipesItem, position);
+                        return true;
+                    }
+                    return false;
+                }
+            });
         } else if (baseItem.type == TYPE_RECIPES && holder instanceof ListViewHolder) {
             final ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem) baseItem;
             ((ListViewHolder) holder).img.setImageURI (Uri.parse (articleOrRecipesItem.img));
@@ -119,6 +130,17 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void setOnListItemClickListener(OnListItemClickListener onListItemClickListener) {
         mOnListItemClickListener = onListItemClickListener;
     }
+
+    private OnLongItemClickListener mOnLongItemClickListener;
+
+    public interface OnLongItemClickListener {
+        void onLongItemClick(BaseItem item, int position);
+    }
+
+    public void setOnLongItemClickListener(OnLongItemClickListener onLongItemClickListener) {
+        mOnLongItemClickListener = onLongItemClickListener;
+    }
+
 
 }
 

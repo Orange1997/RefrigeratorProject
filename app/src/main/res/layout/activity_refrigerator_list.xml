@@ -74,13 +74,13 @@
                 android:background="@color/color_diver"
                 android:layout_height="10dp"/>
 
-            <com.example.dc.refrigeratorproject.view.NoScrollRecyclerView
+            <com.example.dc.refrigeratorproject.myView.NoScrollRecyclerView
                 android:id="@+id/rv_refrigerator_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 tools:listitem="@layout/item_list_refrigerator">
-            </com.example.dc.refrigeratorproject.view.NoScrollRecyclerView>
+            </com.example.dc.refrigeratorproject.myView.NoScrollRecyclerView>
         </LinearLayout>
 
     </ScrollView>

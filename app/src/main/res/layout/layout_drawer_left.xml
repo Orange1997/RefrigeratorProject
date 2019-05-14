@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="280dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,7 +13,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:scrollbars="none">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@color/colorAccent"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -177,7 +182,7 @@
                 android:singleLine="true"
                 android:text="冷藏室"
                 android:textColor="@color/tv_color_primary_title"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_16" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -191,7 +196,7 @@
                 android:singleLine="true"
                 android:text="冷冻室"
                 android:textColor="@color/tv_color_primary_title"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_16" />
 
             <View
                 style="@style/diver"
@@ -214,7 +219,7 @@
                 android:singleLine="true"
                 android:text="冰箱管理"
                 android:textColor="@color/tv_color_primary_title"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_16" />
 
             <View
                 style="@style/diver"
@@ -236,7 +241,7 @@
                 android:singleLine="true"
                 android:text="今日清单"
                 android:textColor="@color/tv_color_primary_title"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_16" />
 
             <View
                 style="@style/diver"
@@ -259,7 +264,7 @@
                 android:singleLine="true"
                 android:text="消息中心"
                 android:textColor="@color/tv_color_primary_title"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_16" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -273,9 +278,20 @@
                 android:singleLine="true"
                 android:text="设置"
                 android:textColor="@color/tv_color_primary_title"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/ic_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/tv_color_primary_title"
+        android:textSize="14sp"
+        android:src="@drawable/ic_comment"
+        android:layout_marginLeft="@dimen/margin_common"
+        android:layout_marginBottom="@dimen/margin_common"/>
 
-</LinearLayout>
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.dc.refrigeratorproject;
 
 import com.example.dc.refrigeratorproject.model.ArticleOrRecipesModel;
+import com.example.dc.refrigeratorproject.model.FollowModel;
 import com.example.dc.refrigeratorproject.model.ListModel;
 import com.example.dc.refrigeratorproject.model.ShopModel;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
@@ -158,5 +159,20 @@ public class Mock {
             shopModels.add (shopModel);
         }
         return shopModels;
+    }
+
+    //关注列表
+    public static List<FollowModel> getFollowModels(){
+        List<FollowModel> list = new ArrayList<> ();
+        for (int i=0;i<10;i++){
+            FollowModel followModel = new FollowModel ();
+            followModel.setImg ("https://dpic.tiankong.com/38/fv/QJ6942396456.jpg?x-oss-process=style/670ws");
+            followModel.setName ("玩转冰箱");
+            followModel.setIntro ("教你如何轻松打理冰箱");
+            followModel.setFollow (true);
+            list.add (followModel);
+        }
+
+        return list;
     }
 }

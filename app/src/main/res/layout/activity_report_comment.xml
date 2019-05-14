@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/margin_18"
+        android:paddingRight="@dimen/margin_18">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="取消"
+            android:textColor="@color/tv_color_primary_hint"
+            android:textSize="@dimen/text_16" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="写评论"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_18" />
+
+        <TextView
+            android:id="@+id/tv_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_round_corner_with_green"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_alignParentRight="true"
+            android:text="发表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/margin_common"
+        android:paddingRight="@dimen/margin_common"
+        android:layout_above="@+id/btn_bottom"
+        android:paddingTop="@dimen/margin_tiny"
+        android:layout_below="@+id/top"
+        android:background="@null"
+        android:maxLength="150"
+        android:gravity="top"
+        android:hint="我也说一句"
+        android:textColor="@color/tv_color_primary_title"
+        android:textSize="15sp"
+        android:text=""/>
+    <requestFocus/>
+
+    <TextView
+        android:id="@+id/tv_size"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/margin_common"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/margin_common"
+        android:text="0/200"/>
+
+
+</RelativeLayout>

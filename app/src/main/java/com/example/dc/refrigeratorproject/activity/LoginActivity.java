@@ -21,12 +21,18 @@ import android.widget.Toast;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.util.InputUtils;
+import com.example.dc.refrigeratorproject.util.ToastUtil;
+
+import static com.example.dc.refrigeratorproject.config.Config.STATUS_LOGIN_NOT_MATCH;
+import static com.example.dc.refrigeratorproject.config.Config.STATUS_LOGIN_NO_ACCOUNT;
+import static com.example.dc.refrigeratorproject.config.Config.STATUS_LOGIN_SUCCESS;
 
 /**
  * Created by DC on 2019/3/5.
  */
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText etUser;
     private EditText etPsd;
@@ -37,39 +43,42 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private ImageView ivQqLogin;
     private Handler handler = new Handler ();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_login);
 
-        etUser = (EditText)findViewById (R.id.et_user);
-        etPsd = (EditText)findViewById (R.id.et_psd);
-        cbPsd = (CheckBox)findViewById (R.id.cd_psd);
-        btnLogin = (Button)findViewById (R.id.btn_login);
-        tvForgotPsd = (TextView)findViewById (R.id.tv_forgot_psd);
-        tvRegister = (TextView)findViewById (R.id.tv_to_register);
-        ivQqLogin = (ImageView)findViewById (R.id.iv_qq);
+        etUser = (EditText) findViewById (R.id.et_user);
+        etPsd = (EditText) findViewById (R.id.et_psd);
+        cbPsd = (CheckBox) findViewById (R.id.cd_psd);
+        btnLogin = (Button) findViewById (R.id.btn_login);
+        tvForgotPsd = (TextView) findViewById (R.id.tv_forgot_psd);
+        tvRegister = (TextView) findViewById (R.id.tv_to_register);
+        ivQqLogin = (ImageView) findViewById (R.id.iv_qq);
         btnLogin.setOnClickListener (this);
         tvForgotPsd.setOnClickListener (this);
         tvRegister.setOnClickListener (this);
         ivQqLogin.setOnClickListener (this);
         cbPsd.setVisibility (View.GONE);
 
+        if (Config.isLogin (LoginActivity.this)){
+            Intent intent = new Intent (LoginActivity.this,MainActivity.class);
+            startActivity (intent);
+            finish ();
+        }
+
         new Thread (new Runnable () {
             @Override
             public void run() {
-                Message msg = Message.obtain();
-                msg.what=1;
-                msg.obj=2;
-                Looper.prepare();//为子线程创建Looper
+                Message msg = Message.obtain ();
+                msg.what = 1;
+                msg.obj = 2;
+                Looper.prepare ();//为子线程创建Looper
                 handler.sendMessage (msg);
-                Looper.loop(); //开启消息轮询
+                Looper.loop (); //开启消息轮询
 
             }
         }).start ();
-
-
 
 
         etPsd.addTextChangedListener (new TextWatcher () {
@@ -85,66 +94,92 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty (etPsd.getText ())){
+                if (TextUtils.isEmpty (etPsd.getText ())) {
                     cbPsd.setVisibility (View.GONE);
-                }else {
+                } else {
                     cbPsd.setVisibility (View.VISIBLE);
                 }
             }
         });
 
-        cbPsd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cbPsd.setOnCheckedChangeListener (new CompoundButton.OnCheckedChangeListener () {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    etPsd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD | InputType.TYPE_CLASS_TEXT);
-                    Editable editable = etPsd.getText();
-                    Selection.setSelection(editable, editable.length());
+                    etPsd.setInputType (InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    Editable editable = etPsd.getText ();
+                    Selection.setSelection (editable, editable.length ());
                 } else {
-                    etPsd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    Editable editable = etPsd.getText();
-                    Selection.setSelection(editable, editable.length());
+                    etPsd.setInputType (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    Editable editable = etPsd.getText ();
+                    Selection.setSelection (editable, editable.length ());
                 }
             }
         });
+
+
     }
 
+
     @Override
-    public void onClick(View view){
+    public void onClick(View view) {
         Intent intent;
-        switch (view.getId ()){
+        switch (view.getId ()) {
             case R.id.btn_login:
-                intent = new Intent (LoginActivity.this, MainActivity.class);
-                Config.setUserAccount (LoginActivity.this,1234);
-                startActivity (intent);
+//                intent = new Intent (LoginActivity.this, MainActivity.class);
+//                Config.setUserAccount (LoginActivity.this,1234);
+//                startActivity (intent);
 
 
-
-//                if (TextUtils.isEmpty (etUser.getText ())) {
-//                    ToastUtil.showShort (getApplicationContext (), R.string.hint_register_phone);
-//                } else if (!InputUtils.isPhoneNumber (etUser.getText ().toString ())) {
-//                    ToastUtil.showShort (getApplicationContext (), R.string.toast_phone_wrong);
-//                } else if (TextUtils.isEmpty (etPsd.getText ())) {
-//                    ToastUtil.showShort (getApplicationContext (), R.string.toast_no_psd);
-//                }else {
-//                    intent = new Intent (LoginActivity.this, MainActivity.class);
-//                    startActivity (intent);
-//                }
+                if (TextUtils.isEmpty (etUser.getText ())) {
+                    ToastUtil.showShort (getApplicationContext (), R.string.hint_register_phone);
+                } else if (!InputUtils.isPhoneNumber (etUser.getText ().toString ())) {
+                    ToastUtil.showShort (getApplicationContext (), R.string.toast_phone_wrong);
+                } else if (TextUtils.isEmpty (etPsd.getText ())) {
+                    ToastUtil.showShort (getApplicationContext (), R.string.toast_no_psd);
+                } else {
+                    switch (dbOpenHelper.loginStatus (etUser.getText ().toString (), etPsd.getText ().toString ())) {
+                        case STATUS_LOGIN_NO_ACCOUNT:
+                            ToastUtil.showShort (getApplicationContext (), "账号不存在");
+                            break;
+                        case STATUS_LOGIN_NOT_MATCH:
+                            ToastUtil.showShort (getApplicationContext (), "密码不正确");
+                            break;
+                        case STATUS_LOGIN_SUCCESS:
+                            intent = new Intent (LoginActivity.this, MainActivity.class);
+                            Config.setUserAccount (LoginActivity.this, Long.valueOf (etUser.getText ().toString ()));
+                            Config.setUserPsd (LoginActivity.this, etPsd.getText ().toString ());
+                            startActivity (intent);
+                            finish ();
+                            break;
+                    }
+                }
                 break;
             case R.id.tv_forgot_psd:
                 //todo:忘记密码跳转
-                intent = new Intent (LoginActivity.this,ForgetPsdActivity.class);
+                intent = new Intent (LoginActivity.this, ForgetPsdActivity.class);
                 startActivity (intent);
                 break;
             case R.id.tv_to_register:
                 //todo:手机注册跳转
-                intent = new Intent (LoginActivity.this,RegisterActivity.class);
+                intent = new Intent (LoginActivity.this, RegisterActivity.class);
                 startActivity (intent);
                 break;
             case R.id.iv_qq:
                 //todo:QQ第三方登录
-                Toast.makeText (getApplicationContext (),"QQ登录跳转",Toast.LENGTH_SHORT).show ();
+                Toast.makeText (getApplicationContext (), "QQ登录跳转", Toast.LENGTH_SHORT).show ();
                 break;
         }
     }
+
+    @Override
+    public void onResume(){
+        super.onResume ();
+        if (Config.isLogin (LoginActivity.this)){
+            Intent intent = new Intent (LoginActivity.this,MainActivity.class);
+            startActivity (intent);
+            finish ();
+        }
+    }
+
 }

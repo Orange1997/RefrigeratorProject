@@ -1,7 +1,6 @@
 package com.example.dc.refrigeratorproject.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
-import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
 import com.example.dc.refrigeratorproject.util.ScreenUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -59,14 +57,14 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
         }
 
         if (model.getCreator () != null) {
-            if (model.getCreator ().getHead () != null) {
-                holder.ivHead.setImageURI (Uri.parse (model.getCreator ().getHead ()));
-            }
-            if (model.getCreator ().getAccount () != 0 && model.getCreator ().getAccount () == Config.getUserAccount (context)) {
-                holder.ivOwner.setVisibility (View.VISIBLE);
-            } else {
-                holder.ivOwner.setVisibility (View.GONE);
-            }
+//            if (model.getCreator ().getHead () != null) {
+//                holder.ivHead.setImageURI (Uri.parse (model.getCreator ().getHead ()));
+//            }
+//            if (model.getCreator ().getAccount () != 0 && model.getCreator ().getAccount () == Config.getUserAccount (context)) {
+//                holder.ivOwner.setVisibility (View.VISIBLE);
+//            } else {
+//                holder.ivOwner.setVisibility (View.GONE);
+//            }
         }
 
         if (model.isCurrentRefrigerator) {

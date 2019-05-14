@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.CommunityPagerAdapter;
-import com.example.dc.refrigeratorproject.view.NoScrollViewPager;
+import com.example.dc.refrigeratorproject.myView.NoScrollViewPager;
 
 /**
  * Created by DC on 2019/3/8.

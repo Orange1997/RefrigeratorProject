@@ -2,6 +2,8 @@ package com.example.dc.refrigeratorproject.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.config.Config;
@@ -63,6 +65,13 @@ public class AddressSelectorActivity extends BaseActivity {
     }
 
     private void initView() {
+        Toolbar toolbar = findViewById (R.id.titlebar);
+        toolbar.setNavigationOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                finish ();
+            }
+        });
         addressSelector = findViewById (R.id.address_selecor);
         addressSelector.setGrayLineColor (getResources ().getColor (R.color.transparent));
         addressSelector.setTabAmount (3);

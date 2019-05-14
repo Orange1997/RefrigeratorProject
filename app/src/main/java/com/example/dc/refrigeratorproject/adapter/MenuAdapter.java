@@ -55,13 +55,18 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             @Override
 
             public void onClick(View v) {
-                if (onItemClickListener!=null){
+                if (onItemClickListener != null) {
                     onItemClickListener.onItemClick (data.get (position));
                 }
 
             }
 
         });
+        if (position < data.size () - 1) {
+            holder.diver.setVisibility (View.VISIBLE);
+        } else {
+            holder.diver.setVisibility (View.GONE);
+        }
 
     }
 
@@ -79,23 +84,24 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
         private ImageView ivIcon;
         private TextView tvTitle;
+        private View diver;
 
 
         public ViewHolder(View itemView) {
 
             super (itemView);
-
+            diver = itemView.findViewById (R.id.diver);
             ivIcon = itemView.findViewById (R.id.iv_menu_icon);
             tvTitle = itemView.findViewById (R.id.tv_menu_title);
         }
 
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(MenuModel.Menu menu);
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

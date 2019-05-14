@@ -4,27 +4,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/color_diver">
+    android:fitsSystemWindows="true">
 
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/titlebar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?actionBarSize"-->
-        <!--android:background="@color/white"-->
-        <!--app:navigationIcon="@drawable/ic_arrow_back">-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:layout_marginBottom="@dimen/margin_tiny"
+        app:navigationIcon="@drawable/ic_arrow_back">
 
-        <!--<TextView-->
-            <!--android:id="@+id/title"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:text="选择地区"-->
-            <!--android:textColor="@color/tv_color_primary_title"-->
-            <!--android:textSize="@dimen/text_18" />-->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="选择所在地"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_18" />
 
-    <!--</android.support.v7.widget.Toolbar>-->
+    </android.support.v7.widget.Toolbar>
 
     <com.yiguo.adressselectorlib.AddressSelector
         android:id="@+id/address_selecor"

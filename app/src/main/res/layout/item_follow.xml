@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    android:background="@color/white"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_head_follow"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_common"
+        fresco:placeholderImage="@drawable/default_head"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:roundAsCircle="true" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_16"
+        android:layout_toRightOf="@+id/iv_head_follow"
+        android:layout_marginLeft="@dimen/margin_common"
+        android:layout_marginTop="4dp"
+        android:layout_alignTop="@+id/iv_head_follow"
+        android:textColor="@color/tv_color_primary_title"
+        android:text="玩转冰箱"/>
+
+    <TextView
+        android:id="@+id/tv_into"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_14"
+        android:layout_toRightOf="@+id/iv_head_follow"
+        android:layout_marginLeft="@dimen/margin_common"
+        android:textColor="@color/gray_tv_hint"
+        android:layout_alignBottom="@id/iv_head_follow"
+        android:layout_marginBottom="4dp"
+        android:text="教你轻松打理冰箱"/>
+
+    <TextView
+        android:id="@+id/tv_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_12"
+        android:textColor="#747474"
+        android:layout_centerVertical="true"
+        android:drawableTop="@drawable/ic_follow"
+        android:drawablePadding="3dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/margin_common"
+        android:visibility="gone"
+        android:text="已关注"/>
+
+    <TextView
+        android:id="@+id/tv_follow_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_12"
+        android:textColor="@color/colorAccent"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/margin_common"
+        android:paddingRight="@dimen/margin_common"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:background="@drawable/shape_smaller_corner_with_green_border"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/margin_common"
+        android:text="关注"/>
+
+    <View
+        style="@style/diver"
+        android:id="@+id/diver"
+        android:background="@color/color_diver"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="@dimen/margin_common"
+        android:paddingRight="@dimen/margin_common"/>
+</RelativeLayout>

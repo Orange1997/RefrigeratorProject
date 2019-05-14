@@ -12,7 +12,7 @@ import com.example.dc.refrigeratorproject.Mock;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.RefrigeratorListAdapter;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
-import com.example.dc.refrigeratorproject.view.NoScrollRecyclerView;
+import com.example.dc.refrigeratorproject.myView.NoScrollRecyclerView;
 
 import java.util.List;
 

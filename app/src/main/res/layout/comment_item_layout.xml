@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/comment_item_logo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/bg_login"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="6dp"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"
+            fresco:placeholderImage="@drawable/bg_login"
+            tools:background="@drawable/bg_login"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/comment_item_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#5B595A"
+                android:textSize="14sp"
+                android:text="沐风" />
+            <TextView
+                android:id="@+id/comment_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1小时前"
+                android:textSize="12sp"
+                android:layout_marginTop="3dp"
+                android:textColor="#989898"/>
+
+            <TextView
+                android:id="@+id/comment_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="6dp"
+                android:textColor="#484848"
+                android:textSize="14sp"
+                android:text="从前有座山，山里有座庙，庙里有个老和尚"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/comment_item_like"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:theme="?android:selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_un_collected"
+            android:padding="8dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

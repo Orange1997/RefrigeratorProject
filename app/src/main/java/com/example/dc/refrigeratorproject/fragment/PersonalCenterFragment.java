@@ -40,9 +40,11 @@ public class PersonalCenterFragment extends Fragment {
         menuAdapter.setOnItemClickListener (new MenuAdapter.OnItemClickListener () {
             @Override
             public void onItemClick(MenuModel.Menu menu) {
-                Intent intent;
-                intent = new Intent (getActivity (),menu.getCls ());
-                startActivity (intent);
+                if (menu.getCls ()!=null){
+                    Intent intent;
+                    intent = new Intent (getActivity (),menu.getCls ());
+                    startActivity (intent);
+                }
             }
         });
 

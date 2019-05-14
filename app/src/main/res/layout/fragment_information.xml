@@ -12,7 +12,7 @@
     <include
         layout="@layout/view_title_community"/>
 
-    <com.example.dc.refrigeratorproject.view.NoScrollViewPager
+    <com.example.dc.refrigeratorproject.myView.NoScrollViewPager
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

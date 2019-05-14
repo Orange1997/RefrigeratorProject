@@ -32,8 +32,9 @@
 
     <View
        style="@style/diver"
+        android:id="@+id/diver"
         android:layout_alignParentBottom="true"
-        android:background="@color/tv_color_primary"
+        android:background="@color/color_diver"
         android:layout_marginRight="@dimen/margin_common"
         android:layout_marginLeft="@dimen/margin_common"/>
 

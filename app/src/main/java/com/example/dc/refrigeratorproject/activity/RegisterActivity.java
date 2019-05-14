@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
+import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.util.CountDownButtonHelper;
 import com.example.dc.refrigeratorproject.util.InputUtils;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
@@ -47,7 +48,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             case R.id.btn_get_code:
                 //todo:发送验证码
                 CountDownButtonHelper helper = new CountDownButtonHelper (btnGetCode,
-                        getString (R.string.label_get_code), this,30, 1);
+                        getString (R.string.label_get_code), this, 30, 1);
                 helper.setOnFinishListener (new CountDownButtonHelper.OnFinishListener () {
 
                     @Override
@@ -59,8 +60,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.btn_register:
                 //todo:注册
-//                intent = new Intent (RegisterActivity.this,MainActivity.class);
-//                startActivity (intent);
                 if (TextUtils.isEmpty (etPhone.getText ())) {
                     ToastUtil.showShort (getApplicationContext (), R.string.hint_register_phone);
                 } else if (!InputUtils.isPhoneNumber (etPhone.getText ().toString ())) {
@@ -69,6 +68,17 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     ToastUtil.showShort (getApplicationContext (), R.string.hint_register_code);
                 } else if (TextUtils.isEmpty (etPsd.getText ())) {
                     ToastUtil.showShort (getApplicationContext (), R.string.toast_no_psd);
+                } else {
+                    if (dbOpenHelper.addUser (etPhone.getText ().toString (), etPsd.getText ().toString ())) {
+                        intent = new Intent (RegisterActivity.this, MainActivity.class);
+                        Config.setUserAccount (RegisterActivity.this, Long.valueOf (etPhone.getText ().toString ()));
+                        Config.setUserPsd (RegisterActivity.this, etPsd.getText ().toString ());
+                        startActivity (intent);
+                        finish ();
+                    } else {
+                        ToastUtil.showShort (RegisterActivity.this, "账号已存在");
+                    }
+
                 }
                 break;
         }

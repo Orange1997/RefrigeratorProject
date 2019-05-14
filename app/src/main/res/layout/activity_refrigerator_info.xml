@@ -201,7 +201,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <com.example.dc.refrigeratorproject.view.SlideRecyclerView
+                <com.example.dc.refrigeratorproject.myView.SlideRecyclerView
                     android:id="@+id/rv_refrigerator_sharer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.example.dc.refrigeratorproject.view;
+package com.example.dc.refrigeratorproject.myView;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

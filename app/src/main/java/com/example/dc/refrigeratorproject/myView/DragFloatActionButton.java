@@ -1,15 +1,12 @@
-package com.example.dc.refrigeratorproject.view;
+package com.example.dc.refrigeratorproject.myView;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
-import android.view.animation.DecelerateInterpolator;
 
 import com.example.dc.refrigeratorproject.R;
 

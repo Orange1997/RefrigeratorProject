@@ -14,12 +14,11 @@ import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.RefrigeratorSharerAdapter;
-import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.myView.SlideRecyclerView;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorSharerModel;
 import com.example.dc.refrigeratorproject.util.DialogUtil;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
-import com.example.dc.refrigeratorproject.view.SlideRecyclerView;
 
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_ADDRESS;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_IS_TO_CREATE;
@@ -52,9 +51,9 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
         refrigeratorModel = (RefrigeratorModel) getIntent ().getSerializableExtra (KEY_REFRIGERATOR_MODEL);
         isNewCreate = getIntent ().getBooleanExtra (KEY_REFRIGERATOR_IS_TO_CREATE, false);
         if (refrigeratorModel != null && refrigeratorModel.getCreator () != null) {
-            if (refrigeratorModel.getCreator ().getAccount () == Config.getUserAccount (RefrigeratorInfoActivity.this)) {
-                isCreator = true;
-            }
+//            if (refrigeratorModel.getCreator ().getAccount () == Config.getUserAccount (RefrigeratorInfoActivity.this)) {
+//                isCreator = true;
+//            }
         }
 
         initTitleBar ();
@@ -205,13 +204,13 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
                 tvReAddress.setText (model.getAddress ());
             }
             if (model.getCreator () != null) {
-                if (model.getCreator ().getAccount () != 0 && model.getCreator ().getName () != null) {
-                    if (model.getCreator ().getAccount () == Config.getUserAccount (RefrigeratorInfoActivity.this)) {
-                        tvCreator.setText ("我");
-                    } else {
-                        tvCreator.setText (model.getCreator ().getName ());
-                    }
-                }
+//                if (model.getCreator ().getAccount () != 0 && model.getCreator ().getName () != null) {
+//                    if (model.getCreator ().getAccount () == Config.getUserAccount (RefrigeratorInfoActivity.this)) {
+//                        tvCreator.setText ("我");
+//                    } else {
+//                        tvCreator.setText (model.getCreator ().getName ());
+//                    }
+//                }
             }
 
             if (model.getSharerModelList () != null && model.getSharerModelList ().size () > 0) {

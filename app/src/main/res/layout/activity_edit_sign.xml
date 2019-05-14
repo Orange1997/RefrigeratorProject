@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/margin_18"
+        android:paddingRight="@dimen/margin_18">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="取消"
+            android:textColor="@color/tv_color_primary_hint"
+            android:textSize="@dimen/text_16" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="编辑个性签名"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_18" />
+
+        <TextView
+            android:id="@+id/tv_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_round_corner_with_green"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_alignParentRight="true"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:paddingLeft="@dimen/margin_common"
+        android:paddingRight="@dimen/margin_common"
+        android:layout_above="@+id/btn_bottom"
+        android:paddingTop="@dimen/margin_tiny"
+        android:layout_below="@+id/top"
+        android:background="@color/white"
+        android:maxLength="50"
+        android:gravity="top"
+        android:hint="请输入个性签名"
+        android:textColor="@color/tv_color_primary_title"
+        android:textSize="15sp"
+        android:text=""/>
+    <requestFocus/>
+
+    <TextView
+        android:id="@+id/tv_size"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/margin_common"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/et_input"
+        android:layout_margin="@dimen/margin_common"
+        android:text="0/50"/>
+
+
+</RelativeLayout>

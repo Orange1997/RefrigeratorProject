@@ -37,10 +37,12 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/iv_photo"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_bigger"
+                android:scaleType="centerCrop"
                 android:background="@color/tv_color_primary" />
 
             <TextView
@@ -81,6 +83,7 @@
                     android:layout_toEndOf="@+id/title_1"
                     android:background="@null"
                     android:gravity="end"
+                    android:inputType="text"
                     android:hint="如：水果沙拉"
                     android:textColor="@color/tv_color_primary_title"
                     android:textColorHint="@color/tv_color_primary_hint"
@@ -121,6 +124,7 @@
                     android:background="@null"
                     android:gravity="end"
                     android:hint="如：1"
+                    android:inputType="number"
                     android:textColor="@color/tv_color_primary_title"
                     android:textColorHint="@color/tv_color_primary_hint"
                     android:textSize="@dimen/text_16" />
@@ -153,13 +157,13 @@
                     android:id="@+id/et_food_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_common"
-                    android:layout_toEndOf="@+id/title_3"
+                    android:layout_marginBottom="18dp"
                     android:background="@null"
                     android:gravity="end"
                     android:hint="如：盘、袋、克"
+                    android:inputType="text"
                     android:textColor="@color/tv_color_primary_title"
                     android:textColorHint="@color/tv_color_primary_hint"
                     android:textSize="@dimen/text_16" />
@@ -198,7 +202,9 @@
                     android:layout_toEndOf="@+id/title_4"
                     android:background="@null"
                     android:gravity="end"
-                    android:hint="选择时间"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="选择日期"
                     android:textColor="@color/tv_color_primary_title"
                     android:textColorHint="@color/tv_color_primary_hint"
                     android:textSize="@dimen/text_16" />
@@ -249,6 +255,8 @@
                     android:layout_toEndOf="@+id/title_5"
                     android:background="@null"
                     android:gravity="end"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="选择时间"
                     android:textColor="@color/tv_color_primary_title"
                     android:textColorHint="@color/tv_color_primary_hint"
@@ -262,44 +270,44 @@
                 android:layout_marginRight="@dimen/margin_18"
                 android:background="@color/color_diver" />
 
-            <RelativeLayout
-                android:id="@+id/rl_remind_repeat"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_56"
-                android:paddingLeft="@dimen/margin_18"
-                android:paddingRight="@dimen/margin_18">
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_remind_repeat"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/margin_56"-->
+                <!--android:paddingLeft="@dimen/margin_18"-->
+                <!--android:paddingRight="@dimen/margin_18">-->
 
-                <TextView
-                    android:id="@+id/title_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="重复"
-                    android:textColor="@color/tv_color_primary_title"
-                    android:textSize="@dimen/text_16" />
+                <!--<TextView-->
+                    <!--android:id="@+id/title_6"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:text="重复"-->
+                    <!--android:textColor="@color/tv_color_primary_title"-->
+                    <!--android:textSize="@dimen/text_16" />-->
 
-                <EditText
-                    android:id="@+id/et_remind_repeat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_common"
-                    android:layout_toEndOf="@+id/title_6"
-                    android:background="@null"
-                    android:gravity="end"
-                    android:hint="一次"
-                    android:textColor="@color/tv_color_primary_title"
-                    android:textColorHint="@color/tv_color_primary_hint"
-                    android:textSize="@dimen/text_16" />
+                <!--<EditText-->
+                    <!--android:id="@+id/et_remind_repeat"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="@dimen/margin_common"-->
+                    <!--android:layout_toEndOf="@+id/title_6"-->
+                    <!--android:background="@null"-->
+                    <!--android:gravity="end"-->
+                    <!--android:hint="一次"-->
+                    <!--android:textColor="@color/tv_color_primary_title"-->
+                    <!--android:textColorHint="@color/tv_color_primary_hint"-->
+                    <!--android:textSize="@dimen/text_16" />-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
-            <View
-                style="@style/diver"
-                android:layout_marginLeft="@dimen/margin_18"
-                android:layout_marginRight="@dimen/margin_18"
-                android:background="@color/color_diver" />
+            <!--<View-->
+                <!--style="@style/diver"-->
+                <!--android:layout_marginLeft="@dimen/margin_18"-->
+                <!--android:layout_marginRight="@dimen/margin_18"-->
+                <!--android:background="@color/color_diver" />-->
 
             <RelativeLayout
                 android:id="@+id/rl_remind_extra"

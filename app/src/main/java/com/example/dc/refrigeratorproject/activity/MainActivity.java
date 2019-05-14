@@ -6,14 +6,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.MyFragmentPagerAdapter;
+import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.fragment.RefrigeratorFragment;
-import com.example.dc.refrigeratorproject.view.NoScrollViewPager;
+import com.example.dc.refrigeratorproject.myView.NoScrollViewPager;
+import com.example.dc.refrigeratorproject.util.ToastUtil;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener ,View.OnClickListener{
 
@@ -29,6 +33,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private RadioButton rbList;
     private DrawerLayout mDlMain;
     private TextView tvMenuMyRef;
+    private ImageView ivExit;
+    private SimpleDraweeView ivHead;
 
     private MyFragmentPagerAdapter mAdapter;
 
@@ -48,6 +54,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         rbList = (RadioButton) findViewById (R.id.rb_list);
         mDlMain = (DrawerLayout) findViewById (R.id.dl_main);
         tvMenuMyRef = findViewById (R.id.tv_menu_my_ref);
+        ivExit = findViewById (R.id.ic_exit);
+        ivHead = findViewById (R.id.iv_head);
 
         mAdapter = new MyFragmentPagerAdapter (getSupportFragmentManager ());
 
@@ -55,6 +63,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         viewpager.setCurrentItem (0);
         viewpager.addOnPageChangeListener (this);
         rgTabBar.setOnCheckedChangeListener (this);
+        ivExit.setOnClickListener (this);
+        ivHead.setOnClickListener (this);
 
         tvMenuMyRef.setOnClickListener (this);
 
@@ -119,6 +129,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             case R.id.tv_menu_my_ref:
                 Intent intent = new Intent (MainActivity.this,RefrigeratorListActivity.class);
                 startActivity (intent);
+                break;
+            case R.id.ic_exit:
+                ToastUtil.showShort (MainActivity.this,"退出登录");
+                finish ();
+                Config.logout (MainActivity.this);
+                break;
+            case R.id.iv_head:
+                Intent intent1 = new Intent (MainActivity.this,PersonalInfoActivity.class);
+                startActivity (intent1);
                 break;
         }
     }

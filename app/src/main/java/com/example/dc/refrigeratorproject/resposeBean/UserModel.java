@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 public class UserModel implements Serializable{
+
     private long account; //用户账户
     private String name;  //用户昵称
     private String head;  //用户头像
@@ -44,4 +45,6 @@ public class UserModel implements Serializable{
     public void setRefrigeratorModelList(List<RefrigeratorModel> refrigeratorModelList) {
         this.refrigeratorModelList = refrigeratorModelList;
     }
+
+
 }

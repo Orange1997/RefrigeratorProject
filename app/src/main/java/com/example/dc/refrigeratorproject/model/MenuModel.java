@@ -2,7 +2,8 @@ package com.example.dc.refrigeratorproject.model;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.ForgetPsdActivity;
-import com.example.dc.refrigeratorproject.activity.RegisterActivity;
+import com.example.dc.refrigeratorproject.activity.MyCollectionActivity;
+import com.example.dc.refrigeratorproject.activity.MyFollowActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,25 +34,25 @@ public class MenuModel {
         Menu myAttention = new Menu ();
         myAttention.setIcon (R.drawable.ic_ice);
         myAttention.setTitle ("我的关注");
-        myAttention.setCls (ForgetPsdActivity.class);
+        myAttention.setCls (MyFollowActivity.class);
         list.add (myAttention);
 
         Menu myCollection = new Menu ();
         myCollection.setIcon (R.drawable.ic_ice);
         myCollection.setTitle ("我的收藏");
-        myCollection.setCls (RegisterActivity.class);
+        myCollection.setCls (MyCollectionActivity.class);
         list.add (myCollection);
 
         Menu message = new Menu ();
         message.setIcon (R.drawable.ic_ice);
         message.setTitle ("消息中心");
-        message.setCls (ForgetPsdActivity.class);
+        message.setCls (null);
         list.add (message);
 
         Menu setting = new Menu ();
         setting.setIcon (R.drawable.ic_ice);
         setting.setTitle ("设置");
-        setting.setCls (ForgetPsdActivity.class);
+        setting.setCls (null);
         list.add (setting);
         return list;
     }
