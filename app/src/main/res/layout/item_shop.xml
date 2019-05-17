@@ -5,7 +5,7 @@
     android:id="@+id/ll_content"
     android:layout_marginLeft="@dimen/margin_common"
     android:layout_marginRight="@dimen/margin_common"
-    android:layout_marginBottom="@dimen/margin_big"
+    android:layout_marginBottom="@dimen/margin_bigger"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 

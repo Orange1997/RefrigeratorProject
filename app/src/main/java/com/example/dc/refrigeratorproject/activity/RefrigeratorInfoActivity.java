@@ -14,30 +14,39 @@ import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.RefrigeratorSharerAdapter;
+import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.event.UpdateFridgeEvent;
+import com.example.dc.refrigeratorproject.iView.IAddFridgeView;
 import com.example.dc.refrigeratorproject.myView.SlideRecyclerView;
-import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
+import com.example.dc.refrigeratorproject.presenter.AddFridgePresenter;
+import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorSharerModel;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.DialogUtil;
+import com.example.dc.refrigeratorproject.util.InputUtils;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
+import static com.example.dc.refrigeratorproject.config.Config.KEY_EDIT_NAME;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_ADDRESS;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_IS_TO_CREATE;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_MODEL;
-import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_NAME;
 
 /**
  * Created by DC on 2019/5/2.
  */
 
-public class RefrigeratorInfoActivity extends BaseActivity implements View.OnClickListener {
+public class RefrigeratorInfoActivity extends BaseActivity implements View.OnClickListener, IAddFridgeView {
     private Toolbar toolbar;
     private SlideRecyclerView rvRefrigeratorSharer;
     private RefrigeratorSharerAdapter adapter;
-    private RefrigeratorModel refrigeratorModel;
-    private TextView tvReAddress, tvReName, tvCreator,tvEmpty;
+    private RefrigeratorListRes refrigeratorModel;
+    private TextView tvReAddress, tvReName, tvCreator, tvEmpty;
     private Button btnBottom;
     private boolean isCreator = false;
     private boolean isNewCreate;
+    private AddFridgePresenter presenter;
 
     public static final int REQUEST_CODE = 1;
     public static final int RESULT_CODE_EDIT_NAME = 101;
@@ -47,13 +56,11 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_refrigerator_info);
-
-        refrigeratorModel = (RefrigeratorModel) getIntent ().getSerializableExtra (KEY_REFRIGERATOR_MODEL);
+        presenter = new AddFridgePresenter (RefrigeratorInfoActivity.this, this);
+        refrigeratorModel = (RefrigeratorListRes) getIntent ().getSerializableExtra (KEY_REFRIGERATOR_MODEL);
         isNewCreate = getIntent ().getBooleanExtra (KEY_REFRIGERATOR_IS_TO_CREATE, false);
-        if (refrigeratorModel != null && refrigeratorModel.getCreator () != null) {
-//            if (refrigeratorModel.getCreator ().getAccount () == Config.getUserAccount (RefrigeratorInfoActivity.this)) {
-//                isCreator = true;
-//            }
+        if (refrigeratorModel != null && refrigeratorModel.getUserId () == Config.getUserId (RefrigeratorInfoActivity.this)) {
+            isCreator = true;
         }
 
         initTitleBar ();
@@ -195,34 +202,61 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
 
     }
 
-    private void updateList(RefrigeratorModel model) {
+    private void updateList(RefrigeratorListRes model) {
         if (model != null) {
-            if (model.getName () != null) {
-                tvReName.setText (model.getName ());
+            if (model.getFridgeName () != null) {
+                tvReName.setText (model.getFridgeName ());
             }
             if (model.getAddress () != null) {
                 tvReAddress.setText (model.getAddress ());
             }
-            if (model.getCreator () != null) {
-//                if (model.getCreator ().getAccount () != 0 && model.getCreator ().getName () != null) {
-//                    if (model.getCreator ().getAccount () == Config.getUserAccount (RefrigeratorInfoActivity.this)) {
-//                        tvCreator.setText ("我");
-//                    } else {
-//                        tvCreator.setText (model.getCreator ().getName ());
-//                    }
-//                }
+            if (model.getUserId () != 0) {
+                if (model.getUserId ()==Config.getUserId (RefrigeratorInfoActivity.this)) {
+                    tvCreator.setText ("我");
+                }
             }
 
-            if (model.getSharerModelList () != null && model.getSharerModelList ().size () > 0) {
-                tvEmpty.setVisibility (View.GONE);
-                rvRefrigeratorSharer.setVisibility (View.VISIBLE);
-                adapter.updateList (model.getSharerModelList ());
-            }else {
-                tvEmpty.setVisibility (View.VISIBLE);
-                rvRefrigeratorSharer.setVisibility (View.GONE);
-            }
+//            if (model.getSharerModelList () != null && model.getSharerModelList ().size () > 0) {
+//                tvEmpty.setVisibility (View.GONE);
+//                rvRefrigeratorSharer.setVisibility (View.VISIBLE);
+//                adapter.updateList (model.getSharerModelList ());
+//            } else {
+//                tvEmpty.setVisibility (View.VISIBLE);
+//                rvRefrigeratorSharer.setVisibility (View.GONE);
+//            }
 
         }
+    }
+
+    @Override
+    public void onAddFridgeSuccess(int id) {
+        Config.setCreateFridgeIds (RefrigeratorInfoActivity.this, id);
+        Config.setCurrentFridgeId (RefrigeratorInfoActivity.this, id);
+        String ids = Config.getCreateFridgeIds (RefrigeratorInfoActivity.this);
+        User user = Config.getUser (RefrigeratorInfoActivity.this);
+        if (user != null) {
+            presenter.updateFridge (ids, user.getUserId (),id);
+        }
+
+    }
+
+    @Override
+    public void onAddFridgeSuccess() {
+        User user = Config.getUser (RefrigeratorInfoActivity.this);
+        if (user != null) {
+            user.setCreateByFridgeIds (Config.getCreateFridgeIds (RefrigeratorInfoActivity.this));
+            user.setCurrentFridgeId (Config.getCurrentFridgeId (RefrigeratorInfoActivity.this));
+            Config.setUser (RefrigeratorInfoActivity.this,user);
+        }
+        EventBus.getDefault().post(new UpdateFridgeEvent ());
+        Intent intent = new Intent (RefrigeratorInfoActivity.this, MainActivity.class);
+        startActivity (intent);
+        finish ();
+    }
+
+    @Override
+    public void onError(String error) {
+
     }
 
     @Override
@@ -233,10 +267,10 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
                     ToastUtil.showShort (RefrigeratorInfoActivity.this, "您没有权限编辑该冰箱");
                 } else {
                     Intent intent = new Intent (RefrigeratorInfoActivity.this, EditNameActivity.class);
-                    if (refrigeratorModel!=null&& !TextUtils.isEmpty (refrigeratorModel.getName ())){
-                        intent.putExtra (KEY_REFRIGERATOR_NAME, refrigeratorModel.getName ());
-                    }else {
-                        intent.putExtra (KEY_REFRIGERATOR_NAME, "");
+                    if (refrigeratorModel != null && !TextUtils.isEmpty (refrigeratorModel.getFridgeName ())) {
+                        intent.putExtra (KEY_EDIT_NAME, refrigeratorModel.getFridgeName ());
+                    } else {
+                        intent.putExtra (KEY_EDIT_NAME, "");
                     }
                     startActivityForResult (intent, REQUEST_CODE);
                 }
@@ -252,17 +286,19 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
                 break;
             case R.id.btn_bottom:
 
-                if (isNewCreate){
-                    ToastUtil.showShort (RefrigeratorInfoActivity.this, "冰箱创建成功");
-                    Intent intent = new Intent (RefrigeratorInfoActivity.this,MainActivity.class);
-                    startActivity (intent);
-                }else {
+                if (isNewCreate) {
+                    User user = Config.getUser (RefrigeratorInfoActivity.this);
+                    if (user != null) {
+                        presenter.addFridge (tvReName.getText ().toString (), tvReAddress.getText ().toString (), user.getUserId (), InputUtils.getRandomChar (9));
+                    }
+                } else {
                     //跳转到邀请好友页
                     Intent intent = new Intent (RefrigeratorInfoActivity.this, InviteActivity.class);
-                    if (refrigeratorModel!=null&& !TextUtils.isEmpty (refrigeratorModel.getName ())){
-                        intent.putExtra (KEY_REFRIGERATOR_NAME, refrigeratorModel.getName ());
-                    }else {
-                        intent.putExtra (KEY_REFRIGERATOR_NAME, "");
+                    if (refrigeratorModel != null && !TextUtils.isEmpty (refrigeratorModel.getFridgeName ())) {
+                        intent.putExtra (KEY_EDIT_NAME, refrigeratorModel.getFridgeName ());
+                        intent.putExtra ("invite_code", refrigeratorModel.getInvitationCode ());
+                    } else {
+                        intent.putExtra (KEY_EDIT_NAME, "");
                     }
                     startActivity (intent);
                 }
@@ -280,7 +316,7 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (intent != null) {
             if (resultCode == RESULT_CODE_EDIT_NAME) {
-                String result = intent.getStringExtra (KEY_REFRIGERATOR_NAME);
+                String result = intent.getStringExtra (KEY_EDIT_NAME);
                 tvReName.setText (result);
             } else if (resultCode == RESULT_CODE_ADDRESS) {
                 String result = intent.getStringExtra (KEY_REFRIGERATOR_ADDRESS);

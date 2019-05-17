@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.example.dc.refrigeratorproject.activity.MainActivity;
 import com.example.dc.refrigeratorproject.fragment.InformationFragment;
-import com.example.dc.refrigeratorproject.fragment.ListFragment;
 import com.example.dc.refrigeratorproject.fragment.PersonalCenterFragment;
 import com.example.dc.refrigeratorproject.fragment.RefrigeratorFragment;
 
@@ -17,11 +16,10 @@ import com.example.dc.refrigeratorproject.fragment.RefrigeratorFragment;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private final int PAGER_COUNT = 4;
+    private final int PAGER_COUNT = 3;
     private RefrigeratorFragment refrigeratorFragment;
     private InformationFragment informationFragment;
     private PersonalCenterFragment personalCenterFragment;
-    private ListFragment listFragment;
 
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
@@ -29,7 +27,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         refrigeratorFragment = new RefrigeratorFragment();
         informationFragment = new InformationFragment();
         personalCenterFragment = new PersonalCenterFragment();
-        listFragment = new ListFragment ();
     }
 
 
@@ -49,9 +46,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case MainActivity.PAGE_ONE:
                 fragment = refrigeratorFragment;
-                break;
-            case MainActivity.PAGE_TWO:
-                fragment = listFragment;
                 break;
             case MainActivity.PAGE_THREE:
                 fragment = informationFragment;

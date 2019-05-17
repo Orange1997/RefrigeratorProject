@@ -10,17 +10,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.PoiDetailInfo;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiDetailSearchOption;
+import com.baidu.mapapi.search.poi.PoiDetailSearchResult;
+import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
+import com.baidu.mapapi.search.poi.PoiResult;
+import com.baidu.mapapi.search.poi.PoiSearch;
 import com.example.dc.refrigeratorproject.Mock;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.DetailActivity;
 import com.example.dc.refrigeratorproject.activity.MoreActivity;
+import com.example.dc.refrigeratorproject.activity.NearByActivity;
 import com.example.dc.refrigeratorproject.adapter.FoundAdapter;
 import com.example.dc.refrigeratorproject.adapter.item.ArticleOrRecipesItem;
 import com.example.dc.refrigeratorproject.adapter.item.BaseItem;
 import com.example.dc.refrigeratorproject.adapter.item.ShopItem;
 import com.example.dc.refrigeratorproject.adapter.item.TitleItem;
+import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.model.ArticleOrRecipesModel;
-import com.example.dc.refrigeratorproject.model.ShopModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +52,65 @@ public class FoundFragment extends Fragment {
     public static final int TITLE_TYPE_RECIPES = 2;
     public static final int TITLE_TYPE_SHOP = 3;
 
+    protected PoiSearch poiSearch;
+    protected double lat;
+    protected double lon;
+
     private RecyclerView rvFound;
     private FoundAdapter adapter;
-    List<BaseItem> baseItems = new ArrayList<> ();
+    private List<BaseItem> baseItems = new ArrayList<> ();
+    private List<PoiDetailInfo> poiDetailInfoList = new ArrayList<> ();
+
+    private OnGetPoiSearchResultListener listener = new OnGetPoiSearchResultListener () {
+        @Override
+        public void onGetPoiResult(PoiResult poiResult) {
+            String uid = null;
+            StringBuilder stringBuilder = new StringBuilder ();
+            if (poiResult != null) {
+                for (int i = 0; i < poiResult.getAllPoi ().size (); i++) {
+                    if (i == 0) {
+                        stringBuilder = stringBuilder.append (poiResult.getAllPoi ().get (0).getUid ());
+                    } else {
+                        stringBuilder = stringBuilder.append (",").append (poiResult.getAllPoi ().get (i).getUid ());
+                    }
+                }
+                poiSearch.searchPoiDetail ((new PoiDetailSearchOption ())
+                        .poiUids (stringBuilder.toString ()));
+
+            }
+        }
+
+        @Override
+        public void onGetPoiDetailResult(PoiDetailSearchResult poiDetailSearchResult) {
+            if (poiDetailSearchResult != null) {
+                List<PoiDetailInfo> list = poiDetailSearchResult.getPoiDetailInfoList ();
+                if (list != null) {
+                    poiDetailInfoList = list;
+                    updateList ();
+                }
+            }
+
+        }
+
+        @Override
+        public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+
+        }
+
+        //废弃
+        @Override
+        public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+
+        }
+    };
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate (R.layout.fragment_found, container, false);
+        poiSearch = PoiSearch.newInstance ();
+        poiSearch.setOnGetPoiSearchResultListener (listener);
+        lat = Config.getDouble (getActivity (), Config.KEY_LOCATION_LATITUDE);
+        lon = Config.getDouble (getActivity (), Config.KEY_LOCATION_LONGITUDE);
         initView (view);
         updateList ();
         return view;
@@ -74,17 +137,22 @@ public class FoundFragment extends Fragment {
         adapter.setOnMoreClickListener (new FoundAdapter.OnMoreClickListener () {
             @Override
             public void onItemClick(int type) {
-                Intent intent = new Intent (getActivity (), MoreActivity.class);
-                intent.putExtra (KEY_FOUND_TYPE, type);
-                startActivity (intent);
+                if (type == TITLE_TYPE_SHOP) {
+                    Intent intent = new Intent (getActivity (), NearByActivity.class);
+                    startActivity (intent);
+                } else {
+                    Intent intent = new Intent (getActivity (), MoreActivity.class);
+                    intent.putExtra (KEY_FOUND_TYPE, type);
+                    startActivity (intent);
+                }
             }
         });
         adapter.setOnFoundItemClickListener (new FoundAdapter.OnFoundItemClickListener () {
             @Override
             public void onItemClick(BaseItem item) {
-                ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem)item;
+                ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem) item;
                 Intent intent = new Intent (getActivity (), DetailActivity.class);
-                intent.putExtra (KEY_FOUND_URL,articleOrRecipesItem.url);
+                intent.putExtra (KEY_FOUND_URL, articleOrRecipesItem.url);
                 startActivity (intent);
             }
         });
@@ -99,16 +167,26 @@ public class FoundFragment extends Fragment {
         baseItems.add (new ArticleOrRecipesItem (recipesModelList.get (0), TYPE_RECIPES));
         baseItems.add (new ArticleOrRecipesItem (recipesModelList.get (1), TYPE_RECIPES));
         baseItems.add (new TitleItem (TYPE_HEAD, "附近店铺", "更多", 3));
-        List<ShopModel> shopModelList = Mock.getShopModelList ();
-        for (ShopModel shopModel : shopModelList) {
-            baseItems.add (new ShopItem (shopModel, TYPE_SHOP));
+        for (PoiDetailInfo poiDetailInfo : poiDetailInfoList) {
+            baseItems.add (new ShopItem (poiDetailInfo, TYPE_SHOP, lat, lon));
         }
         adapter.updateList (baseItems);
     }
 
+    public void showNearBy(String keyword) {
+        poiSearch.searchNearby (new PoiNearbySearchOption ()
+                .location (new LatLng (lat, lon))
+                .radius (10000)
+                .keyword (keyword)
+                .pageNum (0)
+                .pageCapacity (10));
+    }
+
+
     @Override
     public void onResume() {
         super.onResume ();
+        showNearBy("超市");
     }
 
 

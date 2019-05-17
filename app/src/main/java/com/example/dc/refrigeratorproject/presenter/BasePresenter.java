@@ -1,23 +1,30 @@
 package com.example.dc.refrigeratorproject.presenter;
 
-import android.content.Intent;
+import android.content.Context;
 
-import com.example.dc.refrigeratorproject.iView.IView;
+import com.example.dc.refrigeratorproject.netWork.DataManager;
+
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by DC on 2019/5/13.
  */
 
-public interface BasePresenter {
-    void onCreate();
+public class BasePresenter {
+    protected DataManager manager;
+    protected CompositeSubscription mCompositeSubscription;
+    private Context mContext;
 
-    void onStart();//暂时没用到
+    public BasePresenter(Context context){
+        this.mContext = context;
+        manager = new DataManager (mContext);
+        mCompositeSubscription = new CompositeSubscription ();
+    }
 
-    void onStop();
+    public void onStop() {
+        if (mCompositeSubscription.hasSubscriptions()){
+            mCompositeSubscription.unsubscribe();
+        }
+    }
 
-    void pause();//暂时没用到
-
-    void attachView(IView view);
-
-    void attachIncomingIntent(Intent intent);//暂时没用到
 }

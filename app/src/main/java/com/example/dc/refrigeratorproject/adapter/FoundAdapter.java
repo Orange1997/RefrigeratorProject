@@ -105,13 +105,18 @@ public class FoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     }
                 }
             });
-        } else if (baseItem.type == TYPE_SHOP && holder instanceof ShopViewHolder){
-            ShopItem shopItem = (ShopItem)baseItem;
+        } else if (baseItem.type == TYPE_SHOP && holder instanceof ShopViewHolder) {
+            ShopItem shopItem = (ShopItem) baseItem;
             ((ShopViewHolder) holder).img.setImageURI (Uri.parse (shopItem.img));
-            ((ShopViewHolder) holder).tvName.setText (shopItem.name!=null?shopItem.name:"");
-            ((ShopViewHolder) holder).tvLikes.setText (String.valueOf (shopItem.likes)+"人已赞");
-            ((ShopViewHolder) holder).tvAddress.setText (shopItem.location!=null?shopItem.location:"未知");
-            ((ShopViewHolder) holder).tvDiscount.setText (String.valueOf (shopItem.discount)+"km");
+            ((ShopViewHolder) holder).tvName.setText (shopItem.name != null ? shopItem.name : "");
+            if (Double.parseDouble (shopItem.likes)==0){
+                ((ShopViewHolder) holder).tvLikes.setText ("暂无评分");
+            }else {
+                ((ShopViewHolder) holder).tvLikes.setText ("综合评分：" + shopItem.likes);
+            }
+            ((ShopViewHolder) holder).tvAddress.setText (shopItem.location != null ? shopItem.location : "未知");
+
+            ((ShopViewHolder) holder).tvDiscount.setText (shopItem.discount + "km");
         }
 
 

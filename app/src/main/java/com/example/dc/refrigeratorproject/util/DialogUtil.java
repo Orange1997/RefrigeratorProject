@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
-import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
+import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,15 +58,15 @@ public class DialogUtil {
         void onNegativeClick();
     }
 
-    public static void showSingleChoiceDialog(final Context context, final List<RefrigeratorModel> list, final OnSingleChoiceClickListener singleChoiceClickListener) {
+    public static void showSingleChoiceDialog(final Context context, final List<RefrigeratorListRes> list, final OnSingleChoiceClickListener singleChoiceClickListener) {
         final String[] items;
         int checkItem = -1;
         List<String> stringList = new ArrayList<> ();
         for (int i = 0; i < list.size (); i++) {
-            if (list.get (i).isCurrentRefrigerator ()) {
+            if (list.get (i).getFridgeId ()== Config.getCurrentFridgeId (context)) {
                 checkItem = i;
             }
-            stringList.add (list.get (i).getName ());
+            stringList.add (list.get (i).getFridgeName ());
         }
         ;
         items = stringList.toArray (new String[stringList.size ()]);
@@ -85,7 +86,7 @@ public class DialogUtil {
     }
 
     public interface OnSingleChoiceClickListener {
-        void onSingleChoiceClick(RefrigeratorModel model, int which);
+        void onSingleChoiceClick(RefrigeratorListRes model, int which);
     }
 
 }

@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:text="发送邀请"
+            android:text="邀请码"
             android:textColor="@color/tv_color_primary_title"
             android:textSize="@dimen/text_18" />
 
@@ -35,44 +35,45 @@
         android:layout_marginRight="@dimen/margin_bigger"
         android:text="@string/info_invite"/>
 
-    <Button
-        android:id="@+id/tv_invite_by_we"
+    <TextView
+        android:id="@+id/tv_invite_code"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/margin_huge"
+        android:gravity="center"
         android:layout_marginLeft="@dimen/margin_bigger"
         android:layout_marginRight="@dimen/margin_bigger"
         android:text="微信邀请"
         android:background="@drawable/shape_round_corner_with_light_green"
         android:textSize="@dimen/text_14"/>
 
-    <Button
-        android:id="@+id/tv_invite_by_qq"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="@dimen/margin_big"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:layout_marginLeft="@dimen/margin_bigger"
-        android:layout_marginRight="@dimen/margin_bigger"
-        android:text="QQ邀请"
-        android:background="@drawable/shape_round_corner_with_light_blue"
-        android:textSize="@dimen/text_14"/>
+    <!--<Button-->
+        <!--android:id="@+id/tv_invite_by_qq"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:layout_marginTop="@dimen/margin_big"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_marginLeft="@dimen/margin_bigger"-->
+        <!--android:layout_marginRight="@dimen/margin_bigger"-->
+        <!--android:text="QQ邀请"-->
+        <!--android:background="@drawable/shape_round_corner_with_light_blue"-->
+        <!--android:textSize="@dimen/text_14"/>-->
 
-    <Button
-        android:id="@+id/tv_invite_by_msg"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="@dimen/margin_big"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:layout_marginLeft="@dimen/margin_bigger"
-        android:layout_marginRight="@dimen/margin_bigger"
-        android:text="短信邀请"
-        android:background="@drawable/shape_round_corner_with_light_gray"
-        android:textSize="@dimen/text_14"/>
+    <!--<Button-->
+        <!--android:id="@+id/tv_invite_by_msg"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:layout_marginTop="@dimen/margin_big"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_marginLeft="@dimen/margin_bigger"-->
+        <!--android:layout_marginRight="@dimen/margin_bigger"-->
+        <!--android:text="短信邀请"-->
+        <!--android:background="@drawable/shape_round_corner_with_light_gray"-->
+        <!--android:textSize="@dimen/text_14"/>-->
 
     <Space
         android:layout_width="wrap_content"

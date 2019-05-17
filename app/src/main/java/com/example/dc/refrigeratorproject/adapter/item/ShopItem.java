@@ -1,6 +1,9 @@
 package com.example.dc.refrigeratorproject.adapter.item;
 
-import com.example.dc.refrigeratorproject.model.ShopModel;
+import com.baidu.mapapi.search.core.PoiDetailInfo;
+import com.example.dc.refrigeratorproject.util.MapHelper;
+
+import java.math.BigDecimal;
 
 /**
  * Created by DC on 2019/5/12.
@@ -8,19 +11,21 @@ import com.example.dc.refrigeratorproject.model.ShopModel;
 
 public class ShopItem extends BaseItem {
     public String name;
-    public int likes;
-    public float discount;
+    public String  likes;
+    public double discount;
     public String img;
     public String location;
 
-    public ShopItem(ShopModel shopModel,int type){
-        super(type);
-        if (shopModel!=null){
+    public ShopItem(PoiDetailInfo shopModel, int type, double lat, double lon) {
+        super (type);
+        if (shopModel != null) {
             this.name = shopModel.getName ();
-            this.likes = shopModel.getLikes ();
-            this.discount = shopModel.getDiscount ();
-            this.img = shopModel.getImg ();
-            this.location = shopModel.getLocation ();
+            this.likes = String.valueOf (shopModel.overallRating);
+            BigDecimal b = new BigDecimal (MapHelper.getDistance (lat, lon, shopModel.getLocation ().latitude, shopModel.getLocation ().longitude));
+            double dis = b.setScale (2, BigDecimal.ROUND_HALF_UP).doubleValue ();
+            this.discount = dis;
+            this.img = " ";
+            this.location = shopModel.getAddress ();
         }
     }
 }

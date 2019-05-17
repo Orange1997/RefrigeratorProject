@@ -14,23 +14,26 @@ import android.widget.TextView;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.MyFragmentPagerAdapter;
 import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.event.UpdateFridgeEvent;
 import com.example.dc.refrigeratorproject.fragment.RefrigeratorFragment;
 import com.example.dc.refrigeratorproject.myView.NoScrollViewPager;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener ,View.OnClickListener{
 
     public static final int PAGE_ONE = 0;
-    public static final int PAGE_TWO = 1;
-    public static final int PAGE_THREE = 2;
-    public static final int PAGE_FOUR = 3;
+    public static final int PAGE_THREE = 1;
+    public static final int PAGE_FOUR = 2;
 
     private NoScrollViewPager viewpager;
     private RadioButton rbRefrigerator;
     private RadioButton rbInformation;
     private RadioButton rbPersonalCenter;
-    private RadioButton rbList;
     private DrawerLayout mDlMain;
     private TextView tvMenuMyRef;
     private ImageView ivExit;
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
+        EventBus.getDefault().register(this);
         initView ();
     }
 
@@ -51,7 +55,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         rbRefrigerator = (RadioButton) findViewById (R.id.rb_refrigerator);
         rbInformation = (RadioButton) findViewById (R.id.rb_information);
         rbPersonalCenter = (RadioButton) findViewById (R.id.rb_personal_center);
-        rbList = (RadioButton) findViewById (R.id.rb_list);
         mDlMain = (DrawerLayout) findViewById (R.id.dl_main);
         tvMenuMyRef = findViewById (R.id.tv_menu_my_ref);
         ivExit = findViewById (R.id.ic_exit);
@@ -78,9 +81,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             case R.id.rb_refrigerator:
                 viewpager.setCurrentItem (PAGE_ONE);
                 break;
-            case R.id.rb_list:
-                viewpager.setCurrentItem (PAGE_TWO);
-                break;
             case R.id.rb_information:
                 viewpager.setCurrentItem (PAGE_THREE);
                 break;
@@ -106,11 +106,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 //允许手指滑动
                 mDlMain.setDrawerLockMode (DrawerLayout.LOCK_MODE_UNLOCKED);
                 openDrawerListener ();
-                break;
-            case PAGE_TWO:
-                rbList.setChecked (true);
-                //禁止手指滑动弹出
-                mDlMain.setDrawerLockMode (DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
             case PAGE_THREE:
                 rbInformation.setChecked (true);
@@ -142,6 +137,13 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateList(UpdateFridgeEvent messageEvent) {
+        if (viewpager.getCurrentItem () == 0) {
+            RefrigeratorFragment fragment = (RefrigeratorFragment) mAdapter.getItem (0);
+            fragment.updateList ();
+        }
+    }
 
     private void openDrawerListener() {
         if (viewpager.getCurrentItem () == 0) {
@@ -154,6 +156,5 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             });
         }
     }
-
 
 }

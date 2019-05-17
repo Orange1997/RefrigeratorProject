@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 public class RefrigeratorSharerModel implements Serializable{
-    public UserModel sharer; //共享者信息
+    public LoginRes sharer; //共享者信息
     public boolean isCreator; //是否为本人创建
 
     public boolean isCreator() {
@@ -19,11 +19,11 @@ public class RefrigeratorSharerModel implements Serializable{
         isCreator = creator;
     }
 
-    public UserModel getSharer() {
+    public LoginRes getSharer() {
         return sharer;
     }
 
-    public void setSharer(UserModel sharer) {
+    public void setSharer(LoginRes sharer) {
         this.sharer = sharer;
     }
 }

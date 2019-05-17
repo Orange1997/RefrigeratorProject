@@ -5,14 +5,17 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.dc.refrigeratorproject.Mock;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.RefrigeratorListAdapter;
-import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
+import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.iView.IRefrigeratorView;
 import com.example.dc.refrigeratorproject.myView.NoScrollRecyclerView;
+import com.example.dc.refrigeratorproject.presenter.RefrigeratorPresenter;
+import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 
 import java.util.List;
 
@@ -23,22 +26,20 @@ import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_
  * Created by DC on 2019/5/2.
  */
 
-public class RefrigeratorListActivity extends BaseActivity {
+public class RefrigeratorListActivity extends BaseActivity implements IRefrigeratorView{
     private Toolbar toolbar;
     private NoScrollRecyclerView rvMyRefList;
     private RefrigeratorListAdapter adapter;
     private TextView tvJoin, tvAdd;
+    private RefrigeratorPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_refrigerator_list);
-
-
+        presenter = new RefrigeratorPresenter (RefrigeratorListActivity.this,this);
         initTitleBar ();
         initView ();
-        List<RefrigeratorModel> refrigeratorModel = Mock.getRefrigeratorList ();
-        updateList (refrigeratorModel);
     }
 
     private void initTitleBar() {
@@ -53,6 +54,10 @@ public class RefrigeratorListActivity extends BaseActivity {
     }
 
     private void initView() {
+        String ids = Config.getAllFridges(RefrigeratorListActivity.this);
+        if (!TextUtils.isEmpty (ids)){
+            presenter.getFridgeList (ids);
+        }
         rvMyRefList = findViewById (R.id.rv_refrigerator_list);
         tvJoin = findViewById (R.id.tv_join);
         tvAdd = findViewById (R.id.tv_add);
@@ -64,7 +69,7 @@ public class RefrigeratorListActivity extends BaseActivity {
 
         adapter.setOnRefItemClickListener (new RefrigeratorListAdapter.OnRefItemClickListener () {
             @Override
-            public void onItemClick(RefrigeratorModel model) {
+            public void onItemClick(RefrigeratorListRes model) {
                 Intent intent = new Intent (RefrigeratorListActivity.this, RefrigeratorInfoActivity.class);
                 intent.putExtra (KEY_REFRIGERATOR_MODEL, model);
                 startActivity (intent);
@@ -91,7 +96,14 @@ public class RefrigeratorListActivity extends BaseActivity {
 
     }
 
-    private void updateList(List<RefrigeratorModel> refrigeratorModelList) {
+    @Override
+    public void updateFridgeList(List<RefrigeratorListRes> refrigeratorModelList){
         adapter.updateList (refrigeratorModelList);
     }
+
+    @Override
+    public void onError(String result){
+
+    }
+
 }

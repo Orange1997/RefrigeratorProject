@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('C:/Users/DC/.android/debug.keystore')
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.dc.refrigeratorproject"
@@ -14,6 +19,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
         }
     }
 }
@@ -35,6 +45,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'io.reactivex:rxandroid:1.2.0'
-
-
+    compile 'org.greenrobot:eventbus:3.0.0'
+    implementation files('libs/BaiduLBS_Android.jar')
 }

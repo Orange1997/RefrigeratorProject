@@ -5,24 +5,26 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.PersonalInfoActivity;
 import com.example.dc.refrigeratorproject.adapter.MenuAdapter;
+import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.model.MenuModel;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 
 /**
  * Created by DC on 2019/3/8.
  */
 
 public class PersonalCenterFragment extends Fragment {
-    private static final String TAG = "MyFragment1";
+    private TextView tvName, tvAccount;
 
 
     @Override
@@ -40,9 +42,9 @@ public class PersonalCenterFragment extends Fragment {
         menuAdapter.setOnItemClickListener (new MenuAdapter.OnItemClickListener () {
             @Override
             public void onItemClick(MenuModel.Menu menu) {
-                if (menu.getCls ()!=null){
+                if (menu.getCls () != null) {
                     Intent intent;
-                    intent = new Intent (getActivity (),menu.getCls ());
+                    intent = new Intent (getActivity (), menu.getCls ());
                     startActivity (intent);
                 }
             }
@@ -57,19 +59,26 @@ public class PersonalCenterFragment extends Fragment {
                 startActivity (intent);
             }
         });
+
+        tvName = view.findViewById (R.id.tv_name);
+        tvAccount = view.findViewById (R.id.tv_account);
+        User user = Config.getUser (getActivity ());
+        if (user != null) {
+            tvName.setText (user.getUserName () != null ? user.getUserName () : "用户" + user.getAccount ());
+            tvAccount.setText (user.getAccount () != null ? user.getAccount () : "");
+        }
+
     }
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView ();
-        Log.i (TAG, "onDestroyView: 0000-------MyFragment1");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy ();
-        Log.i (TAG, "onDestroy: 0000--------MyFragment1");
     }
 
     public PersonalCenterFragment() {

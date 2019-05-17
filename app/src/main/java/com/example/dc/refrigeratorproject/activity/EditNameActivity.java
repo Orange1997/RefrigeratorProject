@@ -11,7 +11,7 @@ import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 
 import static com.example.dc.refrigeratorproject.activity.RefrigeratorInfoActivity.RESULT_CODE_EDIT_NAME;
-import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_NAME;
+import static com.example.dc.refrigeratorproject.config.Config.KEY_EDIT_NAME;
 
 /**
  * Created by DC on 2019/5/3.
@@ -26,7 +26,7 @@ public class EditNameActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_edit_name);
-        name = getIntent ().getStringExtra (KEY_REFRIGERATOR_NAME);
+        name = getIntent ().getStringExtra (KEY_EDIT_NAME);
 
         initTitleBar ();
         initView ();
@@ -65,7 +65,7 @@ public class EditNameActivity extends BaseActivity implements View.OnClickListen
                     } else {
                         ToastUtil.showShort (EditNameActivity.this, "更新成功");
                         Intent intent = new Intent ();
-                        intent.putExtra (KEY_REFRIGERATOR_NAME, etName.getText ().toString ());
+                        intent.putExtra (KEY_EDIT_NAME, etName.getText ().toString ());
                         setResult (RESULT_CODE_EDIT_NAME, intent);
                         finish ();
                     }

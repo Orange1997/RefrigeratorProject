@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:paddingLeft="@dimen/margin_common"
-        android:paddingRight="@dimen/margin_common"
+
         android:elevation="1dp"
         android:background="@color/white"
         android:gravity="center_vertical">
@@ -53,14 +54,17 @@
                 android:textColorHint="@color/gray_tv_hint"
                 android:background="@null"
                 android:hint="搜索感兴趣的内容"/>
+            <requestFocus/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_search"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/margin_tiny"
+            android:gravity="center_vertical"
             android:layout_centerVertical="true"
+            android:paddingRight="@dimen/margin_common"
             android:textSize="@dimen/text_14"
             android:textColor="@color/tv_color_primary_title"
             android:layout_alignParentRight="true"
@@ -68,4 +72,15 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_found"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:paddingTop="@dimen/margin_common"
+        android:clipToPadding="false"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

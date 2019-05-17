@@ -18,7 +18,8 @@ public class RetrofitHelper {
     private Context mCntext;
 
     OkHttpClient client = new OkHttpClient();
-    GsonConverterFactory factory = GsonConverterFactory.create(new GsonBuilder ().create());
+
+    GsonConverterFactory factory = GsonConverterFactory.create(new GsonBuilder ().setLenient ().create());
     private static RetrofitHelper instance = null;
     private Retrofit mRetrofit = null;
     public static RetrofitHelper getInstance(Context context){
@@ -38,7 +39,7 @@ public class RetrofitHelper {
 
     private void resetApp() {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("http://172.17.163.254:3000/")
+                .baseUrl("http://192.168.43.42:3000/")
                 .client(client)
                 .addConverterFactory(factory)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

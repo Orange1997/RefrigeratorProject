@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.dc.refrigeratorproject.R;
+import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.iView.IJoinView;
+import com.example.dc.refrigeratorproject.presenter.SharePresenter;
 import com.example.dc.refrigeratorproject.util.DialogUtil;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 
@@ -19,11 +22,13 @@ import com.example.dc.refrigeratorproject.util.ToastUtil;
  * email : 企业邮箱
  * note : 邀请加入界面
  */
-public class JoinActivity extends BaseActivity {
+public class JoinActivity extends BaseActivity implements IJoinView{
     private Toolbar toolbar;
+    private SharePresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter = new SharePresenter (JoinActivity.this,this);
         setContentView(R.layout.activity_join);
         initView();
         initTitleBar();
@@ -47,11 +52,10 @@ public class JoinActivity extends BaseActivity {
                 if (TextUtils.isEmpty (etInput.getText ())){
                     ToastUtil.showShort (JoinActivity.this,getResources ().getString (R.string.info_no_empty));
                 }else {
-                    DialogUtil.showNormalDialog (JoinActivity.this, "确认要加入XXX的冰箱吗？", new DialogUtil.OnPositiveClickListener () {
+                    DialogUtil.showNormalDialog (JoinActivity.this, "确认要加入该冰箱吗？", new DialogUtil.OnPositiveClickListener () {
                         @Override
                         public void onPositiveClick() {
-                            Intent intent = new Intent (JoinActivity.this,MainActivity.class);
-                            startActivity (intent);
+                            presenter.addSharedFridge (etInput.getText ().toString (), Config.getUserId (JoinActivity.this));
                         }
 
                         @Override
@@ -62,6 +66,19 @@ public class JoinActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onJoinSuccess(String s){
+        Config.setSharedFridgeIds (JoinActivity.this,s);
+        Intent intent = new Intent (JoinActivity.this,MainActivity.class);
+        startActivity (intent);
+        finish ();
+    }
+
+    @Override
+    public void onError(String s){
+        ToastUtil.showShort (JoinActivity.this,s);
     }
 
 }

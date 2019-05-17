@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
-import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorModel;
+import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.ScreenUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -26,7 +27,7 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
 
     private Context context;
 
-    private List<RefrigeratorModel> data;
+    private List<RefrigeratorListRes> data;
 
     public RefrigeratorListAdapter(Context context) {
         this.context = context;
@@ -46,32 +47,30 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
     @Override
 
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final RefrigeratorModel model = data.get (position);
-        if (model.getName () != null && !TextUtils.isEmpty (model.getName ())) {
-            Log.e ("333333",model.getName ());
-            holder.tvName.setText (model.getName ());
+        final RefrigeratorListRes model = data.get (position);
+        if (model.getFridgeName () != null && !TextUtils.isEmpty (model.getFridgeName ())) {
+            holder.tvName.setText (model.getFridgeName ());
         }
 
         if (model.getAddress () != null && !TextUtils.isEmpty (model.getAddress ())) {
             holder.tvAddress.setText (model.getAddress ());
         }
-
-        if (model.getCreator () != null) {
-//            if (model.getCreator ().getHead () != null) {
-//                holder.ivHead.setImageURI (Uri.parse (model.getCreator ().getHead ()));
-//            }
-//            if (model.getCreator ().getAccount () != 0 && model.getCreator ().getAccount () == Config.getUserAccount (context)) {
-//                holder.ivOwner.setVisibility (View.VISIBLE);
-//            } else {
-//                holder.ivOwner.setVisibility (View.GONE);
-//            }
-        }
-
-        if (model.isCurrentRefrigerator) {
-            holder.tvCurrent.setVisibility (View.VISIBLE);
+//
+        if (model.getUserId () == Config.getUserId (context)) {
+            holder.ivOwner.setVisibility (View.VISIBLE);
         } else {
-            holder.tvCurrent.setVisibility (View.GONE);
+            holder.ivOwner.setVisibility (View.GONE);
         }
+
+        User user = Config.getUser (context);
+        if (user != null) {
+            if (model.getFridgeId () == user.getCurrentFridgeId ()) {
+                holder.tvCurrent.setVisibility (View.VISIBLE);
+            } else {
+                holder.tvCurrent.setVisibility (View.GONE);
+            }
+        }
+
 
         if (position != data.size () - 1) {
             holder.diver.setVisibility (View.VISIBLE);
@@ -107,7 +106,7 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
 
     }
 
-    public void updateList(List<RefrigeratorModel> list) {
+    public void updateList(List<RefrigeratorListRes> list) {
         this.data = list;
         notifyDataSetChanged ();
     }
@@ -142,7 +141,7 @@ public class RefrigeratorListAdapter extends RecyclerView.Adapter<RefrigeratorLi
     private OnRefItemClickListener mOnRefItemClickListener;
 
     public interface OnRefItemClickListener {
-        void onItemClick(RefrigeratorModel model);
+        void onItemClick(RefrigeratorListRes model);
     }
 
     public void setOnRefItemClickListener(OnRefItemClickListener onRefItemClickListener) {

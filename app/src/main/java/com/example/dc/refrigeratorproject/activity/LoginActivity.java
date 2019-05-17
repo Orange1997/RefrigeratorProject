@@ -2,9 +2,6 @@ package com.example.dc.refrigeratorproject.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
@@ -21,18 +18,17 @@ import android.widget.Toast;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.iView.ILoginView;
+import com.example.dc.refrigeratorproject.presenter.LoginPresenter;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.InputUtils;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
-
-import static com.example.dc.refrigeratorproject.config.Config.STATUS_LOGIN_NOT_MATCH;
-import static com.example.dc.refrigeratorproject.config.Config.STATUS_LOGIN_NO_ACCOUNT;
-import static com.example.dc.refrigeratorproject.config.Config.STATUS_LOGIN_SUCCESS;
 
 /**
  * Created by DC on 2019/3/5.
  */
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener,ILoginView{
 
     private EditText etUser;
     private EditText etPsd;
@@ -41,12 +37,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tvForgotPsd;
     private TextView tvRegister;
     private ImageView ivQqLogin;
-    private Handler handler = new Handler ();
 
+    private LoginPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_login);
+        presenter = new LoginPresenter (LoginActivity.this,this);
 
         etUser = (EditText) findViewById (R.id.et_user);
         etPsd = (EditText) findViewById (R.id.et_psd);
@@ -60,26 +57,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         tvRegister.setOnClickListener (this);
         ivQqLogin.setOnClickListener (this);
         cbPsd.setVisibility (View.GONE);
-
-        if (Config.isLogin (LoginActivity.this)){
-            Intent intent = new Intent (LoginActivity.this,MainActivity.class);
-            startActivity (intent);
-            finish ();
-        }
-
-        new Thread (new Runnable () {
-            @Override
-            public void run() {
-                Message msg = Message.obtain ();
-                msg.what = 1;
-                msg.obj = 2;
-                Looper.prepare ();//为子线程创建Looper
-                handler.sendMessage (msg);
-                Looper.loop (); //开启消息轮询
-
-            }
-        }).start ();
-
 
         etPsd.addTextChangedListener (new TextWatcher () {
             @Override
@@ -117,7 +94,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
         });
 
+    }
 
+    @Override
+    public void onSuccess(User user) {
+        Config.setUser (LoginActivity.this,user);
+        Config.setUserAccount (LoginActivity.this, user.getAccount ());
+        Config.setUserPsd (LoginActivity.this, user.getPassword ());
+        Config.setUserID (LoginActivity.this, user.getUserId ());
+        Config.setCreateFridgeIds (LoginActivity.this, 0);
+        Config.setSharedFridgeIds (LoginActivity.this,user.getSharedFridgeIds ());
+        Intent intent = new Intent (LoginActivity.this,MainActivity.class);
+        startActivity (intent);
+        finish ();
+    }
+
+    @Override
+    public void onError(String result) {
+        ToastUtil.showShort (LoginActivity.this,result);
     }
 
 
@@ -126,11 +120,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         Intent intent;
         switch (view.getId ()) {
             case R.id.btn_login:
-//                intent = new Intent (LoginActivity.this, MainActivity.class);
-//                Config.setUserAccount (LoginActivity.this,1234);
-//                startActivity (intent);
-
-
                 if (TextUtils.isEmpty (etUser.getText ())) {
                     ToastUtil.showShort (getApplicationContext (), R.string.hint_register_phone);
                 } else if (!InputUtils.isPhoneNumber (etUser.getText ().toString ())) {
@@ -138,21 +127,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 } else if (TextUtils.isEmpty (etPsd.getText ())) {
                     ToastUtil.showShort (getApplicationContext (), R.string.toast_no_psd);
                 } else {
-                    switch (dbOpenHelper.loginStatus (etUser.getText ().toString (), etPsd.getText ().toString ())) {
-                        case STATUS_LOGIN_NO_ACCOUNT:
-                            ToastUtil.showShort (getApplicationContext (), "账号不存在");
-                            break;
-                        case STATUS_LOGIN_NOT_MATCH:
-                            ToastUtil.showShort (getApplicationContext (), "密码不正确");
-                            break;
-                        case STATUS_LOGIN_SUCCESS:
-                            intent = new Intent (LoginActivity.this, MainActivity.class);
-                            Config.setUserAccount (LoginActivity.this, Long.valueOf (etUser.getText ().toString ()));
-                            Config.setUserPsd (LoginActivity.this, etPsd.getText ().toString ());
-                            startActivity (intent);
-                            finish ();
-                            break;
-                    }
+                    presenter.login (etUser.getText ().toString (), etPsd.getText ().toString ());
                 }
                 break;
             case R.id.tv_forgot_psd:
@@ -180,6 +155,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             startActivity (intent);
             finish ();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy ();
     }
 
 }

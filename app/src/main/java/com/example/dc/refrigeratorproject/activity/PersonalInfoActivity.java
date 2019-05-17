@@ -10,15 +10,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
+import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import static com.example.dc.refrigeratorproject.activity.EditSignActivity.RESULT_CODE_EDIT_SIGN;
 import static com.example.dc.refrigeratorproject.activity.RefrigeratorInfoActivity.REQUEST_CODE;
 import static com.example.dc.refrigeratorproject.activity.RefrigeratorInfoActivity.RESULT_CODE_ADDRESS;
 import static com.example.dc.refrigeratorproject.activity.RefrigeratorInfoActivity.RESULT_CODE_EDIT_NAME;
+import static com.example.dc.refrigeratorproject.config.Config.KEY_EDIT_NAME;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_EDIT_SIGN_CONTENT;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_ADDRESS;
-import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_NAME;
 
 
 /**
@@ -26,7 +28,7 @@ import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_
  */
 
 public class PersonalInfoActivity extends BaseActivity implements View.OnClickListener {
-    private TextView tvName, tvSex, tvAddress, tvIntro;
+    private TextView tvName, tvSex, tvAddress, tvIntro,tvAccount;
     private SimpleDraweeView ivHead;
 
     @Override
@@ -46,6 +48,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
             }
         });
 
+        tvAccount = findViewById (R.id.et_account);
         tvName = findViewById (R.id.et_name);
         tvSex = findViewById (R.id.et_sex);
         tvAddress = findViewById (R.id.et_address);
@@ -57,6 +60,16 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         tvAddress.setOnClickListener (this);
         tvIntro.setOnClickListener (this);
 
+        User user = Config.getUser (PersonalInfoActivity.this);
+        if (user!=null){
+            tvAccount.setText (user.getAccount ());
+            tvName.setText (user.getUserName ()!=null?user.getUserName ():"用户"+user.getAccount ());
+            tvSex.setText ("女");
+            tvAddress.setText ("浙江杭州");
+            tvIntro.setText ("一个小透明");
+        }
+
+
     }
 
     @Override
@@ -65,6 +78,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         switch (view.getId ()) {
             case R.id.et_name:
                 intent = new Intent (PersonalInfoActivity.this, EditNameActivity.class);
+                intent.putExtra (KEY_EDIT_NAME, tvName.getText ().toString ());
                 startActivityForResult (intent, REQUEST_CODE);
                 break;
             case R.id.et_sex:
@@ -106,7 +120,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (intent != null) {
             if (resultCode == RESULT_CODE_EDIT_NAME) {
-                String result = intent.getStringExtra (KEY_REFRIGERATOR_NAME);
+                String result = intent.getStringExtra (KEY_EDIT_NAME);
                 tvName.setText (result);
             } else if (resultCode == RESULT_CODE_ADDRESS) {
                 String result = intent.getStringExtra (KEY_REFRIGERATOR_ADDRESS);

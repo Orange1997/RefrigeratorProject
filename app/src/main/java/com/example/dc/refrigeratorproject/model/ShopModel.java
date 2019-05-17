@@ -1,5 +1,7 @@
 package com.example.dc.refrigeratorproject.model;
 
+import com.baidu.mapapi.search.core.PoiDetailInfo;
+
 import java.io.Serializable;
 
 /**
@@ -7,19 +9,9 @@ import java.io.Serializable;
  */
 
 public class ShopModel implements Serializable {
-    private String name;
     private int likes;
-    private float discount;
     private String img;
-    private String location;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private PoiDetailInfo poiDetailInfo;
 
     public int getLikes() {
         return likes;
@@ -29,13 +21,6 @@ public class ShopModel implements Serializable {
         this.likes = likes;
     }
 
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
 
     public String getImg() {
         return img;
@@ -45,11 +30,11 @@ public class ShopModel implements Serializable {
         this.img = img;
     }
 
-    public String getLocation() {
-        return location;
+    public PoiDetailInfo getPoiDetailInfo() {
+        return poiDetailInfo;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPoiDetailInfo(PoiDetailInfo poiDetailInfo) {
+        this.poiDetailInfo = poiDetailInfo;
     }
 }

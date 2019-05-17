@@ -22,12 +22,6 @@
             android:padding="@dimen/margin_common" />
 
         <RadioButton
-            android:id="@+id/rb_list"
-            style="@style/tab_menu"
-            android:drawableTop="@drawable/selecor_tab_ic_list"
-            android:padding="@dimen/margin_common"/>
-
-        <RadioButton
             android:id="@+id/rb_information"
             style="@style/tab_menu"
             android:drawableTop="@drawable/selecor_tab_ic_infor"
