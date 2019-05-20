@@ -11,6 +11,7 @@ import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.iView.IJoinView;
 import com.example.dc.refrigeratorproject.presenter.SharePresenter;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.DialogUtil;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 
@@ -71,6 +72,11 @@ public class JoinActivity extends BaseActivity implements IJoinView{
     @Override
     public void onJoinSuccess(String s){
         Config.setSharedFridgeIds (JoinActivity.this,s);
+        User user = Config.getUser (JoinActivity.this);
+        if (user != null) {
+            user.setCurrentFridgeId (Config.getCurrentFridgeId (JoinActivity.this));
+            Config.setUser (JoinActivity.this, user);
+        }
         Intent intent = new Intent (JoinActivity.this,MainActivity.class);
         startActivity (intent);
         finish ();

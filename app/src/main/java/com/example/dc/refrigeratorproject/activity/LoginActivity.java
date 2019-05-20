@@ -12,9 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.config.Config;
@@ -36,7 +34,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private Button btnLogin;
     private TextView tvForgotPsd;
     private TextView tvRegister;
-    private ImageView ivQqLogin;
+//    private ImageView ivQqLogin;
 
     private LoginPresenter presenter;
     @Override
@@ -51,11 +49,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         btnLogin = (Button) findViewById (R.id.btn_login);
         tvForgotPsd = (TextView) findViewById (R.id.tv_forgot_psd);
         tvRegister = (TextView) findViewById (R.id.tv_to_register);
-        ivQqLogin = (ImageView) findViewById (R.id.iv_qq);
+//        ivQqLogin = (ImageView) findViewById (R.id.iv_qq);
         btnLogin.setOnClickListener (this);
         tvForgotPsd.setOnClickListener (this);
         tvRegister.setOnClickListener (this);
-        ivQqLogin.setOnClickListener (this);
+//        ivQqLogin.setOnClickListener (this);
         cbPsd.setVisibility (View.GONE);
 
         etPsd.addTextChangedListener (new TextWatcher () {
@@ -140,10 +138,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 intent = new Intent (LoginActivity.this, RegisterActivity.class);
                 startActivity (intent);
                 break;
-            case R.id.iv_qq:
-                //todo:QQ第三方登录
-                Toast.makeText (getApplicationContext (), "QQ登录跳转", Toast.LENGTH_SHORT).show ();
-                break;
+//            case R.id.iv_qq:
+//                //todo:QQ第三方登录
+//                Toast.makeText (getApplicationContext (), "QQ登录跳转", Toast.LENGTH_SHORT).show ();
+//                break;
         }
     }
 

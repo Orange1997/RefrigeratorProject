@@ -127,8 +127,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 break;
             case R.id.ic_exit:
                 ToastUtil.showShort (MainActivity.this,"退出登录");
-                finish ();
                 Config.logout (MainActivity.this);
+                finish ();
                 break;
             case R.id.iv_head:
                 Intent intent1 = new Intent (MainActivity.this,PersonalInfoActivity.class);
@@ -141,7 +141,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void updateList(UpdateFridgeEvent messageEvent) {
         if (viewpager.getCurrentItem () == 0) {
             RefrigeratorFragment fragment = (RefrigeratorFragment) mAdapter.getItem (0);
-            fragment.updateList ();
+            fragment.setCurrentFridge (messageEvent.getMessage (),true);
         }
     }
 

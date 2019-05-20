@@ -2,10 +2,12 @@ package com.example.dc.refrigeratorproject.netWork;
 
 import com.example.dc.refrigeratorproject.resposeBean.AddFridgeRes;
 import com.example.dc.refrigeratorproject.resposeBean.AddShareFridgeRes;
+import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.LoginRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RegisterRes;
 import com.example.dc.refrigeratorproject.resposeBean.UpdateUserRes;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 
 import java.util.List;
 
@@ -40,6 +42,15 @@ public interface RetrofitService {
     Observable<AddShareFridgeRes> addSharedFridge(@Query("invitationCode") String invitationCode,
                                                   @Query("userId") Integer userId, @Query("tag") Integer tag);
 
+    @GET("getUserShareFridge")
+    Observable<List<User>> getUserShareFridge(@Query("fridgeId") Integer fridgeId);
+
     @GET("getCurrentFood")
-    Observable<AddShareFridgeRes> getCurrentFood(@Query("fridgeId") Integer fridgeId);
+    Observable<List<GetFoodListRes>> getCurrentFood(@Query("fridgeId") Integer fridgeId, @Query("tag") Integer tag);
+
+    @GET("addFoodPost")
+    Observable<String> addFoodPost(@Query("imgData") String imgData, @Query("foodName") String foodName,
+                                   @Query("foodCount") float foodCount, @Query("foodUnit") String foodUnit,
+                                   @Query("outlineTime") String outlineTime, @Query("remindTime") String remindTime,
+                                   @Query("remark") String remark, @Query("userId") int userId, @Query("fridgeId") int fridgeId);
 }

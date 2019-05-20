@@ -8,7 +8,8 @@
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <RadioButton
             android:id="@+id/rb_found"
@@ -21,7 +22,7 @@
             android:drawableBottom="@drawable/selector_community_tab"
             android:button="@null"
             android:background="@null"
-            android:checked="true" />
+            android:checked="false" />
 
         <RadioButton
             android:id="@+id/rb_community"
@@ -31,6 +32,7 @@
             android:textSize="@dimen/text_16"
             android:gravity="center"
             android:padding="12dp"
+            android:visibility="gone"
             android:drawableBottom="@drawable/selector_community_tab"
             android:button="@null"
             android:background="@null"

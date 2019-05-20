@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.dc.refrigeratorproject.iView.IRefrigeratorView;
 import com.example.dc.refrigeratorproject.iView.IView;
+import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 
 import java.util.List;
@@ -48,29 +49,29 @@ public class RefrigeratorPresenter extends BasePresenter{
         );
     }
 
-//    public void getFoodList(int id) {
-//        mCompositeSubscription.add (manager.getCurrentFood (id)
-//                .subscribeOn (Schedulers.io ())
-//                .observeOn (AndroidSchedulers.mainThread ())
-//                .subscribe (new Observer<List<RefrigeratorListRes>> () {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        e.printStackTrace ();
-//                        iRefrigeratorView.onError ("请求失败！！");
-//                    }
-//
-//                    @Override
-//                    public void onNext(List<RefrigeratorListRes> listRes) {
-//                        iRefrigeratorView.updateFridgeList (listRes);
-//                    }
-//                })
-//        );
-//    }
+    public void getFoodList(int id) {
+        mCompositeSubscription.add (manager.getCurrentFood (id)
+                .subscribeOn (Schedulers.io ())
+                .observeOn (AndroidSchedulers.mainThread ())
+                .subscribe (new Observer<List<GetFoodListRes>> () {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace ();
+                        iRefrigeratorView.onError ("请求失败！！");
+                    }
+
+                    @Override
+                    public void onNext(List<GetFoodListRes> listRes) {
+                        iRefrigeratorView.updateFoodList (listRes);
+                    }
+                })
+        );
+    }
 
 
 

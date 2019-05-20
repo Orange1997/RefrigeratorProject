@@ -27,14 +27,13 @@ import com.example.dc.refrigeratorproject.adapter.RefrigeratorAdapter;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.iView.IRefrigeratorView;
 import com.example.dc.refrigeratorproject.model.FoodBean;
-import com.example.dc.refrigeratorproject.model.RefrigeratorBean;
 import com.example.dc.refrigeratorproject.presenter.RefrigeratorPresenter;
+import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.DialogUtil;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_IS_TO_CREATE;
@@ -63,7 +62,7 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
         View view = inflater.inflate (R.layout.fragment_refrigerator, container, false);
         initTitleBar (view);
         initView (view);
-        initData ();
+        setCurrentFridge (0, false);
         setHasOptionsMenu (true);
         return view;
     }
@@ -144,7 +143,7 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
 
     }
 
-    private void initData() {
+    public void setCurrentFridge(int id, boolean isUpdate) {
         User user = Config.getUser (getActivity ());
 
         if (user != null && TextUtils.isEmpty (user.getCreateByFridgeIds ())) {
@@ -178,9 +177,13 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
             floatingActionButton.show ();
             tvAdd.setVisibility (View.GONE);
             tvJoin.setVisibility (View.GONE);
-            updateList ();
-        }
+            if (isUpdate && id != 0) {
+                presenter.getFoodList (id);
+            } else {
+                presenter.getFoodList (Config.getCurrentFridgeId (getActivity ()));
+            }
 
+        }
     }
 
     @Override
@@ -188,40 +191,30 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
         DialogUtil.showSingleChoiceDialog (getContext (), refrigeratorModelList, new DialogUtil.OnSingleChoiceClickListener () {
             @Override
             public void onSingleChoiceClick(RefrigeratorListRes model, int which) {
-                Config.setCurrentFridgeId (getActivity (),model.getFridgeId ());
+                Config.setCurrentFridgeId (getActivity (), model.getFridgeId ());
             }
         });
     }
 
-//    @Override
-//    public void updateFoodList(List<RefrigeratorListRes> refrigeratorModelList) {
-//
-//    }
+    @Override
+    public void updateFoodList(List<GetFoodListRes> foodListResList) {
+        updateList (foodListResList);
+    }
 
     @Override
     public void onError(String result) {
 
     }
 
-    public void updateList() {
-        List<RefrigeratorBean> list = new ArrayList<> ();
-        List<FoodBean> foodBeanList = new ArrayList<> ();
-//        for (int i = 0; i < 10; i++) {
-//            foodBeanList.add (new FoodBean (R.drawable.ic_qq));
-//        }
-//
-//        for (int i = 0; i < 4; i++) {
-//            list.add (new RefrigeratorBean ("果蔬", foodBeanList));
-//        }
+    public void updateList(List<GetFoodListRes> list) {
 
         if (list != null && list.size () > 0) {
             showEmptyView (false);
-            refrigeratorAdapter.updateList (list);
-            refrigeratorAdapter.notifyDataSetChanged ();
+//            refrigeratorAdapter.updateList (list);
+//            refrigeratorAdapter.notifyDataSetChanged ();
         } else {
             showEmptyView (true);
         }
-
     }
 
     private void showEmptyView(boolean isShowEmpty) {

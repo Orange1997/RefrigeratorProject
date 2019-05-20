@@ -37,7 +37,7 @@ public class AddFoodActivity extends BaseActivity implements View.OnClickListene
     private static final int GALLERY_CODE = 8000;
     private static final int CROP_CODE = 8001;
     private Toolbar mToolbar;
-    private EditText etExpiredDate, etRemindTime;
+    private EditText etExpiredDate, etRemindTime,etType;
     private ImageView ivPhoto;
 
     @Override
@@ -51,9 +51,11 @@ public class AddFoodActivity extends BaseActivity implements View.OnClickListene
         initTitle ();
         etExpiredDate = findViewById (R.id.et_expired_date);
         etRemindTime = findViewById (R.id.et_remind_time);
+        etType = findViewById (R.id.et_food_type);
         ivPhoto = findViewById (R.id.iv_photo);
         etExpiredDate.setOnClickListener (this);
         etRemindTime.setOnClickListener (this);
+        etType.setOnClickListener (this);
         ivPhoto.setOnClickListener (this);
 
     }
@@ -98,6 +100,9 @@ public class AddFoodActivity extends BaseActivity implements View.OnClickListene
             case R.id.et_remind_time:
                 showDatePickerDialog (AddFoodActivity.this, etExpiredDate,etRemindTime, false);
                 break;
+            case R.id.et_food_type:
+                showDatePickerDialog (AddFoodActivity.this, etExpiredDate,etRemindTime, false);
+                break;
             case R.id.iv_photo:
                 showListDialog ();
                 break;
@@ -106,6 +111,29 @@ public class AddFoodActivity extends BaseActivity implements View.OnClickListene
 
     private void showListDialog() {
         final String[] items = {"拍照", "本地相册"};
+        AlertDialog.Builder listDialog =
+                new AlertDialog.Builder (AddFoodActivity.this);
+        listDialog.setItems (items, new DialogInterface.OnClickListener () {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        Intent cameraIntent = new Intent (android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult (cameraIntent, CAMERA_CODE);
+                        break;
+                    case 1:
+                        Intent intent = new Intent (Intent.ACTION_GET_CONTENT);
+                        intent.setType ("image/*");
+                        startActivityForResult (intent, GALLERY_CODE);
+                        break;
+                }
+            }
+        });
+        listDialog.show ();
+    }
+
+    private void showTypeDialog() {
+        final String[] items = {"蔬菜", "肉类","海鲜"};
         AlertDialog.Builder listDialog =
                 new AlertDialog.Builder (AddFoodActivity.this);
         listDialog.setItems (items, new DialogInterface.OnClickListener () {

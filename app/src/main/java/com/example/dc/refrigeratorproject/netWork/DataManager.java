@@ -4,10 +4,12 @@ import android.content.Context;
 
 import com.example.dc.refrigeratorproject.resposeBean.AddFridgeRes;
 import com.example.dc.refrigeratorproject.resposeBean.AddShareFridgeRes;
+import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.LoginRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RegisterRes;
 import com.example.dc.refrigeratorproject.resposeBean.UpdateUserRes;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 
 import java.util.List;
 
@@ -47,7 +49,15 @@ public class DataManager {
         return mRetrofitService.addSharedFridge(inviteCode,userId,2);
     }
 
-    public  Observable<AddShareFridgeRes> getCurrentFood(int fridgeId){
-        return mRetrofitService.getCurrentFood(fridgeId);
+    public  Observable<List<User>> getUserShareFridge(int fridgeId){
+        return mRetrofitService.getUserShareFridge(fridgeId);
+    }
+
+    public  Observable<List<GetFoodListRes>> getCurrentFood(int fridgeId){
+        return mRetrofitService.getCurrentFood(fridgeId,2);
+    }
+
+    public  Observable<String> addFoodPost(String imgData,String foodName,float count,String unit,String outTime,String remindTime,String remark,int useId,int fridgeId){
+        return mRetrofitService.addFoodPost(imgData,foodName,count,unit,outTime,remindTime,remark,useId,fridgeId);
     }
 }

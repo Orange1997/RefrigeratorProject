@@ -98,6 +98,48 @@
                 android:background="@color/color_diver" />
 
             <RelativeLayout
+                android:id="@+id/rl_food_type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="类型"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16" />
+
+                <EditText
+                    android:id="@+id/et_food_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_11"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:inputType="text"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="选择类型"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"
+                android:background="@color/color_diver" />
+
+            <RelativeLayout
                 android:id="@+id/rl_food_amount"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_56"

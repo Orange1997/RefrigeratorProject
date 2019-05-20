@@ -36,6 +36,7 @@
             android:value="joUYx06na5v5UzQlVldKGuUXZ6pZmNiM" />
         <activity
             android:name=".activity.LoginActivity"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,16 +48,18 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:theme="@style/AppTheme"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".activity.ForgetPsdActivity"
             android:theme="@style/AppTheme"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".activity.MainActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
 
@@ -73,6 +76,7 @@
         <activity
             android:name=".activity.JoinActivity"
             android:theme="@style/AppTheme"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
@@ -88,6 +92,7 @@
         <activity
             android:name=".activity.EditNameActivity"
             android:theme="@style/AppTheme"
+            android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
 
         <activity

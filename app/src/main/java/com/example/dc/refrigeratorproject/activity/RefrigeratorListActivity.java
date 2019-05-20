@@ -15,6 +15,7 @@ import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.iView.IRefrigeratorView;
 import com.example.dc.refrigeratorproject.myView.NoScrollRecyclerView;
 import com.example.dc.refrigeratorproject.presenter.RefrigeratorPresenter;
+import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 
 import java.util.List;
@@ -103,6 +104,11 @@ public class RefrigeratorListActivity extends BaseActivity implements IRefrigera
 
     @Override
     public void onError(String result){
+
+    }
+
+    @Override
+    public void updateFoodList(List<GetFoodListRes> foodListResList) {
 
     }
 

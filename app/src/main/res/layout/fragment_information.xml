@@ -10,7 +10,8 @@
         android:background="@color/white"/>
 
     <include
-        layout="@layout/view_title_community"/>
+        layout="@layout/view_title_community"
+        android:visibility="visible"/>
 
     <com.example.dc.refrigeratorproject.myView.NoScrollViewPager
         android:id="@+id/vp_main"

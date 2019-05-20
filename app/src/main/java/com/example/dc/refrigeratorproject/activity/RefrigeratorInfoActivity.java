@@ -20,13 +20,15 @@ import com.example.dc.refrigeratorproject.iView.IAddFridgeView;
 import com.example.dc.refrigeratorproject.myView.SlideRecyclerView;
 import com.example.dc.refrigeratorproject.presenter.AddFridgePresenter;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
-import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorSharerModel;
 import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.DialogUtil;
 import com.example.dc.refrigeratorproject.util.InputUtils;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.dc.refrigeratorproject.config.Config.KEY_EDIT_NAME;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_ADDRESS;
@@ -47,6 +49,7 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
     private boolean isCreator = false;
     private boolean isNewCreate;
     private AddFridgePresenter presenter;
+    private List<User> sharer = new ArrayList<> ();
 
     public static final int REQUEST_CODE = 1;
     public static final int RESULT_CODE_EDIT_NAME = 101;
@@ -169,12 +172,17 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
             rvRefrigeratorSharer.setVisibility (View.VISIBLE);
             adapter.setOnDeleteClickListener (new RefrigeratorSharerAdapter.OnDeleteClickListener () {
                 @Override
-                public void onDelete(RefrigeratorSharerModel model) {
+                public void onDelete(User model, final int pos) {
                     DialogUtil.showNormalDialog (RefrigeratorInfoActivity.this, "确定要移除该账号吗？", new DialogUtil.OnPositiveClickListener () {
                         @Override
                         public void onPositiveClick() {
                             //todo:调用删除共享用户接口
-                            ToastUtil.showShort (RefrigeratorInfoActivity.this, "确定");
+                            sharer.remove (pos);
+                            adapter.notifyItemRemoved (pos);
+                            adapter.notifyItemRangeChanged (pos,6);
+                            if (sharer.size ()==0){
+                                tvEmpty.setVisibility (View.VISIBLE);
+                            }
                         }
 
                         @Override
@@ -211,21 +219,27 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
                 tvReAddress.setText (model.getAddress ());
             }
             if (model.getUserId () != 0) {
-                if (model.getUserId ()==Config.getUserId (RefrigeratorInfoActivity.this)) {
+                if (model.getUserId () == Config.getUserId (RefrigeratorInfoActivity.this)) {
                     tvCreator.setText ("我");
+                } else {
+                    tvCreator.setText (String.valueOf (model.getUserId ()));
                 }
             }
-
-//            if (model.getSharerModelList () != null && model.getSharerModelList ().size () > 0) {
-//                tvEmpty.setVisibility (View.GONE);
-//                rvRefrigeratorSharer.setVisibility (View.VISIBLE);
-//                adapter.updateList (model.getSharerModelList ());
-//            } else {
-//                tvEmpty.setVisibility (View.VISIBLE);
-//                rvRefrigeratorSharer.setVisibility (View.GONE);
-//            }
-
+            presenter.getUserShareFridge (model.getFridgeId (),model.getUserId ());
         }
+    }
+
+    @Override
+    public void onUpdateShareUser(List<User> userList,int creatorId){
+        sharer = userList;
+        if (userList!=null&&userList.size ()>0){
+            tvEmpty.setVisibility (View.GONE);
+            //更新共享用户
+            adapter.updateList (sharer,creatorId);
+        }else {
+            tvEmpty.setVisibility (View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -235,20 +249,20 @@ public class RefrigeratorInfoActivity extends BaseActivity implements View.OnCli
         String ids = Config.getCreateFridgeIds (RefrigeratorInfoActivity.this);
         User user = Config.getUser (RefrigeratorInfoActivity.this);
         if (user != null) {
-            presenter.updateFridge (ids, user.getUserId (),id);
+            presenter.updateFridge (ids, user.getUserId (), id);
         }
 
     }
 
     @Override
-    public void onAddFridgeSuccess() {
+    public void updateFridgeSuccess(int id) {
         User user = Config.getUser (RefrigeratorInfoActivity.this);
         if (user != null) {
             user.setCreateByFridgeIds (Config.getCreateFridgeIds (RefrigeratorInfoActivity.this));
             user.setCurrentFridgeId (Config.getCurrentFridgeId (RefrigeratorInfoActivity.this));
-            Config.setUser (RefrigeratorInfoActivity.this,user);
+            Config.setUser (RefrigeratorInfoActivity.this, user);
         }
-        EventBus.getDefault().post(new UpdateFridgeEvent ());
+        EventBus.getDefault ().post (new UpdateFridgeEvent (id));
         Intent intent = new Intent (RefrigeratorInfoActivity.this, MainActivity.class);
         startActivity (intent);
         finish ();

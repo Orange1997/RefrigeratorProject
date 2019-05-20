@@ -22,7 +22,7 @@ public class SharePresenter extends BasePresenter{
         iJoinView = (IJoinView)iView;
     }
 
-    public void addSharedFridge(String code,int userID){
+    public void addSharedFridge(String code, final int userID){
         mCompositeSubscription.add(manager.addSharedFridge(code,userID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

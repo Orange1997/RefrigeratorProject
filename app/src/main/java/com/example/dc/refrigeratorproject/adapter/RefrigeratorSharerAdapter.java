@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
-import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorSharerModel;
+import com.example.dc.refrigeratorproject.config.Config;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -23,7 +24,9 @@ public class RefrigeratorSharerAdapter extends RecyclerView.Adapter<Refrigerator
 
     private Context context;
 
-    private List<RefrigeratorSharerModel> data;
+    private List<User> data;
+
+    private int creatorId;
 
     public RefrigeratorSharerAdapter(Context context) {
         this.context = context;
@@ -43,16 +46,17 @@ public class RefrigeratorSharerAdapter extends RecyclerView.Adapter<Refrigerator
     @Override
 
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final RefrigeratorSharerModel model = data.get (position);
-        if (model.getSharer ()!=null){
-//            if (model.getSharer ().getHead () != null) {
-//                holder.ivHead.setImageURI (Uri.parse (model.getSharer ().getHead ()));
-//            }
-//            holder.tvAccount.setText (model.getSharer ().getAccount () != 0 ? "(" + String.valueOf (model.getSharer ().getAccount ()) + ")" : "");
-//            holder.tvName.setText (model.getSharer ().getName () != null ? model.getSharer ().getName () : "");
+        final User model = data.get (position);
+        if (model.getUserId ()== Config.getUserId (context)){
+            holder.tvName.setText ("我自己");
+            holder.tvAccount.setText ("");
+        }else {
+            holder.tvName.setText ("用户");
+            holder.tvAccount.setText (model.getAccount ());
         }
 
-        if (model.isCreator ()) {
+
+        if (model.getUserId ()==creatorId) {
             holder.ivCreator.setVisibility (View.VISIBLE);
         } else {
             holder.ivCreator.setVisibility (View.GONE);
@@ -68,7 +72,7 @@ public class RefrigeratorSharerAdapter extends RecyclerView.Adapter<Refrigerator
             @Override
             public void onClick(View v) {
                 if (mOnDeleteClickListener != null) {
-                    mOnDeleteClickListener.onDelete (model);
+                    mOnDeleteClickListener.onDelete (model,position);
                 }
             }
         });
@@ -85,8 +89,9 @@ public class RefrigeratorSharerAdapter extends RecyclerView.Adapter<Refrigerator
 
     }
 
-    public void updateList(List<RefrigeratorSharerModel> list) {
+    public void updateList(List<User> list,int id) {
         this.data = list;
+        this.creatorId = id;
         notifyDataSetChanged ();
     }
 
@@ -118,7 +123,7 @@ public class RefrigeratorSharerAdapter extends RecyclerView.Adapter<Refrigerator
     private OnDeleteClickListener mOnDeleteClickListener;
 
     public interface OnDeleteClickListener {
-        void onDelete(RefrigeratorSharerModel model);
+        void onDelete(User model,int position);
     }
 
     public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) {

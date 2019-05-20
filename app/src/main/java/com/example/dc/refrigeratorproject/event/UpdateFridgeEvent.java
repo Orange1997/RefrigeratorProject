@@ -5,16 +5,16 @@ package com.example.dc.refrigeratorproject.event;
  */
 
 public class UpdateFridgeEvent {
-    private String message;
-    public  UpdateFridgeEvent(){
-
+    private int id;
+    public  UpdateFridgeEvent(int id){
+        this.id = id;
     }
 
-    public String getMessage() {
-        return message;
+    public int getMessage() {
+        return id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage(int message) {
+        this.id = message;
     }
 }

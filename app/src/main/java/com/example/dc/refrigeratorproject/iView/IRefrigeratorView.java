@@ -1,5 +1,6 @@
 package com.example.dc.refrigeratorproject.iView;
 
+import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 
 public interface IRefrigeratorView extends IView{
     void updateFridgeList(List<RefrigeratorListRes> refrigeratorListRes);
-//    void updateFoodList(List<RefrigeratorListRes> refrigeratorListRes);
+    void updateFoodList(List<GetFoodListRes> foodListResList);
 }

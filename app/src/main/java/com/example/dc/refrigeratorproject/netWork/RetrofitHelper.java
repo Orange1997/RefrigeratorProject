@@ -39,7 +39,7 @@ public class RetrofitHelper {
 
     private void resetApp() {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.42:3000/")
+                .baseUrl("http://192.168.3.5:3000/")
                 .client(client)
                 .addConverterFactory(factory)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
