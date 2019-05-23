@@ -7,6 +7,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -27,6 +28,7 @@ public class MyApplication extends Application {
         super.onCreate ();
         Fresco.initialize (this);
         SDKInitializer.initialize (this);
+        SDKInitializer.setCoordType(CoordType.BD09LL);
         mBDLocationListener = new MyBDLocationListener ();
         initLocationOption ();
     }

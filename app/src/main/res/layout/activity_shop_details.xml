@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:title=" "
+        app:navigationIcon="@drawable/ic_arrow_back">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="店铺详情"
+            android:textColor="@color/tv_color_primary_title"
+            android:textSize="@dimen/text_18" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_common"
+        android:layout_below="@id/titlebar"
+        android:background="@color/white">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_shop"
+            android:layout_width="81dp"
+            android:layout_height="wrap_content"
+            fresco:viewAspectRatio="1"
+            tools:background="@color/tv_color_primary_title"
+            fresco:roundedCornerRadius="4dp"
+            android:scaleType="centerCrop"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/bg_login" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_guide"
+            android:layout_toRightOf="@+id/img_shop"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_16"
+                android:includeFontPadding="false"
+                android:textColor="@color/tv_color_primary_title"
+                android:text="联华超市"/>
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/margin_common"
+                android:textSize="@dimen/text_12"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:textColor="@color/gray_tv_hint"
+                android:text="留和路留和路留和路留留和路留和路留和路留12-3"/>
+
+            <TextView
+                android:id="@+id/tv_fraction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:textSize="@dimen/text_12"
+                android:textColor="#ed7027"
+                android:text="120人已赞"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_guide"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/shape_circle_with_green"
+            android:src="@drawable/ic_directions_walk"
+            android:padding="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:elevation="3dp" />
+
+    </RelativeLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top"
+        android:clickable="true" />
+</RelativeLayout>

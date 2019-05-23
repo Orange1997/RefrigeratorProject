@@ -1,7 +1,11 @@
 package com.example.dc.refrigeratorproject.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
@@ -13,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.config.Config;
@@ -27,7 +32,7 @@ import com.example.dc.refrigeratorproject.util.ToastUtil;
  */
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener,ILoginView{
-
+    private static final int BAIDU_READ_PHONE_STATE =100;
     private EditText etUser;
     private EditText etPsd;
     private CheckBox cbPsd;
@@ -41,6 +46,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_login);
+        if (Build.VERSION.SDK_INT>=23){
+            showContacts();
+        }else{
+            initView ();//init为定位方法
+        }
+    }
+
+
+    private void initView() {
         presenter = new LoginPresenter (LoginActivity.this,this);
 
         etUser = (EditText) findViewById (R.id.et_user);
@@ -94,6 +108,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
+
     @Override
     public void onSuccess(User user) {
         Config.setUser (LoginActivity.this,user);
@@ -142,6 +157,41 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 //                //todo:QQ第三方登录
 //                Toast.makeText (getApplicationContext (), "QQ登录跳转", Toast.LENGTH_SHORT).show ();
 //                break;
+        }
+    }
+
+    public void showContacts(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(),"没有权限,请手动开启定位权限",Toast.LENGTH_SHORT).show();
+            // 申请一个（或多个）权限，并提供用于回调返回的获取码（用户定义）
+            ActivityCompat.requestPermissions(LoginActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE}, BAIDU_READ_PHONE_STATE);
+        }else{
+            initView();
+        }
+    }
+
+    //Android6.0申请权限的回调方法
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            // requestCode即所声明的权限获取码，在checkSelfPermission时传入
+            case BAIDU_READ_PHONE_STATE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 获取到权限，作相应处理（调用定位SDK应当确保相关权限均被授权，否则可能引起定位失败）
+                    initView ();
+                } else {
+                    // 没有获取到权限，做特殊处理
+                    Toast.makeText(getApplicationContext(), "获取位置权限失败，请手动开启", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                break;
         }
     }
 

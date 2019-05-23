@@ -106,7 +106,7 @@ public class FoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 }
             });
         } else if (baseItem.type == TYPE_SHOP && holder instanceof ShopViewHolder) {
-            ShopItem shopItem = (ShopItem) baseItem;
+            final ShopItem shopItem = (ShopItem) baseItem;
             ((ShopViewHolder) holder).img.setImageURI (Uri.parse (shopItem.img));
             ((ShopViewHolder) holder).tvName.setText (shopItem.name != null ? shopItem.name : "");
             if (Double.parseDouble (shopItem.likes)==0){
@@ -116,7 +116,16 @@ public class FoundAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
             ((ShopViewHolder) holder).tvAddress.setText (shopItem.location != null ? shopItem.location : "未知");
 
-            ((ShopViewHolder) holder).tvDiscount.setText (shopItem.discount + "km");
+            ((ShopViewHolder) holder).tvDiscount.setText (shopItem.distance + "km");
+
+            ((ShopViewHolder) holder).llContent.setOnClickListener (new View.OnClickListener () {
+                @Override
+                public void onClick(View v) {
+                    if (mOnFoundItemClickListener != null) {
+                        mOnFoundItemClickListener.onItemClick (shopItem);
+                    }
+                }
+            });
         }
 
 

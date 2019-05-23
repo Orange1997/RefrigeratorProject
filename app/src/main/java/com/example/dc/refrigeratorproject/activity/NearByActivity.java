@@ -104,6 +104,21 @@ public class NearByActivity extends BaseActivity {
         rvShop.setLayoutManager (gridLayoutManager);
         shopAdapter = new FoundAdapter (NearByActivity.this);
         rvShop.setAdapter (shopAdapter);
+        shopAdapter.setOnFoundItemClickListener (new FoundAdapter.OnFoundItemClickListener () {
+            @Override
+            public void onItemClick(BaseItem item) {
+                if (item instanceof ShopItem){
+                    ShopItem shopItem = (ShopItem) item;
+                    Intent intent = new Intent (NearByActivity.this, ShopDetailActivity.class);
+                    intent.putExtra ("latitude", shopItem.latitude);
+                    intent.putExtra ("longitude", shopItem.longitude);
+                    intent.putExtra ("distance",shopItem.distance);
+                    intent.putExtra ("address",shopItem.location);
+                    intent.putExtra ("shopName",shopItem.name);
+                    startActivity (intent);
+                }
+            }
+        });
 
         ImageView ivBack = findViewById (R.id.iv_back);
         LinearLayout llSearch = findViewById (R.id.ll_search);

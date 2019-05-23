@@ -25,6 +25,7 @@ import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.DetailActivity;
 import com.example.dc.refrigeratorproject.activity.MoreActivity;
 import com.example.dc.refrigeratorproject.activity.NearByActivity;
+import com.example.dc.refrigeratorproject.activity.ShopDetailActivity;
 import com.example.dc.refrigeratorproject.adapter.FoundAdapter;
 import com.example.dc.refrigeratorproject.adapter.item.ArticleOrRecipesItem;
 import com.example.dc.refrigeratorproject.adapter.item.BaseItem;
@@ -150,10 +151,21 @@ public class FoundFragment extends Fragment {
         adapter.setOnFoundItemClickListener (new FoundAdapter.OnFoundItemClickListener () {
             @Override
             public void onItemClick(BaseItem item) {
-                ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem) item;
-                Intent intent = new Intent (getActivity (), DetailActivity.class);
-                intent.putExtra (KEY_FOUND_URL, articleOrRecipesItem.url);
-                startActivity (intent);
+                if (item instanceof ArticleOrRecipesItem) {
+                    ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem) item;
+                    Intent intent = new Intent (getActivity (), DetailActivity.class);
+                    intent.putExtra (KEY_FOUND_URL, articleOrRecipesItem.url);
+                    startActivity (intent);
+                }else if (item instanceof ShopItem){
+                    ShopItem shopItem = (ShopItem) item;
+                    Intent intent = new Intent (getActivity (), ShopDetailActivity.class);
+                    intent.putExtra ("latitude", shopItem.latitude);
+                    intent.putExtra ("longitude", shopItem.longitude);
+                    intent.putExtra ("distance",shopItem.distance);
+                    intent.putExtra ("address",shopItem.location);
+                    intent.putExtra ("shopName",shopItem.name);
+                    startActivity (intent);
+                }
             }
         });
     }
@@ -186,7 +198,7 @@ public class FoundFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume ();
-        showNearBy("超市");
+        showNearBy ("超市");
     }
 
 

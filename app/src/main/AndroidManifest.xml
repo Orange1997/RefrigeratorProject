@@ -26,11 +26,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
 
-        <service
-            android:name="com.baidu.location.f"
+        <service android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
-        </service>
+            android:process=":remote"/>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="joUYx06na5v5UzQlVldKGuUXZ6pZmNiM" />
@@ -151,6 +150,12 @@
             android:name=".activity.FoodDetailActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".activity.ShopDetailActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+
 
         <activity
             android:name=".activity.DialogRefListActivity"
