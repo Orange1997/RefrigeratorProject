@@ -10,34 +10,37 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.dc.refrigeratorproject.Mock;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.MoreAdapter;
 import com.example.dc.refrigeratorproject.adapter.item.ArticleOrRecipesItem;
 import com.example.dc.refrigeratorproject.adapter.item.BaseItem;
-import com.example.dc.refrigeratorproject.model.ArticleOrRecipesModel;
+import com.example.dc.refrigeratorproject.iView.INoticeDetailView;
+import com.example.dc.refrigeratorproject.presenter.NoticeDetailPresenter;
+import com.example.dc.refrigeratorproject.resposeBean.NoticeRes;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.dc.refrigeratorproject.adapter.FoundAdapter.TYPE_ARTICLE;
+import static com.example.dc.refrigeratorproject.adapter.FoundAdapter.TYPE_RECIPES;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_FOUND_URL;
 
 /**
  * Created by DC on 2019/5/14.
  */
 
-public class MyCollectionActivity extends BaseActivity {
+public class MyCollectionActivity extends BaseActivity implements INoticeDetailView {
     private MoreAdapter adapter;
     private List<BaseItem> baseItems = new ArrayList<> ();
+    private NoticeDetailPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_my_collection);
-
+        presenter = new NoticeDetailPresenter (MyCollectionActivity.this, this);
+        presenter.getCollectedNotice ();
         initView ();
-        updateList();
     }
 
     private void initView() {
@@ -71,12 +74,41 @@ public class MyCollectionActivity extends BaseActivity {
         });
     }
 
-    private void updateList() {
+    @Override
+    public void onCollectSuccess(String s) {
+
+    }
+
+    @Override
+    public void getCollects(List<NoticeRes> noticeResList) {
         baseItems.clear ();
-        for (ArticleOrRecipesModel articleOrRecipesModel : Mock.getArticleModels ()) {
-            baseItems.add (new ArticleOrRecipesItem (articleOrRecipesModel, TYPE_ARTICLE));
+        List<NoticeRes> recipes = new ArrayList<> ();
+        List<NoticeRes> article = new ArrayList<> ();
+        for (NoticeRes noticeRes:noticeResList){
+            if (noticeRes.getNoticeType ()==2){
+                recipes.add (noticeRes);
+            }else if (noticeRes.getNoticeType ()==1){
+                article.add (noticeRes);
+            }
+        }
+
+        if (recipes.size ()>0){
+            for (NoticeRes noticeRes:recipes){
+                baseItems.add (new ArticleOrRecipesItem (noticeRes,TYPE_RECIPES));
+            }
+        }
+
+        if (article.size ()>0){
+            for (NoticeRes noticeRes:article){
+                baseItems.add (new ArticleOrRecipesItem (noticeRes,TYPE_ARTICLE));
+            }
         }
         adapter.updateList (baseItems);
+    }
+
+    @Override
+    public void onError(String s) {
+
     }
 
     private void showListDialog(final int position) {

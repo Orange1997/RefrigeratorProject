@@ -20,7 +20,6 @@ import com.baidu.mapapi.search.poi.PoiIndoorResult;
 import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
-import com.example.dc.refrigeratorproject.Mock;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.DetailActivity;
 import com.example.dc.refrigeratorproject.activity.MoreActivity;
@@ -32,7 +31,9 @@ import com.example.dc.refrigeratorproject.adapter.item.BaseItem;
 import com.example.dc.refrigeratorproject.adapter.item.ShopItem;
 import com.example.dc.refrigeratorproject.adapter.item.TitleItem;
 import com.example.dc.refrigeratorproject.config.Config;
-import com.example.dc.refrigeratorproject.model.ArticleOrRecipesModel;
+import com.example.dc.refrigeratorproject.iView.INoticeView;
+import com.example.dc.refrigeratorproject.presenter.NoticePresenter;
+import com.example.dc.refrigeratorproject.resposeBean.NoticeRes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,7 @@ public class FoundFragment extends Fragment {
     private FoundAdapter adapter;
     private List<BaseItem> baseItems = new ArrayList<> ();
     private List<PoiDetailInfo> poiDetailInfoList = new ArrayList<> ();
+    private NoticePresenter presenter;
 
     private OnGetPoiSearchResultListener listener = new OnGetPoiSearchResultListener () {
         @Override
@@ -87,7 +89,7 @@ public class FoundFragment extends Fragment {
                 List<PoiDetailInfo> list = poiDetailSearchResult.getPoiDetailInfoList ();
                 if (list != null) {
                     poiDetailInfoList = list;
-                    updateList ();
+                    updatePosList ();
                 }
             }
 
@@ -112,8 +114,9 @@ public class FoundFragment extends Fragment {
         poiSearch.setOnGetPoiSearchResultListener (listener);
         lat = Config.getDouble (getActivity (), Config.KEY_LOCATION_LATITUDE);
         lon = Config.getDouble (getActivity (), Config.KEY_LOCATION_LONGITUDE);
+        presenter = new NoticePresenter (getContext (), iNoticeView);
         initView (view);
-        updateList ();
+        presenter.getNotice ();
         return view;
     }
 
@@ -155,35 +158,22 @@ public class FoundFragment extends Fragment {
                     ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem) item;
                     Intent intent = new Intent (getActivity (), DetailActivity.class);
                     intent.putExtra (KEY_FOUND_URL, articleOrRecipesItem.url);
+                    intent.putExtra ("notice",articleOrRecipesItem.noticeRes);
                     startActivity (intent);
-                }else if (item instanceof ShopItem){
+                } else if (item instanceof ShopItem) {
                     ShopItem shopItem = (ShopItem) item;
                     Intent intent = new Intent (getActivity (), ShopDetailActivity.class);
                     intent.putExtra ("latitude", shopItem.latitude);
                     intent.putExtra ("longitude", shopItem.longitude);
-                    intent.putExtra ("distance",shopItem.distance);
-                    intent.putExtra ("address",shopItem.location);
-                    intent.putExtra ("shopName",shopItem.name);
+                    intent.putExtra ("distance", shopItem.distance);
+                    intent.putExtra ("address", shopItem.location);
+                    intent.putExtra ("shopName", shopItem.name);
                     startActivity (intent);
                 }
             }
         });
     }
 
-    private void updateList() {
-        baseItems.clear ();
-        baseItems.add (new TitleItem (TYPE_HEAD, "今日推荐", "更多", 1));
-        baseItems.add (new ArticleOrRecipesItem (Mock.getArticleModels ().get (0), TYPE_ARTICLE));
-        baseItems.add (new TitleItem (TYPE_HEAD, "热门食谱", "更多", 2));
-        List<ArticleOrRecipesModel> recipesModelList = Mock.getRecipesModels ();
-        baseItems.add (new ArticleOrRecipesItem (recipesModelList.get (0), TYPE_RECIPES));
-        baseItems.add (new ArticleOrRecipesItem (recipesModelList.get (1), TYPE_RECIPES));
-        baseItems.add (new TitleItem (TYPE_HEAD, "附近店铺", "更多", 3));
-        for (PoiDetailInfo poiDetailInfo : poiDetailInfoList) {
-            baseItems.add (new ShopItem (poiDetailInfo, TYPE_SHOP, lat, lon));
-        }
-        adapter.updateList (baseItems);
-    }
 
     public void showNearBy(String keyword) {
         poiSearch.searchNearby (new PoiNearbySearchOption ()
@@ -192,6 +182,53 @@ public class FoundFragment extends Fragment {
                 .keyword (keyword)
                 .pageNum (0)
                 .pageCapacity (10));
+    }
+
+    private INoticeView iNoticeView = new INoticeView () {
+        @Override
+        public void getNoticeSuccess(List<NoticeRes> s) {
+            updateList (s);
+        }
+    };
+
+    private void updateList(List<NoticeRes> s) {
+        baseItems.clear ();
+        List<NoticeRes> article = new ArrayList<> ();
+        List<NoticeRes> recipes = new ArrayList<> ();
+        for (NoticeRes noticeRes : s) {
+            if (noticeRes.getNoticeType () == 1) {
+                article.add (noticeRes);
+            } else if (noticeRes.getNoticeType () == 2) {
+                recipes.add (noticeRes);
+            }
+        }
+        baseItems.add (new TitleItem (TYPE_HEAD, "今日推荐", "更多", 1));
+        if (article.size () > 0) {
+            baseItems.add (new ArticleOrRecipesItem (article.get (0), TYPE_ARTICLE));
+        }
+
+        baseItems.add (new TitleItem (TYPE_HEAD, "热门食谱", "更多", 2));
+        if (recipes.size ()>1){
+            baseItems.add (new ArticleOrRecipesItem (recipes.get (0), TYPE_RECIPES));
+            baseItems.add (new ArticleOrRecipesItem (recipes.get (1), TYPE_RECIPES));
+        }
+        baseItems.add (new TitleItem (TYPE_HEAD, "附近店铺", "更多", 3));
+        adapter.updateList (baseItems);
+    }
+
+    private void updatePosList(){
+        List<BaseItem> baseItemsOld = new ArrayList<> ();
+        for (BaseItem baseItem:baseItems){
+            if (baseItem.type==TYPE_SHOP){
+                baseItemsOld.add (baseItem);
+            }
+        }
+        baseItems.removeAll (baseItemsOld);
+        for (PoiDetailInfo poiDetailInfo : poiDetailInfoList) {
+            baseItems.add (new ShopItem (poiDetailInfo, TYPE_SHOP, lat, lon));
+        }
+
+        adapter.updateList (baseItems);
     }
 
 

@@ -16,6 +16,7 @@
         app:navigationIcon="@drawable/ic_close">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/add_food"
@@ -69,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="食物名称"
+                    android:text="名称*"
                     android:textColor="@color/tv_color_primary_title"
                     android:textSize="@dimen/text_16" />
 
@@ -109,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="类型"
+                    android:text="类型*"
                     android:textColor="@color/tv_color_primary_title"
                     android:textSize="@dimen/text_16" />
 
@@ -119,19 +120,61 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_marginStart="@dimen/margin_common"
                     android:layout_toEndOf="@+id/title_11"
                     android:background="@null"
                     android:gravity="end"
-                    android:inputType="text"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:hint="选择类型"
+                    android:inputType="number"
                     android:textColor="@color/tv_color_primary_title"
                     android:textColorHint="@color/tv_color_primary_hint"
                     android:textSize="@dimen/text_16" />
 
             </RelativeLayout>
+
+            <View
+                style="@style/diver"
+                android:layout_marginLeft="@dimen/margin_18"
+                android:layout_marginRight="@dimen/margin_18"
+                android:background="@color/color_diver" />
+
+            <RelativeLayout
+                android:id="@+id/rl_expired_date"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_56"
+                android:paddingLeft="@dimen/margin_18"
+                android:paddingRight="@dimen/margin_18">
+
+                <TextView
+                    android:id="@+id/title_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="过期时间*"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textSize="@dimen/text_16" />
+
+                <EditText
+                    android:id="@+id/et_expired_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_common"
+                    android:layout_toEndOf="@+id/title_4"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="选择日期"
+                    android:textColor="@color/tv_color_primary_title"
+                    android:textColorHint="@color/tv_color_primary_hint"
+                    android:textSize="@dimen/text_16" />
+
+            </RelativeLayout>
+
 
             <View
                 style="@style/diver"
@@ -206,47 +249,6 @@
                     android:gravity="end"
                     android:hint="如：盘、袋、克"
                     android:inputType="text"
-                    android:textColor="@color/tv_color_primary_title"
-                    android:textColorHint="@color/tv_color_primary_hint"
-                    android:textSize="@dimen/text_16" />
-
-            </RelativeLayout>
-
-            <View
-                style="@style/diver"
-                android:layout_marginLeft="@dimen/margin_18"
-                android:layout_marginRight="@dimen/margin_18"
-                android:background="@color/color_diver" />
-
-            <RelativeLayout
-                android:id="@+id/rl_expired_date"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_56"
-                android:paddingLeft="@dimen/margin_18"
-                android:paddingRight="@dimen/margin_18">
-
-                <TextView
-                    android:id="@+id/title_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="过期时间"
-                    android:textColor="@color/tv_color_primary_title"
-                    android:textSize="@dimen/text_16" />
-
-                <EditText
-                    android:id="@+id/et_expired_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_common"
-                    android:layout_toEndOf="@+id/title_4"
-                    android:background="@null"
-                    android:gravity="end"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="选择日期"
                     android:textColor="@color/tv_color_primary_title"
                     android:textColorHint="@color/tv_color_primary_hint"
                     android:textSize="@dimen/text_16" />

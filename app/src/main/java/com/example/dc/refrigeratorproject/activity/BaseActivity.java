@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.sqLite.DBOpenHelper;
+import com.tencent.tauth.Tencent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -23,6 +24,8 @@ import org.greenrobot.eventbus.EventBus;
 public class BaseActivity extends AppCompatActivity {
     protected DBOpenHelper dbOpenHelper;
     protected PoiSearch poiSearch;
+    private static final String APP_ID = "1109152834";//官方获取的APPID
+    protected Tencent mTencent;
     protected double lat;
     protected double lon;
 
@@ -49,6 +52,8 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
 
+        //传入参数APPID和全局Context上下文
+        mTencent = Tencent.createInstance (APP_ID, this.getApplicationContext ());
         poiSearch = PoiSearch.newInstance ();
         lat = Config.getDouble (BaseActivity.this, Config.KEY_LOCATION_LATITUDE);
         lon = Config.getDouble (BaseActivity.this, Config.KEY_LOCATION_LONGITUDE);

@@ -74,13 +74,23 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             final ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem) baseItem;
             ((ListViewHolder) holder).img.setImageURI (Uri.parse (articleOrRecipesItem.img));
             ((ListViewHolder) holder).tvTitle.setText (articleOrRecipesItem.title != null ? articleOrRecipesItem.title : "");
-            ((ListViewHolder) holder).tvAuthor.setText (articleOrRecipesItem.likes + "人已赞");
             ((ListViewHolder) holder).rlItem.setOnClickListener (new View.OnClickListener () {
                 @Override
                 public void onClick(View v) {
                     if (mOnListItemClickListener != null) {
                         mOnListItemClickListener.onItemClick (articleOrRecipesItem);
                     }
+                }
+            });
+
+            ((ListViewHolder) holder).rlItem.setOnLongClickListener (new View.OnLongClickListener () {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (mOnLongItemClickListener != null) {
+                        mOnLongItemClickListener.onLongItemClick (articleOrRecipesItem, position);
+                        return true;
+                    }
+                    return false;
                 }
             });
         }

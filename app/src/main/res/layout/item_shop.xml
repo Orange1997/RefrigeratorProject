@@ -18,7 +18,7 @@
         fresco:roundedCornerRadius="4dp"
         android:scaleType="centerCrop"
         fresco:actualImageScaleType="centerCrop"
-        fresco:placeholderImage="@drawable/bg_login" />
+        fresco:placeholderImage="@drawable/iv_shop_1" />
 
     <TextView
         android:id="@+id/tv_name"

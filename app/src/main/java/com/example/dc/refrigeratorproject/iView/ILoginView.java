@@ -8,4 +8,6 @@ import com.example.dc.refrigeratorproject.resposeBean.User;
 
 public interface ILoginView extends IView {
     void onSuccess(User user);
+    void onLoginByQqSuccess(User s);
+    void onLoginByQqFailure(String info,String openId);
 }

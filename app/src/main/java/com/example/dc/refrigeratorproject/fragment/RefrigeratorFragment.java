@@ -15,45 +15,49 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.activity.AddFoodActivity;
 import com.example.dc.refrigeratorproject.activity.FoodDetailActivity;
 import com.example.dc.refrigeratorproject.activity.JoinActivity;
-import com.example.dc.refrigeratorproject.activity.RefrigeratorInfoActivity;
 import com.example.dc.refrigeratorproject.adapter.RefrigeratorAdapter;
+import com.example.dc.refrigeratorproject.adapter.item.BaseItem;
+import com.example.dc.refrigeratorproject.adapter.item.FoodItem;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.iView.IRefrigeratorView;
-import com.example.dc.refrigeratorproject.model.FoodBean;
 import com.example.dc.refrigeratorproject.presenter.RefrigeratorPresenter;
 import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.RefrigeratorListRes;
 import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.DialogUtil;
-import com.example.dc.refrigeratorproject.util.ToastUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.dc.refrigeratorproject.config.Config.KEY_REFRIGERATOR_IS_TO_CREATE;
+import static com.example.dc.refrigeratorproject.adapter.RefrigeratorAdapter.TYPE_FOOD;
 
 /**
  * Created by DC on 2019/3/8.
  */
 
-public class RefrigeratorFragment extends Fragment implements IRefrigeratorView {
-    private RecyclerView rvRefrigerator;
-    private RefrigeratorAdapter refrigeratorAdapter;
+public class RefrigeratorFragment extends Fragment implements IRefrigeratorView, View.OnClickListener {
+    private RecyclerView rvRefrigerator, rvRefrigerator2, rvRefrigerator3, rvRefrigerator4;
+    private RefrigeratorAdapter refrigeratorAdapter, refrigeratorAdapter2, refrigeratorAdapter3, refrigeratorAdapter4;
     private View emptyRefrigeratorView;
+    private ScrollView scrollView;
     private View emptyFoodView;
-    private View inviteView;
     private TextView tvAdd;
     private TextView tvJoin;
     private TextView tvEmptyGuide;
     private FloatingActionButton floatingActionButton;
     private Toolbar toolbar;
     private RefrigeratorPresenter presenter;
+    private List<BaseItem> baseItems1 = new ArrayList<> ();
+    private List<BaseItem> baseItems2 = new ArrayList<> ();
+    private List<BaseItem> baseItems3 = new ArrayList<> ();
+    private List<BaseItem> baseItems4 = new ArrayList<> ();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,22 +117,67 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
     }
 
     private void initView(View view) {
+        scrollView = view.findViewById (R.id.sl_ref);
         emptyRefrigeratorView = view.findViewById (R.id.empty_refrigerator_view);
         emptyFoodView = view.findViewById (R.id.empty_food_view);
-        inviteView = view.findViewById (R.id.rl_invite);
         tvAdd = view.findViewById (R.id.tv_add_refrigerator);
         tvJoin = view.findViewById (R.id.tv_join_refrigerator);
         tvEmptyGuide = view.findViewById (R.id.tv_guide);
         floatingActionButton = view.findViewById (R.id.floating_btn_add);
-        rvRefrigerator = view.findViewById (R.id.rv_refrigerator);
+        rvRefrigerator = view.findViewById (R.id.rv_refrigerator_1);
+        rvRefrigerator2 = view.findViewById (R.id.rv_refrigerator_2);
+        rvRefrigerator3 = view.findViewById (R.id.rv_refrigerator_3);
+        rvRefrigerator4 = view.findViewById (R.id.rv_refrigerator_4);
         refrigeratorAdapter = new RefrigeratorAdapter (getActivity ());
-        rvRefrigerator.setLayoutManager (new LinearLayoutManager (getActivity (),
-                LinearLayout.VERTICAL, false));
+        refrigeratorAdapter2 = new RefrigeratorAdapter (getActivity ());
+        refrigeratorAdapter3 = new RefrigeratorAdapter (getActivity ());
+        refrigeratorAdapter4 = new RefrigeratorAdapter (getActivity ());
+        LinearLayoutManager ms = new LinearLayoutManager (getActivity ());
+        ms.setOrientation (LinearLayoutManager.HORIZONTAL);
+        rvRefrigerator.setLayoutManager (ms);
+        LinearLayoutManager ms2 = new LinearLayoutManager (getActivity ());
+        ms2.setOrientation (LinearLayoutManager.HORIZONTAL);
+        rvRefrigerator2.setLayoutManager (ms2);
+        LinearLayoutManager ms3 = new LinearLayoutManager (getActivity ());
+        ms3.setOrientation (LinearLayoutManager.HORIZONTAL);
+        rvRefrigerator3.setLayoutManager (ms3);
+        LinearLayoutManager ms4 = new LinearLayoutManager (getActivity ());
+        ms4.setOrientation (LinearLayoutManager.HORIZONTAL);
+        rvRefrigerator4.setLayoutManager (ms4);
         rvRefrigerator.setAdapter (refrigeratorAdapter);
+        rvRefrigerator2.setAdapter (refrigeratorAdapter2);
+        rvRefrigerator3.setAdapter (refrigeratorAdapter3);
+        rvRefrigerator4.setAdapter (refrigeratorAdapter4);
+
         refrigeratorAdapter.setOnListItemClickListener (new RefrigeratorAdapter.OnListItemClickListener () {
             @Override
-            public void onItemClick(FoodBean foodBean) {
+            public void onItemClick(GetFoodListRes foodBean) {
                 Intent intent = new Intent (getActivity (), FoodDetailActivity.class);
+                intent.putExtra ("foodId", foodBean.getFoodId ());
+                startActivity (intent);
+            }
+        });
+        refrigeratorAdapter2.setOnListItemClickListener (new RefrigeratorAdapter.OnListItemClickListener () {
+            @Override
+            public void onItemClick(GetFoodListRes foodBean) {
+                Intent intent = new Intent (getActivity (), FoodDetailActivity.class);
+                intent.putExtra ("foodId", foodBean.getFoodId ());
+                startActivity (intent);
+            }
+        });
+        refrigeratorAdapter3.setOnListItemClickListener (new RefrigeratorAdapter.OnListItemClickListener () {
+            @Override
+            public void onItemClick(GetFoodListRes foodBean) {
+                Intent intent = new Intent (getActivity (), FoodDetailActivity.class);
+                intent.putExtra ("foodId", foodBean.getFoodId ());
+                startActivity (intent);
+            }
+        });
+        refrigeratorAdapter4.setOnListItemClickListener (new RefrigeratorAdapter.OnListItemClickListener () {
+            @Override
+            public void onItemClick(GetFoodListRes foodBean) {
+                Intent intent = new Intent (getActivity (), FoodDetailActivity.class);
+                intent.putExtra ("foodId", foodBean.getFoodId ());
                 startActivity (intent);
             }
         });
@@ -141,6 +190,10 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
             }
         });
 
+        presenter.getFoodList (Config.getCurrentFridgeId (getActivity ()));
+        tvAdd.setOnClickListener (this);
+
+        tvJoin.setOnClickListener (this);
     }
 
     public void setCurrentFridge(int id, boolean isUpdate) {
@@ -148,28 +201,10 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
 
         if (user != null && TextUtils.isEmpty (user.getCreateByFridgeIds ())) {
             emptyRefrigeratorView.setVisibility (View.VISIBLE);
-            rvRefrigerator.setVisibility (View.GONE);
             toolbar.setVisibility (View.GONE);
             floatingActionButton.hide ();
             tvAdd.setVisibility (View.VISIBLE);
             tvJoin.setVisibility (View.VISIBLE);
-            tvAdd.setOnClickListener (new View.OnClickListener () {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent (getActivity (), RefrigeratorInfoActivity.class);
-                    intent.putExtra (KEY_REFRIGERATOR_IS_TO_CREATE, true);
-                    startActivity (intent);
-                }
-            });
-            tvJoin.setOnClickListener (new View.OnClickListener () {
-                @Override
-                public void onClick(View v) {
-                    //todo:跳转到加入页
-                    ToastUtil.showShort (getContext (), "跳转到创建页");
-                    Intent intent = new Intent (getActivity (), JoinActivity.class);
-                    startActivity (intent);
-                }
-            });
         } else {
             //获取冰箱食物列表
             emptyRefrigeratorView.setVisibility (View.GONE);
@@ -192,6 +227,7 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
             @Override
             public void onSingleChoiceClick(RefrigeratorListRes model, int which) {
                 Config.setCurrentFridgeId (getActivity (), model.getFridgeId ());
+                setCurrentFridge(model.getFridgeId (),true);
             }
         });
     }
@@ -207,11 +243,54 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
     }
 
     public void updateList(List<GetFoodListRes> list) {
+        List<GetFoodListRes> foodVeg = new ArrayList<> ();  //水果蔬菜，type==1
+        List<GetFoodListRes> foodMeat = new ArrayList<> (); //海鲜肉类，type==2
+        List<GetFoodListRes> foodCake = new ArrayList<> ();  //熟食糕点，type==3
+        List<GetFoodListRes> foodOther = new ArrayList<> ();  //其他，type==4
 
         if (list != null && list.size () > 0) {
+            baseItems1.clear ();
+            baseItems2.clear ();
+            baseItems3.clear ();
+            baseItems4.clear ();
             showEmptyView (false);
-//            refrigeratorAdapter.updateList (list);
-//            refrigeratorAdapter.notifyDataSetChanged ();
+            for (GetFoodListRes foodListRes : list) {
+                if (foodListRes.getFoodType () == 1) {
+                    foodVeg.add (foodListRes);
+                } else if (foodListRes.getFoodType () == 2) {
+                    foodMeat.add (foodListRes);
+                } else if (foodListRes.getFoodType () == 3) {
+                    foodCake.add (foodListRes);
+                } else if (foodListRes.getFoodType () == 4) {
+                    foodOther.add (foodListRes);
+                }
+            }
+            if (foodVeg.size () > 0) {
+                for (GetFoodListRes foodListRes : foodVeg) {
+                    baseItems1.add (new FoodItem (TYPE_FOOD, foodListRes));
+                }
+                refrigeratorAdapter.updateList (baseItems1);
+            }
+            if (foodMeat.size () > 0) {
+                for (GetFoodListRes foodListRes : foodMeat) {
+                    baseItems2.add (new FoodItem (TYPE_FOOD, foodListRes));
+                }
+                refrigeratorAdapter2.updateList (baseItems2);
+            }
+
+            if (foodCake.size () > 0) {
+                for (GetFoodListRes foodListRes : foodCake) {
+                    baseItems3.add (new FoodItem (TYPE_FOOD, foodListRes));
+                }
+                refrigeratorAdapter3.updateList (baseItems3);
+            }
+
+            if (foodOther.size () > 0) {
+                for (GetFoodListRes foodListRes : foodOther) {
+                    baseItems4.add (new FoodItem (TYPE_FOOD, foodListRes));
+                }
+                refrigeratorAdapter4.updateList (baseItems4);
+            }
         } else {
             showEmptyView (true);
         }
@@ -220,7 +299,7 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
     private void showEmptyView(boolean isShowEmpty) {
         if (isShowEmpty) {
             emptyFoodView.setVisibility (View.VISIBLE);
-            rvRefrigerator.setVisibility (View.GONE);
+            scrollView.setVisibility (View.GONE);
             if (getActivity () != null) {
                 tvEmptyGuide.setText (getActivity ().getResources ().getText (R.string.empty_food_guide));
                 tvAdd.setVisibility (View.GONE);
@@ -228,12 +307,22 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView 
 
         } else {
             emptyFoodView.setVisibility (View.GONE);
-            rvRefrigerator.setVisibility (View.VISIBLE);
-//            if (当前冰箱不存在其他家人列表){
-//                inviteView.setVisibility (View.VISIBLE);
-//            }else {
-//                inviteView.setVisibility (View.GONE);
-//            }
+            scrollView.setVisibility (View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId ()) {
+            case R.id.tv_add_refrigerator:
+                intent = new Intent (getActivity (), JoinActivity.class);
+                startActivity (intent);
+                break;
+            case R.id.tv_join_refrigerator:
+                intent = new Intent (getActivity (), JoinActivity.class);
+                startActivity (intent);
+                break;
         }
     }
 

@@ -9,18 +9,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.dc.refrigeratorproject.Mock;
 import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.adapter.MoreAdapter;
 import com.example.dc.refrigeratorproject.adapter.item.ArticleOrRecipesItem;
 import com.example.dc.refrigeratorproject.adapter.item.BaseItem;
-import com.example.dc.refrigeratorproject.model.ArticleOrRecipesModel;
+import com.example.dc.refrigeratorproject.iView.INoticeView;
+import com.example.dc.refrigeratorproject.presenter.NoticePresenter;
+import com.example.dc.refrigeratorproject.resposeBean.NoticeRes;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.dc.refrigeratorproject.adapter.FoundAdapter.TYPE_ARTICLE;
-import static com.example.dc.refrigeratorproject.adapter.FoundAdapter.TYPE_RECIPES;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_FOUND_TYPE;
 import static com.example.dc.refrigeratorproject.config.Config.KEY_FOUND_URL;
 import static com.example.dc.refrigeratorproject.fragment.FoundFragment.TITLE_TYPE_ARTICLE;
@@ -34,14 +34,16 @@ public class MoreActivity extends BaseActivity {
     private MoreAdapter adapter;
     private List<BaseItem> baseItems = new ArrayList<> ();
     private int type;
+    private NoticePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_more);
         type = getIntent ().getIntExtra (KEY_FOUND_TYPE, -1);
+        presenter = new NoticePresenter (MoreActivity.this, iNoticeView);
         initView ();
-        updateList ();
+        presenter.getNotice ();
     }
 
     private void initView() {
@@ -80,15 +82,35 @@ public class MoreActivity extends BaseActivity {
         });
     }
 
-    private void updateList() {
+    private INoticeView iNoticeView = new INoticeView () {
+        @Override
+        public void getNoticeSuccess(List<NoticeRes> s) {
+            updateList (s);
+        }
+    };
+
+    private void updateList(List<NoticeRes> s) {
         baseItems.clear ();
+        List<NoticeRes> article = new ArrayList<> ();
+        List<NoticeRes> recipes = new ArrayList<> ();
+        for (NoticeRes noticeRes : s) {
+            if (noticeRes.getNoticeType () == 1) {
+                article.add (noticeRes);
+            } else if (noticeRes.getNoticeType () == 2) {
+                recipes.add (noticeRes);
+            }
+        }
         if (type == TITLE_TYPE_ARTICLE) {
-            for (ArticleOrRecipesModel articleOrRecipesModel : Mock.getArticleModels ()) {
-                baseItems.add (new ArticleOrRecipesItem (articleOrRecipesModel, TYPE_ARTICLE));
+            if (article.size ()>0){
+                for (NoticeRes noticeRes : article) {
+                    baseItems.add (new ArticleOrRecipesItem (noticeRes, TYPE_ARTICLE));
+                }
             }
         } else if (type == TITLE_TYPE_RECIPES) {
-            for (ArticleOrRecipesModel articleOrRecipesModel : Mock.getRecipesModels ()) {
-                baseItems.add (new ArticleOrRecipesItem (articleOrRecipesModel, TYPE_RECIPES));
+            if (recipes.size ()>0){
+                for (NoticeRes noticeRes : recipes) {
+                    baseItems.add (new ArticleOrRecipesItem (noticeRes, TYPE_ARTICLE));
+                }
             }
         }
 

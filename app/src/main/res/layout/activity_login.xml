@@ -152,38 +152,38 @@
         android:layout_height="0dp"
         android:layout_weight="2"/>
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/label_other_login_way"-->
-        <!--android:textColor="@color/tv_color_secondary"-->
-        <!--android:textSize="@dimen/text_13" />-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_other_login_way"
+        android:textColor="@color/tv_color_secondary"
+        android:textSize="@dimen/text_13" />
 
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="@dimen/margin_common"-->
-        <!--android:layout_marginBottom="@dimen/margin_big"-->
-        <!--android:paddingLeft="@dimen/margin_huge"-->
-        <!--android:paddingRight="@dimen/margin_huge">-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_common"
+        android:layout_marginBottom="@dimen/margin_big"
+        android:paddingLeft="@dimen/margin_huge"
+        android:paddingRight="@dimen/margin_huge">
 
-        <!--<ImageView-->
-            <!--android:layout_width="@dimen/margin_huge"-->
-            <!--android:layout_height="@dimen/margin_huge"-->
-            <!--android:src="@drawable/ic_weibo" />-->
+        <ImageView
+            android:layout_width="@dimen/margin_huge"
+            android:layout_height="@dimen/margin_huge"
+            android:src="@drawable/ic_weibo" />
 
-        <!--<ImageView-->
-            <!--android:layout_width="@dimen/margin_huge"-->
-            <!--android:layout_height="@dimen/margin_huge"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:src="@drawable/ic_qq" />-->
+        <ImageView
+            android:layout_width="@dimen/margin_huge"
+            android:layout_height="@dimen/margin_huge"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_wechat" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/iv_qq"-->
-            <!--android:layout_width="@dimen/margin_huge"-->
-            <!--android:layout_height="@dimen/margin_huge"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:src="@drawable/ic_wechat"/>-->
-    <!--</RelativeLayout>-->
+        <ImageView
+            android:id="@+id/iv_qq"
+            android:layout_width="@dimen/margin_huge"
+            android:layout_height="@dimen/margin_huge"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_qq"/>
+    </RelativeLayout>
 
 </LinearLayout>

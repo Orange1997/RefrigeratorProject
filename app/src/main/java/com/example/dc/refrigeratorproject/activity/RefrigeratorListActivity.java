@@ -99,7 +99,14 @@ public class RefrigeratorListActivity extends BaseActivity implements IRefrigera
 
     @Override
     public void updateFridgeList(List<RefrigeratorListRes> refrigeratorModelList){
-        adapter.updateList (refrigeratorModelList);
+        if (refrigeratorModelList!=null&&refrigeratorModelList.size ()>0){
+            findViewById (R.id.tv_empty).setVisibility (View.GONE);
+            adapter.updateList (refrigeratorModelList);
+            rvMyRefList.setVisibility (View.VISIBLE);
+        }else {
+            findViewById (R.id.tv_empty).setVisibility (View.VISIBLE);
+            rvMyRefList.setVisibility (View.GONE);
+        }
     }
 
     @Override

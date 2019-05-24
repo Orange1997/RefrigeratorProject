@@ -83,24 +83,29 @@
         style="@style/diver"
         android:background="@color/color_diver"/>
 
-    <EditText
-        android:id="@+id/et_psd"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/big_height"
-        android:layout_marginTop="@dimen/margin_big"
-        android:background="@null"
-        android:paddingRight="@dimen/margin_big"
-        android:paddingLeft="@dimen/margin_big"
-        android:singleLine="true"
-        android:maxLength="20"
-        android:hint="@string/hint_register_psd"
-        android:textColor="@color/colorAccent"
-        android:textColorHint="@color/tv_color_primary"
-        android:textSize="@dimen/text_16" />
+    <RelativeLayout
+        android:id="@+id/rl_psd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_psd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/big_height"
+            android:layout_marginTop="@dimen/margin_big"
+            android:background="@null"
+            android:paddingRight="@dimen/margin_big"
+            android:paddingLeft="@dimen/margin_big"
+            android:singleLine="true"
+            android:maxLength="20"
+            android:hint="@string/hint_register_psd"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/tv_color_primary"
+            android:textSize="@dimen/text_16" />
 
-    <View
-        style="@style/diver"
-        android:background="@color/color_diver"/>
+        <View
+            style="@style/diver"
+            android:background="@color/color_diver"/>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_register"

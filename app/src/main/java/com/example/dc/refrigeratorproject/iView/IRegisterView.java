@@ -8,4 +8,6 @@ import com.example.dc.refrigeratorproject.resposeBean.User;
 
 public interface IRegisterView extends IView {
     void onRegisterSuccess(User userModel);
+    void onBindSuccess(User user);
+    void onBindFailure(String s);
 }

@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="@dimen/food_width"
     android:layout_height="@dimen/food_height"
-    android:paddingTop="@dimen/margin_common"
     android:layout_marginLeft="@dimen/margin_common"
-    android:paddingBottom="@dimen/margin_common">
+    android:paddingTop="@dimen/margin_common"
+    android:layout_marginBottom="4dp"
+    android:layout_marginRight="@dimen/margin_tiny">
 
-    <ImageView
+    <RelativeLayout
+        android:layout_width="@dimen/food_width"
+        android:layout_height="@dimen/food_width">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_small_corner_with_green_border"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_head"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_tiny"
+            fresco:placeholderImage="@drawable/default_head"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:roundAsCircle="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/shape_small_corner_with_green_border"/>
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:textColor="@color/colorAccent"
+        android:maxLines="1"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:layout_margin="@dimen/margin_tiny"
+        android:text="牛肉牛牛肉牛"/>
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_head"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        fresco:placeholderImage="@drawable/default_head"
-        fresco:placeholderImageScaleType="fitCenter"
-        fresco:roundedCornerRadius="12dp"
-        fresco:roundAsCircle="true" />
-
-</RelativeLayout>
+</LinearLayout>

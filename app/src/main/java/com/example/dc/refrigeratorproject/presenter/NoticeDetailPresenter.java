@@ -2,27 +2,29 @@ package com.example.dc.refrigeratorproject.presenter;
 
 import android.content.Context;
 
-import com.example.dc.refrigeratorproject.iView.IAddFoodView;
-import com.example.dc.refrigeratorproject.iView.IView;
+import com.example.dc.refrigeratorproject.iView.INoticeDetailView;
+import com.example.dc.refrigeratorproject.resposeBean.NoticeRes;
+
+import java.util.List;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by DC on 2019/5/17.
+ * Created by DC on 2019/5/25.
  */
 
-public class AddFoodPresenter extends BasePresenter {
-    private IAddFoodView iAddFoodView;
+public class NoticeDetailPresenter extends BasePresenter {
+    private INoticeDetailView iNoticeView;
 
-    public AddFoodPresenter(Context mContext, IView iView) {
+    public NoticeDetailPresenter(Context mContext, INoticeDetailView iView) {
         super (mContext);
-        iAddFoodView = (IAddFoodView) iView;
+        iNoticeView = iView;
     }
 
-    public void addFood(String name, float amount, String unit, long outTime, long remindTime, String remind, int type) {
-        mCompositeSubscription.add (manager.addFoodPost (name, amount, unit, outTime, remindTime, remind, type)
+    public void addNoticeCollection(int noticeId, String noticeTitle, String noticeImgUr, String noticeUrl, String createTime, String author, int type,int userId) {
+        mCompositeSubscription.add (manager.addNoticeCollection (noticeId, noticeTitle, noticeImgUr, noticeUrl, createTime, author, type,userId)
                 .subscribeOn (Schedulers.io ())
                 .observeOn (AndroidSchedulers.mainThread ())
                 .subscribe (new Observer<String> () {
@@ -39,17 +41,17 @@ public class AddFoodPresenter extends BasePresenter {
 
                     @Override
                     public void onNext(String s) {
-                        iAddFoodView.onAddFoodSuccess (s);
+                        iNoticeView.onCollectSuccess (s);
                     }
                 })
         );
     }
 
-    public void updateFoodPost(String name, float amount, String unit, long outTime, long remindTime, String remind, int foodId, int type) {
-        mCompositeSubscription.add (manager.updateFoodPost (name, amount, unit, outTime, remindTime, remind, foodId, type)
+    public void getCollectedNotice() {
+        mCompositeSubscription.add (manager.getCollectedNotice ()
                 .subscribeOn (Schedulers.io ())
                 .observeOn (AndroidSchedulers.mainThread ())
-                .subscribe (new Observer<String> () {
+                .subscribe (new Observer<List<NoticeRes>> () {
                     @Override
                     public void onCompleted() {
 
@@ -62,8 +64,8 @@ public class AddFoodPresenter extends BasePresenter {
                     }
 
                     @Override
-                    public void onNext(String s) {
-                        iAddFoodView.onUpdateFoodSuccess (s);
+                    public void onNext(List<NoticeRes> s) {
+                      iNoticeView.getCollects (s);
                     }
                 })
         );
@@ -73,5 +75,4 @@ public class AddFoodPresenter extends BasePresenter {
     public void onStop() {
         super.onStop ();
     }
-
 }

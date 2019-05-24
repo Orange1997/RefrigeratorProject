@@ -51,6 +51,11 @@ public class Config {
     public static void logout(Context context) {
         setUserAccount (context, "");
         setUserPsd (context, "");
+        setCurrentFridgeId (context,-1);
+        setSharedFridgeIds (context,"");
+        setCreateFridgeIds (context,-1);
+        setUserID (context,-1);
+        setUser (context,null);
     }
 
     public static void setUser(Context context, User user) {

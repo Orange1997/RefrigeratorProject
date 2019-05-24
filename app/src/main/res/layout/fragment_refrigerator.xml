@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
-
-
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="24dp"
-        app:title="冷藏室"
         app:contentInsetStartWithNavigation="0dp"
         app:navigationIcon="@drawable/ic_menu"
-        app:titleTextColor="@color/tv_color_primary_title"/>
+        app:title="冷藏室"
+        app:titleTextColor="@color/tv_color_primary_title" />
 
     <RelativeLayout
         android:id="@+id/rl_invite"
@@ -27,16 +25,16 @@
 
         <View
             style="@style/diver"
-            android:background="@color/tv_color_secondary"/>
+            android:background="@color/tv_color_secondary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:includeFontPadding="false"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
             android:layout_toStartOf="@+id/tv_to_invite"
+            android:includeFontPadding="false"
             android:singleLine="true"
             android:text="@string/hint_invite"
             android:textColor="@color/colorAccent"
@@ -46,20 +44,20 @@
             android:id="@+id/tv_to_invite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_common"
+            android:layout_marginStart="@dimen/margin_small"
+            android:background="@drawable/shape_big_corner_with_green"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:paddingBottom="6dp"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:paddingTop="6dp"
-            android:includeFontPadding="false"
-            android:paddingBottom="6dp"
-            android:layout_marginStart="@dimen/margin_small"
-            android:gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:textSize="@dimen/text_13"
-            android:layout_marginEnd="@dimen/margin_common"
-            android:background="@drawable/shape_big_corner_with_green"
-            android:text="@string/hint_to_invite"/>
+            android:text="@string/hint_to_invite"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_13" />
 
     </RelativeLayout>
 
@@ -69,32 +67,118 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/titlebar"
-        android:visibility="visible"/>
+        android:visibility="gone" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_refrigerator"
+    <ScrollView
+        android:id="@+id/sl_ref"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_invite"
-        android:background="@drawable/shape_big_corner_with_white"
-        android:visibility="gone">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_below="@id/titlebar"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_kind"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:background="#3c28a28d"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:text="蔬菜水果"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_refrigerator_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/food_height"
+                android:background="@drawable/shape_big_corner_with_white"
+                android:visibility="visible">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/tv_kind_2"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:background="#3c28a28d"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:text="海鲜肉类"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_refrigerator_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/food_height"
+                android:background="@drawable/shape_big_corner_with_white"
+                android:visibility="visible">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/tv_kind_3"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:background="#3c28a28d"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:text="熟食糕点"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_refrigerator_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/food_height"
+                android:background="@drawable/shape_big_corner_with_white"
+                android:visibility="visible">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/tv_kind_4"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:background="#3c28a28d"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:text="其他"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_refrigerator_4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/food_height"
+                android:background="@drawable/shape_big_corner_with_white"
+                android:visibility="visible">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
 
     <include
         android:id="@+id/empty_refrigerator_view"
         layout="@layout/layout_empty_refrigerator"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floating_btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="18dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorAccent"
         app:elevation="3dp"
-        app:fabSize="normal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="18dp"/>
+        app:fabSize="normal" />
 </RelativeLayout>

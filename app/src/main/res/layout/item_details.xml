@@ -24,7 +24,7 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_alignTop="@+id/img"-->
         <!--android:layout_alignBottom="@+id/img"-->
-        <!--android:background="@drawable/shape_mash"-->
+        <!--android:background="@drawashape_maskmash"-->
         <!--android:layout_marginLeft="@dimen/margin_common"-->
         <!--android:layout_marginRight="@dimen/margin_common"/>-->
 

@@ -17,10 +17,4 @@
         android:gravity="center_vertical"
         tools:text="3333333"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/vp_food"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/food_height" />
-
-
 </LinearLayout>

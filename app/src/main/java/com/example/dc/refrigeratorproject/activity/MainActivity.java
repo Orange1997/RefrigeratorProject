@@ -17,6 +17,7 @@ import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.event.UpdateFridgeEvent;
 import com.example.dc.refrigeratorproject.fragment.RefrigeratorFragment;
 import com.example.dc.refrigeratorproject.myView.NoScrollViewPager;
+import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private TextView tvMenuMyRef;
     private ImageView ivExit;
     private SimpleDraweeView ivHead;
+    private TextView tvName;
 
     private MyFragmentPagerAdapter mAdapter;
 
@@ -59,6 +61,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         tvMenuMyRef = findViewById (R.id.tv_menu_my_ref);
         ivExit = findViewById (R.id.ic_exit);
         ivHead = findViewById (R.id.iv_head);
+        tvName = findViewById (R.id.tv_name);
+        User user = Config.getUser (MainActivity.this);
+        if (user!=null){
+            tvName.setText (user.getUserName ());
+        }
 
         mAdapter = new MyFragmentPagerAdapter (getSupportFragmentManager ());
 
@@ -141,6 +148,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void updateList(UpdateFridgeEvent messageEvent) {
         if (viewpager.getCurrentItem () == 0) {
             RefrigeratorFragment fragment = (RefrigeratorFragment) mAdapter.getItem (0);
+            mDlMain.setDrawerLockMode (DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             fragment.setCurrentFridge (messageEvent.getMessage (),true);
         }
     }

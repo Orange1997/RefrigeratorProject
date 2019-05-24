@@ -52,6 +52,36 @@ public class LoginPresenter extends BasePresenter{
         );
     }
 
+    public void loginByQq(final String openId){
+        mCompositeSubscription.add(manager.loginByQq (openId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<LoginRes> () {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        iloginView.onError("请求失败！！");
+                    }
+
+                    @Override
+                    public void onNext(LoginRes s) {
+                        if (s!=null){
+                            if (s.getStatus ()==1){
+                                iloginView.onLoginByQqSuccess (s.getData ().get (0));
+                            }else if (s.getStatus ()==0){
+                                iloginView.onLoginByQqFailure ("你还未绑定手机号，现在去绑定",openId);
+                            }
+                        }
+                    }
+                })
+        );
+    }
+
     @Override
     public void onStop() {
         super.onStop ();

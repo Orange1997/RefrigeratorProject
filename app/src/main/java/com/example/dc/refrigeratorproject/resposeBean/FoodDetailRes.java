@@ -3,12 +3,26 @@ package com.example.dc.refrigeratorproject.resposeBean;
 import java.io.Serializable;
 
 /**
- * Created by DC on 2019/5/17.
+ * Created by DC on 2019/5/23.
  */
 
-public class GetFoodListRes implements Serializable {
+public class FoodDetailRes implements Serializable{
 
-    private String imgData;
+    /**
+     * imgData : null
+     * foodId : 8
+     * foodName : 牛肉
+     * foodCount : -1
+     * foodUnit :
+     * outlineTime : 1561219200000
+     * remindTime : 1558617070920
+     * remark :
+     * userId : 1
+     * fridgeId : 24
+     * foodType : 2
+     */
+
+    private Object imgData;
     private int foodId;
     private String foodName;
     private float foodCount;
@@ -20,11 +34,11 @@ public class GetFoodListRes implements Serializable {
     private int fridgeId;
     private int foodType;
 
-    public String getImgData() {
+    public Object getImgData() {
         return imgData;
     }
 
-    public void setImgData(String imgData) {
+    public void setImgData(Object imgData) {
         this.imgData = imgData;
     }
 
@@ -104,7 +118,7 @@ public class GetFoodListRes implements Serializable {
         return foodType;
     }
 
-    public void setFoodType(int type) {
-        this.foodType = type;
+    public void setFoodType(int foodType) {
+        this.foodType = foodType;
     }
 }

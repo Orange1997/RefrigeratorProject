@@ -47,4 +47,5 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/open_sdk_r6008_lite.jar')
 }

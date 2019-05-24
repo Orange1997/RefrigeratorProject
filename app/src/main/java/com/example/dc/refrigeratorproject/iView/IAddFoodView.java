@@ -5,5 +5,6 @@ package com.example.dc.refrigeratorproject.iView;
  */
 
 public interface IAddFoodView extends IView{
-    void onAddFoodSuccess();
+    void onAddFoodSuccess(String s);
+    void onUpdateFoodSuccess(String s);
 }

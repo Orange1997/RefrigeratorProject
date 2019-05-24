@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_big"
+        android:focusable="true"
         android:orientation="horizontal">
 
         <TextView
@@ -38,6 +39,7 @@
             android:gravity="center"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
+            android:clickable="true"
             android:text="@string/create_refrigerator"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_16"/>
@@ -50,6 +52,7 @@
             android:gravity="center"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
+            android:clickable="true"
             android:layout_marginStart="@dimen/margin_big"
             android:text="@string/join_refrigerator"
             android:textColor="@color/colorAccent"
