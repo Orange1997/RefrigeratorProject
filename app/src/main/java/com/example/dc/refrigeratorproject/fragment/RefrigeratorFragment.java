@@ -291,6 +291,11 @@ public class RefrigeratorFragment extends Fragment implements IRefrigeratorView,
                 }
                 refrigeratorAdapter4.updateList (baseItems4);
             }
+
+            refrigeratorAdapter.notifyDataSetChanged ();
+            refrigeratorAdapter2.notifyDataSetChanged ();
+            refrigeratorAdapter3.notifyDataSetChanged ();
+            refrigeratorAdapter4.notifyDataSetChanged ();
         } else {
             showEmptyView (true);
         }

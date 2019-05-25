@@ -16,6 +16,7 @@ import com.example.dc.refrigeratorproject.adapter.item.ArticleOrRecipesItem;
 import com.example.dc.refrigeratorproject.adapter.item.BaseItem;
 import com.example.dc.refrigeratorproject.iView.INoticeDetailView;
 import com.example.dc.refrigeratorproject.presenter.NoticeDetailPresenter;
+import com.example.dc.refrigeratorproject.resposeBean.CommentRes;
 import com.example.dc.refrigeratorproject.resposeBean.NoticeRes;
 
 import java.util.ArrayList;
@@ -76,6 +77,11 @@ public class MyCollectionActivity extends BaseActivity implements INoticeDetailV
 
     @Override
     public void onCollectSuccess(String s) {
+
+    }
+
+    @Override
+    public void getCommentSuccess(List<CommentRes> object){
 
     }
 

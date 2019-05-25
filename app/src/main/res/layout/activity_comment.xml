@@ -35,7 +35,17 @@
         android:background="@color/white"
         android:divider="@null"
         android:layout_marginTop="@dimen/margin_tiny"
+        android:visibility="gone"
         android:listSelector="@android:color/transparent"
         android:scrollbars="none"/>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:textSize="@dimen/text_16"
+        android:text="暂无评论"/>
 
 </LinearLayout>

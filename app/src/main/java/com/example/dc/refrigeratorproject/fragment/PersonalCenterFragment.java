@@ -18,6 +18,7 @@ import com.example.dc.refrigeratorproject.adapter.MenuAdapter;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.model.MenuModel;
 import com.example.dc.refrigeratorproject.resposeBean.User;
+import com.example.dc.refrigeratorproject.util.ToastUtil;
 
 /**
  * Created by DC on 2019/3/8.
@@ -46,6 +47,8 @@ public class PersonalCenterFragment extends Fragment {
                     Intent intent;
                     intent = new Intent (getActivity (), menu.getCls ());
                     startActivity (intent);
+                }else {
+                    ToastUtil.showShort (getActivity (),"暂未开放");
                 }
             }
         });

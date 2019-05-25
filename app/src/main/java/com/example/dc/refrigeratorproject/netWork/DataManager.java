@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.resposeBean.AddFridgeRes;
 import com.example.dc.refrigeratorproject.resposeBean.AddShareFridgeRes;
+import com.example.dc.refrigeratorproject.resposeBean.CommentRes;
 import com.example.dc.refrigeratorproject.resposeBean.FoodDetailRes;
 import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.LoginRes;
@@ -101,5 +102,17 @@ public class DataManager {
 
     public Observable<String> addNoticeCollection(int noticeId, String noticeTitle, String noticeImgUr, String noticeUrl, String createTime, String author, int type, int userId) {
         return mRetrofitService.addNoticeCollection (noticeId, noticeTitle, noticeImgUr, noticeUrl, createTime, author, type, userId);
+    }
+
+    public Observable<String> addComment(int noticeId, String content,long createTime) {
+        User user = Config.getUser (context);
+        if (user!=null){
+            return mRetrofitService.addComment (noticeId, content, user.getUserName (), createTime, user.getUserId ());
+        }
+        return null;
+    }
+
+    public Observable<List<CommentRes>> getComment(int noticeId) {
+        return mRetrofitService.getComment (noticeId);
     }
 }

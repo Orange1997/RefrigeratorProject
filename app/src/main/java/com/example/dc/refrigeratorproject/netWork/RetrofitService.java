@@ -2,6 +2,7 @@ package com.example.dc.refrigeratorproject.netWork;
 
 import com.example.dc.refrigeratorproject.resposeBean.AddFridgeRes;
 import com.example.dc.refrigeratorproject.resposeBean.AddShareFridgeRes;
+import com.example.dc.refrigeratorproject.resposeBean.CommentRes;
 import com.example.dc.refrigeratorproject.resposeBean.FoodDetailRes;
 import com.example.dc.refrigeratorproject.resposeBean.GetFoodListRes;
 import com.example.dc.refrigeratorproject.resposeBean.LoginRes;
@@ -87,4 +88,12 @@ public interface RetrofitService {
 
     @GET("getCollectedNotice")
     Observable<List<NoticeRes>> getCollectedNotice(@Query("userId") int userId);
+
+    @POST("addComment")
+    Observable<String> addComment(@Query("noticeId") int noticeId, @Query("content") String content,
+                                  @Query("userName") String userName, @Query("createTime") long createTime,
+                                  @Query("userId") int userId);
+
+    @GET("getComment")
+    Observable<List<CommentRes>> getComment(@Query("noticeId") int noticeId);
 }

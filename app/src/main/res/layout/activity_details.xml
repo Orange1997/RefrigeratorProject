@@ -74,6 +74,7 @@
                 android:src="@drawable/ic_comment" />
 
             <TextView
+                android:id="@+id/tv_comment_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_round_corner_with_red"
@@ -84,7 +85,7 @@
                 android:maxLines="1"
                 android:paddingRight="4dp"
                 android:textColor="@color/white"
-                android:text="1.1w"
+                android:text="1"
                 />
 
         </RelativeLayout>

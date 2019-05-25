@@ -13,6 +13,7 @@ import com.example.dc.refrigeratorproject.R;
 import com.example.dc.refrigeratorproject.config.Config;
 import com.example.dc.refrigeratorproject.iView.INoticeDetailView;
 import com.example.dc.refrigeratorproject.presenter.NoticeDetailPresenter;
+import com.example.dc.refrigeratorproject.resposeBean.CommentRes;
 import com.example.dc.refrigeratorproject.resposeBean.NoticeRes;
 import com.example.dc.refrigeratorproject.resposeBean.User;
 import com.example.dc.refrigeratorproject.util.ToastUtil;
@@ -33,7 +34,7 @@ import static com.example.dc.refrigeratorproject.config.Config.VALUE_COMMENT_TO_
 public class DetailActivity extends BaseActivity implements View.OnClickListener, INoticeDetailView {
     private WebView webView;
     private String url;
-    private TextView tvToComment;
+    private TextView tvToComment,tvCommentCount;
     private RelativeLayout comment;
     private NoticeRes noticeRes;
     private NoticeDetailPresenter presenter;
@@ -47,10 +48,12 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         url = getIntent ().getStringExtra (KEY_FOUND_URL);
         noticeRes = (NoticeRes) getIntent ().getSerializableExtra ("notice");
         presenter.getCollectedNotice ();
+        presenter.getComment (noticeRes.getNoticeId ());
         initView ();
     }
 
     private void initView() {
+        tvCommentCount =findViewById (R.id.tv_comment_count);
         tvToComment = findViewById (R.id.tv_to_comment);
         comment = findViewById (R.id.comment);
         Toolbar toolbar = findViewById (R.id.titlebar);
@@ -91,6 +94,16 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
     public void onCollectSuccess(String s) {
         ToastUtil.showShort (DetailActivity.this, s);
         ivCollect.setImageResource (R.drawable.ic_collected);
+    }
+
+    @Override
+    public void getCommentSuccess(List<CommentRes> object){
+        if (object!=null&&object.size ()>0){
+            tvCommentCount.setVisibility (View.VISIBLE);
+            tvCommentCount.setText (String.valueOf (object.size ()));
+        }else {
+            tvCommentCount.setVisibility (View.GONE);
+        }
     }
 
     @Override
@@ -146,12 +159,22 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
             case R.id.tv_to_comment:
                 intent = new Intent (DetailActivity.this, ReportCommentActivity.class);
                 intent.putExtra (KYE_COMMENT_FROM_WHERE, VALUE_COMMENT_TO_SEND);
+                intent.putExtra ("noticeRes",noticeRes);
                 startActivity (intent);
                 break;
             case R.id.comment:
                 intent = new Intent (DetailActivity.this, CommentActivity.class);
+                intent.putExtra ("noticeId",noticeRes.getNoticeId ());
                 startActivity (intent);
                 break;
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume ();
+        if (noticeRes.getNoticeId ()>0){
+            presenter.getComment (noticeRes.getNoticeId ());
         }
     }
 

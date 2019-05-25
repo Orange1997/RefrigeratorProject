@@ -1,6 +1,7 @@
 package com.example.dc.refrigeratorproject.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,6 +57,15 @@ public class RefrigeratorAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         BaseItem baseItem = data.get (position);
         if (baseItem.type == TYPE_FOOD && holder instanceof FoodViewHolder) {
             final FoodItem foodItem = (FoodItem) baseItem;
+            if (foodItem.food.getFoodType ()==1){
+                ((FoodViewHolder) holder).img.setImageURI (Uri.parse("res://com.example.dc.refrigeratorproject/" + R.drawable.ic_veg));
+            }else if (foodItem.food.getFoodType ()==2){
+                ((FoodViewHolder) holder).img.setImageURI (Uri.parse("res://com.example.dc.refrigeratorproject/" + R.drawable.ic_meat));
+            }else if (foodItem.food.getFoodType ()==3){
+                ((FoodViewHolder) holder).img.setImageURI (Uri.parse("res://com.example.dc.refrigeratorproject/" + R.drawable.ic_meat));
+            }else if (foodItem.food.getFoodType ()==4){
+                ((FoodViewHolder) holder).img.setImageURI (Uri.parse("res://com.example.dc.refrigeratorproject/" + R.drawable.ic_other));
+            }
             ((FoodViewHolder) holder).tvName.setText (foodItem.food.getFoodName ());
             holder.itemView.setOnClickListener (new View.OnClickListener () {
                 @Override

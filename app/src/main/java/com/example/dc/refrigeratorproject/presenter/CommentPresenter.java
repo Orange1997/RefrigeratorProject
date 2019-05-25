@@ -2,9 +2,9 @@ package com.example.dc.refrigeratorproject.presenter;
 
 import android.content.Context;
 
-import com.example.dc.refrigeratorproject.iView.INoticeDetailView;
+import com.example.dc.refrigeratorproject.iView.ICommentView;
+import com.example.dc.refrigeratorproject.iView.IView;
 import com.example.dc.refrigeratorproject.resposeBean.CommentRes;
-import com.example.dc.refrigeratorproject.resposeBean.NoticeRes;
 
 import java.util.List;
 
@@ -16,16 +16,16 @@ import rx.schedulers.Schedulers;
  * Created by DC on 2019/5/25.
  */
 
-public class NoticeDetailPresenter extends BasePresenter {
-    private INoticeDetailView iNoticeView;
+public class CommentPresenter extends BasePresenter {
+    private ICommentView iCommentView;
 
-    public NoticeDetailPresenter(Context mContext, INoticeDetailView iView) {
+    public CommentPresenter(Context mContext, IView iView) {
         super (mContext);
-        iNoticeView = iView;
+        iCommentView = (ICommentView) iView;
     }
 
-    public void addNoticeCollection(int noticeId, String noticeTitle, String noticeImgUr, String noticeUrl, String createTime, String author, int type,int userId) {
-        mCompositeSubscription.add (manager.addNoticeCollection (noticeId, noticeTitle, noticeImgUr, noticeUrl, createTime, author, type,userId)
+    public void addComment(int noticeId, String content,long createTime) {
+        mCompositeSubscription.add (manager.addComment (noticeId, content, createTime)
                 .subscribeOn (Schedulers.io ())
                 .observeOn (AndroidSchedulers.mainThread ())
                 .subscribe (new Observer<String> () {
@@ -41,32 +41,10 @@ public class NoticeDetailPresenter extends BasePresenter {
                     }
 
                     @Override
-                    public void onNext(String s) {
-                        iNoticeView.onCollectSuccess (s);
-                    }
-                })
-        );
-    }
-
-    public void getCollectedNotice() {
-        mCompositeSubscription.add (manager.getCollectedNotice ()
-                .subscribeOn (Schedulers.io ())
-                .observeOn (AndroidSchedulers.mainThread ())
-                .subscribe (new Observer<List<NoticeRes>> () {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace ();
-
-                    }
-
-                    @Override
-                    public void onNext(List<NoticeRes> s) {
-                      iNoticeView.getCollects (s);
+                    public void onNext(String res) {
+                       if (res!=null){
+                           iCommentView.addCommentSuccess (res);
+                       }
                     }
                 })
         );
@@ -91,7 +69,7 @@ public class NoticeDetailPresenter extends BasePresenter {
                     @Override
                     public void onNext(List<CommentRes> res) {
                         if (res != null) {
-                            iNoticeView.getCommentSuccess (res);
+                            iCommentView.getComment (res);
                         }
                     }
                 })

@@ -2,7 +2,6 @@ package com.example.dc.refrigeratorproject.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dc.refrigeratorproject.R;
-import com.example.dc.refrigeratorproject.model.CommentDetailBean;
-import com.example.dc.refrigeratorproject.model.ReplyDetailBean;
+import com.example.dc.refrigeratorproject.resposeBean.CommentRes;
+import com.example.dc.refrigeratorproject.util.InputUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -24,13 +23,18 @@ import java.util.List;
 
 public class CommentExpandAdapter extends BaseExpandableListAdapter {
     private static final String TAG = "CommentExpandAdapter";
-    private List<CommentDetailBean> commentBeanList;
+    private List<CommentRes> commentBeanList = new ArrayList<> ();
     private Context context;
 
-    public CommentExpandAdapter(Context context, List<CommentDetailBean> commentBeanList) {
+    public CommentExpandAdapter(Context context) {
         this.context = context;
-        this.commentBeanList = commentBeanList;
     }
+
+    public void updateList(List<CommentRes> list) {
+        commentBeanList = list;
+        notifyDataSetChanged ();;
+    }
+
 
     @Override
     public int getGroupCount() {
@@ -39,12 +43,7 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int i) {
-        if (commentBeanList.get (i).getReplyList () == null) {
-            return 0;
-        } else {
-            return commentBeanList.get (i).getReplyList ().size () > 0 ? commentBeanList.get (i).getReplyList ().size () : 0;
-        }
-
+        return 0;
     }
 
     @Override
@@ -54,7 +53,7 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int i, int i1) {
-        return commentBeanList.get (i).getReplyList ().get (i1);
+        return null;
     }
 
     @Override
@@ -77,6 +76,7 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(final int groupPosition, boolean isExpand, View convertView, ViewGroup viewGroup) {
         final GroupHolder groupHolder;
+        CommentRes commentRes = commentBeanList.get (groupPosition);
 
         if (convertView == null) {
             convertView = LayoutInflater.from (context).inflate (R.layout.comment_item_layout, viewGroup, false);
@@ -86,9 +86,10 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
             groupHolder = (GroupHolder) convertView.getTag ();
         }
 
-        groupHolder.tv_name.setText (commentBeanList.get (groupPosition).getNickName ());
-        groupHolder.tv_time.setText (commentBeanList.get (groupPosition).getCreateDate ());
-        groupHolder.tv_content.setText (commentBeanList.get (groupPosition).getContent ());
+        groupHolder.tv_name.setText (commentRes.getUserName ());
+        String time = InputUtils.getDateToString (commentRes.getCreateTime (),"yyyy-MM-dd HH:mm:ss");
+        groupHolder.tv_time.setText (time);
+        groupHolder.tv_content.setText (commentRes.getContent ());
         groupHolder.iv_like.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
@@ -107,51 +108,20 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(final int groupPosition, int childPosition, boolean b, View convertView, ViewGroup viewGroup) {
-        final ChildHolder childHolder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from (context).inflate (R.layout.comment_reply_item_layout, viewGroup, false);
-            childHolder = new ChildHolder (convertView);
-            convertView.setTag (childHolder);
+        return null;
+    }
+
+    public void addTheCommentData(CommentRes commentDetailBean) {
+        if (commentDetailBean != null) {
+
+            commentBeanList.add (commentDetailBean);
+            notifyDataSetChanged ();
         } else {
-            childHolder = (ChildHolder) convertView.getTag ();
-        }
-
-        String replyUser = commentBeanList.get (groupPosition).getReplyList ().get (childPosition).getNickName ();
-        if (!TextUtils.isEmpty (replyUser)) {
-            childHolder.tv_name.setText (replyUser + ":");
-        }
-
-        childHolder.tv_content.setText (commentBeanList.get (groupPosition).getReplyList ().get (childPosition).getContent ());
-
-        return convertView;
-    }
-
-    public void addTheCommentData(CommentDetailBean commentDetailBean){
-        if(commentDetailBean!=null){
-
-            commentBeanList.add(commentDetailBean);
-            notifyDataSetChanged();
-        }else {
-            throw new IllegalArgumentException("评论数据为空!");
+            throw new IllegalArgumentException ("评论数据为空!");
         }
 
     }
 
-    public void addTheReplyData(ReplyDetailBean replyDetailBean, int groupPosition){
-        if(replyDetailBean!=null){
-            if(commentBeanList.get(groupPosition).getReplyList() != null ){
-                commentBeanList.get(groupPosition).getReplyList().add(replyDetailBean);
-            }else {
-                List<ReplyDetailBean> replyList = new ArrayList<> ();
-                replyList.add(replyDetailBean);
-                commentBeanList.get(groupPosition).setReplyList(replyList);
-            }
-            notifyDataSetChanged();
-        }else {
-            throw new IllegalArgumentException("回复数据为空!");
-        }
-
-    }
 
     @Override
     public boolean isChildSelectable(int i, int i1) {

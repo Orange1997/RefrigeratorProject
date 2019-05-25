@@ -70,13 +70,16 @@ public class FoundFragment extends Fragment {
             String uid = null;
             StringBuilder stringBuilder = new StringBuilder ();
             if (poiResult != null) {
-                for (int i = 0; i < poiResult.getAllPoi ().size (); i++) {
-                    if (i == 0) {
-                        stringBuilder = stringBuilder.append (poiResult.getAllPoi ().get (0).getUid ());
-                    } else {
-                        stringBuilder = stringBuilder.append (",").append (poiResult.getAllPoi ().get (i).getUid ());
+                if (poiResult.getAllPoi () != null && poiResult.getAllPoi ().size () > 0){
+                    for (int i = 0; i < poiResult.getAllPoi ().size (); i++) {
+                        if (i == 0) {
+                            stringBuilder = stringBuilder.append (poiResult.getAllPoi ().get (0).getUid ());
+                        } else {
+                            stringBuilder = stringBuilder.append (",").append (poiResult.getAllPoi ().get (i).getUid ());
+                        }
                     }
                 }
+
                 poiSearch.searchPoiDetail ((new PoiDetailSearchOption ())
                         .poiUids (stringBuilder.toString ()));
 
@@ -158,7 +161,7 @@ public class FoundFragment extends Fragment {
                     ArticleOrRecipesItem articleOrRecipesItem = (ArticleOrRecipesItem) item;
                     Intent intent = new Intent (getActivity (), DetailActivity.class);
                     intent.putExtra (KEY_FOUND_URL, articleOrRecipesItem.url);
-                    intent.putExtra ("notice",articleOrRecipesItem.noticeRes);
+                    intent.putExtra ("notice", articleOrRecipesItem.noticeRes);
                     startActivity (intent);
                 } else if (item instanceof ShopItem) {
                     ShopItem shopItem = (ShopItem) item;
@@ -208,7 +211,7 @@ public class FoundFragment extends Fragment {
         }
 
         baseItems.add (new TitleItem (TYPE_HEAD, "热门食谱", "更多", 2));
-        if (recipes.size ()>1){
+        if (recipes.size () > 1) {
             baseItems.add (new ArticleOrRecipesItem (recipes.get (0), TYPE_RECIPES));
             baseItems.add (new ArticleOrRecipesItem (recipes.get (1), TYPE_RECIPES));
         }
@@ -216,10 +219,10 @@ public class FoundFragment extends Fragment {
         adapter.updateList (baseItems);
     }
 
-    private void updatePosList(){
+    private void updatePosList() {
         List<BaseItem> baseItemsOld = new ArrayList<> ();
-        for (BaseItem baseItem:baseItems){
-            if (baseItem.type==TYPE_SHOP){
+        for (BaseItem baseItem : baseItems) {
+            if (baseItem.type == TYPE_SHOP) {
                 baseItemsOld.add (baseItem);
             }
         }

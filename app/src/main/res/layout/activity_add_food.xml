@@ -44,6 +44,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_bigger"
                 android:scaleType="centerCrop"
+                android:visibility="gone"
                 android:background="@color/tv_color_primary" />
 
             <TextView
